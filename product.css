@@ -1,0 +1,178 @@
+/*
+ * Custom translucent site header
+ */
+
+.site-header {
+    background-color: rgba(0, 0, 0, .85);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+}
+
+.site-header a {
+    color: #8e8e8e;
+    transition: color .15s ease-in-out;
+}
+
+.site-header a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+/*
+ * Dummy devices (replace them with your own or something else entirely!)
+ */
+
+.product-device {
+    position: absolute;
+    right: 10%;
+    bottom: -30%;
+    width: 300px;
+    height: 540px;
+    background-color: #333;
+    border-radius: 21px;
+    transform: rotate(30deg);
+}
+
+.product-device::before {
+    position: absolute;
+    top: 10%;
+    right: 10px;
+    bottom: 10%;
+    left: 10px;
+    content: "";
+    background-color: rgba(255, 255, 255, .1);
+    border-radius: 5px;
+}
+
+.product-device-2 {
+    top: -25%;
+    right: auto;
+    bottom: 0;
+    left: 5%;
+    background-color: #e5e5e5;
+}
+
+
+/*
+ * Extra utilities
+ */
+
+.flex-equal > * {
+    flex: 1;
+}
+
+@media (min-width: 768px) {
+    .flex-md-equal > * {
+        flex: 1;
+    }
+}
+
+#firstfeautrette {
+    background: url("https://images.pexels.com/photos/1148820/pexels-photo-1148820.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260") 100%;
+}
+
+#secondfeautrette {
+    background: url("https://images.unsplash.com/photo-1495764506633-93d4dfed7c6b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80") 100% top;
+    background-size: 100%;
+    -webkit-transition: background-size 0.3s ease-in;
+    transition: background-size 0.3s ease-in !important;
+}
+
+#thirdfeautrette {
+    background: url("https://images.pexels.com/photos/2881232/pexels-photo-2881232.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260") 100% no-repeat;
+    background-size: 100%;
+    -webkit-transition: background-size 0.3s ease-in;
+    transition: background-size 0.3s ease-in !important;
+}
+
+#fourthfeautrette {
+    background: url("https://images.pexels.com/photos/5474296/pexels-photo-5474296.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260") 100% no-repeat;
+    background-size: 100%;
+    -webkit-transition: background-size 0.3s ease-in;
+    transition: background-size 0.3s ease-in !important;
+}
+
+#fifthfeautrette {
+    background: url("https://images.unsplash.com/photo-1596658591534-591d75e2f2f7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1051&q=80") 100% no-repeat;
+    background-size: 100%;
+    -webkit-transition: background-size 0.3s ease-in;
+    transition: background-size 0.3s ease-in !important;
+}
+
+#sixthfeautrette {
+    background: url("https://images.unsplash.com/photo-1516110833967-0b5716ca1387?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=967&q=80") 100% no-repeat;
+    background-size: 100%;
+    -webkit-transition: background-size 0.3s ease-in;
+    transition: background-size 0.3s ease-in !important;
+}
+
+#seventhfeautrette {
+    background: url("https://wallpaperim.net/_data/i/upload/2014/09/27/20140927615822-3ab4ef54-me.jpg") 100% 100%;
+    background-size: 100%;
+    -webkit-transition: background-size 0.3s ease-in;
+    transition: background-size 0.3s ease-in !important;
+}
+
+#eigthfeautrette {
+    background: url("https://www.fortech.ro/wp-content/uploads/2019/04/Vlad-Mihalcea-Speaking-at-Fortech.jpg") 100% center;
+    background-size: 100%;
+    -webkit-transition: background-size 0.3s ease-in;
+    transition: background-size 0.3s ease-in !important;
+}
+
+#secondfeautrette:hover {
+    background-size: 101%;
+}
+
+
+#thirdfeautrette:hover {
+    background-size: 101%;
+}
+
+
+#fourthfeautrette:hover {
+    background-size: 101%;
+}
+
+
+#fifthfeautrette:hover {
+    background-size: 101%;
+}
+
+
+#sixthfeautrette:hover {
+    background-size: 101%;
+}
+
+
+#seventhfeautrette:hover {
+    background-size: 101%;
+}
+
+#eigthfeautrette:hover {
+    background-size: 101%;
+}
+
+.myfeaturette {
+    overflow: hidden;
+    margin: 0 !important;
+    padding: 0 !important;
+    height: 350px;
+}
+
+main {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.wrapperfeaturetter {
+    margin: 0 !important;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}

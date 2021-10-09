@@ -1,0 +1,11 @@
+{
+    "name": "akour/ccwebsite",
+    "description": "Cyber Club website",
+    "authors": [
+        {
+            "name": "xandros98",
+            "email": "akourtisdev@gmail.com"
+        }
+    ],
+    "require": {}
+}
