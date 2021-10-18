@@ -113,6 +113,13 @@
     transition: background-size 0.3s ease-in !important;
 }
 
+#wallpaper {
+    background: url("./s.jpg") 100% center no-repeat;
+    background-size: 100%;
+    -webkit-transition: background-size 0.3s ease-in;
+    transition: background-size 0.3s ease-in !important;
+}
+
 #eigthfeautrette {
     background: url("https://www.fortech.ro/wp-content/uploads/2019/04/Vlad-Mihalcea-Speaking-at-Fortech.jpg") 100% center;
     background-size: 100%;
