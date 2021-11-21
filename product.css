@@ -67,6 +67,28 @@
     }
 }
 
+@media (max-width: 768px) {
+    .secondaries{
+        height: 200px !important;
+        margin: 0 !important;
+    }
+
+    .third{
+        height: 300px !important;
+        background-size: cover;
+        background-repeat: no-repeat;
+        margin: 0 !important;
+    }
+
+    .here{
+        list-style-type: none !important;
+    }
+
+    .here li{
+        clear: both;
+    }
+}
+
 #firstfeautrette {
     background: url("https://images.pexels.com/photos/1148820/pexels-photo-1148820.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260") 100%;
 }
@@ -86,14 +108,14 @@
 }
 
 #fourthfeautrette {
-    background: url("https://images.pexels.com/photos/5474296/pexels-photo-5474296.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260") 100% no-repeat;
+    background: url("https://www.bbntimes.com/images/Software_Development_Mac.jpeg") 100% no-repeat;
     background-size: 100%;
     -webkit-transition: background-size 0.3s ease-in;
     transition: background-size 0.3s ease-in !important;
 }
 
 #fifthfeautrette {
-    background: url("https://images.unsplash.com/photo-1596658591534-591d75e2f2f7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1051&q=80") 100% no-repeat;
+    background: url("https://www.dhs.gov/sites/default/files/images/st/Our-Work/20_0112_st_cybersecurity1.jpg") 100% no-repeat;
     background-size: 100%;
     -webkit-transition: background-size 0.3s ease-in;
     transition: background-size 0.3s ease-in !important;
@@ -107,22 +129,20 @@
 }
 
 #seventhfeautrette {
-    background: url("https://wallpaperim.net/_data/i/upload/2014/09/27/20140927615822-3ab4ef54-me.jpg") 100% 100%;
-    background-size: 100%;
+    background: url("https://wallpaperim.net/_data/i/upload/2014/09/27/20140927615822-3ab4ef54-me.jpg") 100%  cover;
     -webkit-transition: background-size 0.3s ease-in;
     transition: background-size 0.3s ease-in !important;
 }
 
 #wallpaper {
     background: url("./s.jpg") 100% center no-repeat;
-    background-size: 100%;
+    height: 100vh;
     -webkit-transition: background-size 0.3s ease-in;
     transition: background-size 0.3s ease-in !important;
 }
 
 #eigthfeautrette {
     background: url("https://www.fortech.ro/wp-content/uploads/2019/04/Vlad-Mihalcea-Speaking-at-Fortech.jpg") 100% center;
-    background-size: 100%;
     -webkit-transition: background-size 0.3s ease-in;
     transition: background-size 0.3s ease-in !important;
 }
@@ -157,14 +177,12 @@
 }
 
 #eigthfeautrette:hover {
-    background-size: 101%;
 }
 
 .myfeaturette {
     overflow: hidden;
     margin: 0 !important;
     padding: 0 !important;
-    height: 350px;
 }
 
 main {
@@ -182,4 +200,12 @@ main {
     align-items: center;
     width: 100%;
     height: 100%;
+}
+
+.secondaries{
+    height: 370px;
+}
+
+.third{
+    height: 500px;
 }

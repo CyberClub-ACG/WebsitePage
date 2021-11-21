@@ -194,10 +194,6 @@ body {
 div.gallery {
     margin: 15px 45px 15px 15px;
     float: left;
-    width: 250px !important;
-}
-
-div.gallery:hover {
 }
 
 div.gallery img {
@@ -222,4 +218,10 @@ ul li {
 
 #header ul li a:hover {
     text-decoration: underline !important;
+}
+
+.display-5{
+    font-size: calc(1.425rem + 2.1vw);
+    font-weight: 300;
+    line-height: 1.2;
 }
