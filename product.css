@@ -142,7 +142,7 @@
 }
 
 #eigthfeautrette {
-    background: url("https://www.fortech.ro/wp-content/uploads/2019/04/Vlad-Mihalcea-Speaking-at-Fortech.jpg") 100% center;
+    background: url("https://www.fortech.ro/wp-content/uploads/2019/04/Vlad-Mihalcea-Speaking-at-Fortech.jpg") center;
     -webkit-transition: background-size 0.3s ease-in;
     transition: background-size 0.3s ease-in !important;
 }
