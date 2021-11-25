@@ -25,6 +25,16 @@
     <link href="product.css" rel="stylesheet">
 
     <style>
+        /* cyrillic-ext */
+        @font-face {
+            font-family: 'Source Sans Pro';
+            font-style: normal;
+            font-weight: 600;
+            font-display: swap;
+            src: url(https://fonts.gstatic.com/s/sourcesanspro/v18/6xKydSBYKcSV-LCoeQqfX1RYOo3i54rwmhduz8A.woff2) format('woff2');
+            unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+        }
+
         .bd-placeholder-img {
             font-size: 1.125rem;
             text-anchor: middle;
@@ -57,6 +67,14 @@
             font-weight: 300;
             line-height: 1.2
         }
+
+        .centered {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+        }
     </style>
 </head>
 
@@ -78,7 +96,6 @@
                                 <ul class="here" style="list-style-type: none; padding: 0; margin: 0; float: left">
                                     <li><a href="homepage.html">Homepage</a></li>
                                     <!-- <li><a href="projects.html">About</a></li> -->
-                                    <li><a href="ourteam.html">Our Team</a></li>
                                     <li><a href="projects.html">Projects</a></li>
                                     <!-- <li><a href="opportunities.html">Opportunities </a></li> -->
                                     <!-- <li><a href="blog.html">Blog Page</a></li> -->
@@ -97,135 +114,132 @@
                 </div>
             </div>
         </header>
-        <div style="min-height: 70vh; width: 100vw; z-index: -1;">
-            <main>
-                <div id="wallpaper" class="wrapperfeaturetter text-white">
-                    <div class="myfeaturette" style="height: 100vh;">
-                        <div class="my-3 py-3 center">
-                            <div>
-                                <h1 style="font-family: 'Source Sans Pro'"><span style="font-weight: 100;">Welcome
-                                        to</span> <b style="font-weight: 600;">Cyber
-                                        Club</b></h2>
-                                    <p class="lead"><i><b>~Add slogan here~</b></i></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class=" wrapperfeaturetter d-md-flex flex-md-equal w-100 text-white">
-                    <div class="secondaries text-center myfeaturette overflow-hidden" id="fourthfeautrette">
-                        <div class="my-3 py-3 center">
-                            <div>
-                                <h2>Software Development </h2>
-                                <!-- <p class="lead">And an even wittier subheading.</p> -->
-                            </div>
-                        </div>
-                    </div>
-                    <div class="secondaries text-center myfeaturette text-white overflow-hidden" id="fifthfeautrette">
-                        <div class="my-3 py-3 center">
-                            <div>
-                                <h2>Cyber Security</h2>
-                                <!-- <p class="lead">And an even wittier subheading.</p> -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="wrapperfeaturetter d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
-                    <div class="secondaries me-md-3 pt-3 myfeaturette px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden"
-                        id="secondfeautrette" style="margin: 0 !important">
-                        <div class="my-3 py-3 center">
-                            <div>
-                                <h2>Emerging Technologies </h2>
-                                <!-- <p class="lead">Drones, Solar Panels, Wearable Tech, The Internet-of-Things, -->
-                                <!-- AI/Automation, 3D Printing.</p> -->
-                            </div>
-                        </div>
-                    </div>
-                    <div class="secondaries me-md-3 pt-3 myfeaturette px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden"
-                        id="thirdfeautrette">
-                        <div class="my-3 py-3 center">
-                            <div>
-                                <h2>Networks & Telecommunications, IT</h2>
-                                <!-- <p class="lead">Cisco, Microsoft, CompTIA</p> -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="wrapperfeaturetter text-white">
-                    <div class="third myfeaturette pt-md-5 px-md-5 text-center overflow-hidden" id="eigthfeautrette">
-                        <div class="my-3 py-3 center">
-                            <div>
-                                <h2>Interviews & Talks with IT Professionals</h2>
-                                <!-- <p class="lead">And an even wittier subheading.</p> -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </main>
+        <div style="background-color: black; ">
+            <img style="filter: blur(2px);
+            -webkit-filter: blur(2px); height: 100vh; opacity: 0.8; width: 100vw; object-fit: cover !important"
+                src="./banner.jpg" alt="DNI WALLPAPER" style="width:100%;">
+            <div class="centered">
+                <h2>Welcome
+                    to <i style="font-family: Source Sans Pro">Cyber Club</i>
+                    <h3><i>~ IT for all</i></p>
+            </div>
         </div>
-        <footer class="site-footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12 col-md-6">
-                        <h6>About</h6>
-                        <p class="text-justify">The Cyber Club is open to all students who are interested in the IT
-                            field. It aims to cultivate a community of motivated
-                            individuals who are passionate about technology and want to enrich their academic and
-                            student-life experience at Deree.</p>
-                        <p>Email: dc.cyberclub@acg.edu
-                        </p>
-                        <p>
-                            Advisor: George Vardoulias
-                        </p>
-                    </div>
-
-                    <div class="col-xs-6 col-md-3">
-                        <h6>Interests</h6>
-                        <ul class="footer-links">
-                            <li>Cybersecurity</li>
-                            <li>Software Engineering
-                            </li>
-                            <li>Machine Learning</li>
-                            <li>Artificial
-                                Intelligence
-                            </li>
-                            <li>Operating Systems</li>
-                            </li>
-                            <li>Computer Networks
-                            </li>
-                            <li>
-                                Telecommunications
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="col-xs-6 col-md-3">
-                        <h6>Skillset developed</h6>
-                        <ul class="footer-links">
-                            <li>Coding</li>
-                            <li>Project Management</li>
-                            <li>Public Speaking & Critical Thinking</li>
-                            <li>Entrepreneurship</li>
-                            <li>Research</li>
-                            <li>Teamwork</li>
-                            <li>Networking</li>
-                        </ul>
-                    </div>
-                </div>
-                <hr>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 col-sm-6 col-xs-12">
-                        <p class="copyright-text">Copyright &copy; 2021 All Rights Reserved by
-                            <a href="#">Cyber Club</a>.Reach out to us at: <a
-                                href="mailto:dc.cyberclub@acg.edu">dc.cyberclub@acg.edu</a>
-                        </p>
-                    </div>
+        <section class="py-5 text-center container">
+            <div class="row py-lg-5">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <h1 class="fw-light mb-3" style="font-family: Source Sans Pro;">What we're about</h1>
+                    <h4 class="text-muted">The Cyber Club is open to all students who are interested in the IT
+                        field. It aims to cultivate a community of motivated individuals who are passionate about
+                        technology and want to enrich their academic and student-life experience at Deree.</h4>
+                    <p>
+                        <a href="./projects.html" class="btn btn-secondary my-2">Our upcoming events </a>
+                    </p>
                 </div>
             </div>
-        </footer>
+        </section>
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-4">
+                    <a href="https://www.instagram.com/foteiniip/" target="_blank">
+                        <img class="rounded " alt="Cinque Terre"
+                            src="https://sass.itc4918.site/assets/Promo-Instagram-Instagram%20square%20size.jpeg"
+                            style="width:100%">
+                    </a>
+                    <div class="desc">Alexandros Kourtis, President of Cyber Club </div>
+                </div>
+                <div class="col-md-4">
+                    <a href="https://www.instagram.com/foteiniip/" target="_blank">
+                        <img class="rounded" alt="Cinque Terre" src="fotini.jpg" style="width:100%">
+                    </a>
+                    <div class="desc">Foteini Petropoulou, Vice president of Cyber Club </div>
+                </div>
+
+                <div class="col-md-4">
+                    <a href="https://www.instagram.com/_riki.mi/" target="_blank">
+                        <img class="rounded" alt="Cinque Terre" src="riki.jpg" style="width:100%">
+                    </a>
+                    <div class="desc">Riki Mati, Communications & Social Media </div>
+                </div>
+
+                <div class="col-md-4">
+                    <a href="https://www.instagram.com/i.knew.this.was.gonna.happen/" target="_blank">
+                        <img class="rounded" alt="Cinque Terre" src="evan.jpg" style="width:100%">
+                    </a>
+                    <div class="desc"> Bazhen Kochnev (Ivan), Activities Coordinator</div>
+                </div>
+                <div class="col-md-4">
+                    <a href="https://www.instagram.com/honey_si_n_gh/" target="_blank">
+                        <img class="rounded" alt="Cinque Terre" src="honey.jpg" style="width:100%">
+                    </a>
+                    <div class="desc">Honey Singh, Treasurer</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <h6>About</h6>
+                    <p class="text-justify">The Cyber Club is open to all students who are interested in the IT
+                        field. It aims to cultivate a community of motivated
+                        individuals who are passionate about technology and want to enrich their academic and
+                        student-life experience at Deree.</p>
+                    <p>Email: dc.cyberclub@acg.edu
+                    </p>
+                    <p>
+                        Advisor: George Vardoulias
+                    </p>
+                </div>
+
+                <div class="col-xs-6 col-md-3">
+                    <h6>Interests</h6>
+                    <ul class="footer-links">
+                        <li>Cybersecurity</li>
+                        <li>Software Engineering
+                        </li>
+                        <li>Machine Learning</li>
+                        <li>Artificial
+                            Intelligence
+                        </li>
+                        <li>Operating Systems</li>
+                        </li>
+                        <li>Computer Networks
+                        </li>
+                        <li>
+                            Telecommunications
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-xs-6 col-md-3">
+                    <h6>Skillset developed</h6>
+                    <ul class="footer-links">
+                        <li>Coding</li>
+                        <li>Project Management</li>
+                        <li>Public Speaking & Critical Thinking</li>
+                        <li>Entrepreneurship</li>
+                        <li>Research</li>
+                        <li>Teamwork</li>
+                        <li>Networking</li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-6 col-xs-12">
+                    <p class="copyright-text">Copyright &copy; 2021 All Rights Reserved by
+                        <a href="#">Cyber Club</a>.Reach out to us at: <a
+                            href="mailto:dc.cyberclub@acg.edu">dc.cyberclub@acg.edu</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
     </div>
 </body>
 

@@ -110,8 +110,8 @@
 #fourthfeautrette {
     background: url("https://www.bbntimes.com/images/Software_Development_Mac.jpeg") 100% no-repeat;
     background-size: 100%;
-    -webkit-transition: background-size 0.3s ease-in;
-    transition: background-size 0.3s ease-in !important;
+    /* -webkit-transition: background-size 0.3s ease-in; */
+    /* transition: background-size 0.3s ease-in !important; */
 }
 
 #fifthfeautrette {
@@ -135,7 +135,7 @@
 }
 
 #wallpaper {
-    background: url("./s.jpg") 100% center no-repeat;
+    background: url("./banner.jpg") 100% center no-repeat;
     height: 100vh;
     -webkit-transition: background-size 0.3s ease-in;
     transition: background-size 0.3s ease-in !important;
@@ -158,7 +158,7 @@
 
 
 #fourthfeautrette:hover {
-    background-size: 101%;
+    /* background-size: 101%; */
 }
 
 
@@ -176,8 +176,8 @@
     background-size: 101%;
 }
 
-#eigthfeautrette:hover {
-}
+/* #eigthfeautrette:hover {
+} */
 
 .myfeaturette {
     overflow: hidden;
