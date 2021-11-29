@@ -68,10 +68,14 @@
         </div>
     </header>
     <div class="container mb-5" style="min-height: 100vh; width: 100vw; z-index: -1; padding: 0;">
-        <article class="container blog-post">
-            <div id="imghere"></div>
-            <span id="contenthere">
-            </span>
+        <article class="container blog-post mt-3">
+            <div>
+                <div id="imghere" style="width: 65%; margin-right: 20px; float: left;"></div>
+                <div id="contenthere">
+
+                </div>
+            </div>
+
             <hr>
             <p>Article written by:
                 <span class="blog-post-meta" id="authorhere"></span></p>
@@ -105,7 +109,6 @@
                             Intelligence
                         </li>
                         <li>Operating Systems</li>
-                        </li>
                         <li>Computer Networks
                         </li>
                         <li>
@@ -176,14 +179,15 @@
             const markdown = $('#markdown-content').html();
             const mdhtml = md.render(data.article.content);
             document.getElementById("authorhere").innerText = data.article.author;
-            document.getElementById("imghere").innerHTML = "" +
+            document.getElementById("imghere").innerHTML += "" +
                 "                    <img alt='' " +
                 "                         src='" + data.imagebuffeer + "'" +
-                "                         style=\"width:70%;\">\n";
+                "                         style=\"display:inline-block; width:100%; float: left;\">\n";
             // "                    <img alt=\"\" class=\"rounded \"\n" +
             // "                         src='" + member.imagebuffeer + "'" +
             // "                         style=\"width:100px; float: left; margin-right: 10px\">\n" +
-            document.getElementById("contenthere").innerHTML = mdhtml;
+            document.getElementById("contenthere").innerHTML += "<h2>" + data.article.title + "</h2>";
+            document.getElementById("contenthere").innerHTML += mdhtml;
 
         } catch (error) {
             console.log(error);

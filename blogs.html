@@ -188,7 +188,8 @@
     function addtothml(payload) {
         // document.getElementById("writeprojectsHere").innerHTML = "";
         payload.forEach(member => {
-            document.getElementById("writeprojectsHere").innerHTML += "" +
+            document.getElementById("writeprojectsHere").innerHTML += "<br>" +
+                "" +
                 "                <li>\n" +
                 "                    <div class=\"media22\">\n" +
                 "                    <img alt=\"\" class=\"rounded \"\n" +
@@ -199,15 +200,7 @@
                 "                            <p>" + member.preview + "</p>\n" +
                 "                        </div>\n" +
                 "                    </div>\n" +
-                "                </li>" +
-                "<div class=\"col-md-4\">\n"
-            // // "                <a target=\"_blank\">\n" +
-            // "                    <img alt=\"\" class=\"rounded \"\n" +
-            // "                         src='" + member.imagebuffeer + "'" +
-            // "                         style=\"width:100%\">\n" +
-            // // "                </a>\n" +
-            // "                <div class=\"desc\">" + member.name + ", " + member.role + " of Cyber Club</div>\n" +
-            // "            </div>";
+                "                </li>"
         })
     }
 
