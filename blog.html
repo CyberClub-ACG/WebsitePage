@@ -70,6 +70,14 @@
     <div class="container mb-4" style="min-height: 100vh; width: 100vw; z-index: -1; padding: 0;">
         <article class="container blog-post mt-2">
             <div>
+                <h1 id="titlehere"></h1>
+                <div>
+                    <p style="float: left">Article written by: <a href="https://www.instagram.com/kourtis.alexandros/">Kourtis
+                        Alexandros</a>
+                    </p>
+                    <p style="float: right">Published on the 3rd of December 2021</p>
+                </div>
+                <br>
                 <div class="mb-3" id="imghere"
                      style="width: 100%; height: 60vh; margin-right: 20px; float: left;"></div>
                 <div id="contenthere">
@@ -150,6 +158,10 @@
 
 </html>
 <script crossorigin="anonymous"
+        integrity="sha512-L03kznCrNOfVxOUovR6ESfCz9Gfny7gihUX/huVbQB9zjODtYpxaVtIaAkpetoiyV2eqWbvxMH9fiSv5enX7bw=="
+        referrerpolicy="no-referrer"
+        src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
+<script crossorigin="anonymous"
         integrity="sha512-cTQeM/op796Fp1ZUxfech8gSMLT/HvrXMkRGdGZGQnbwuq/obG0UtcL04eByVa99qJik7WlnlQOr5/Fw5B36aw=="
         referrerpolicy="no-referrer"
         src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/12.2.0/markdown-it.min.js"></script>
@@ -176,10 +188,12 @@
 
             const members = [];
 
-            const md = window.markdownit();
-            const markdown = $('#markdown-content').html();
-            const mdhtml = md.render(data.article.content);
+            const converter = new showdown.Converter();
+            const md = data.article.content;
+            const mdhtml = converter.makeHtml(md);
+
             document.getElementById("authorhere").innerText = data.article.author;
+            document.getElementById("titlehere").innerText = data.article.title;
             document.getElementById("imghere").innerHTML += "" +
                 "                    <img alt='' " +
                 "                         src='" + data.imagebuffeer + "'" +
@@ -187,7 +201,7 @@
             // "                    <img alt=\"\" class=\"rounded \"\n" +
             // "                         src='" + member.imagebuffeer + "'" +
             // "                         style=\"width:100px; float: left; margin-right: 10px\">\n" +
-            document.getElementById("contenthere").innerHTML += "<h2>" + data.article.title + "</h2>";
+            // document.getElementById("contenthere").innerHTML += "<h2>" + data.article.title + "</h2>";
             document.getElementById("contenthere").innerHTML += mdhtml;
 
         } catch (error) {

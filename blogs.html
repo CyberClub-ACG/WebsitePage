@@ -76,6 +76,8 @@
             <ul id="writeprojectsHere" style="padding: 0;">
             </ul>
         </div>
+        <br>
+        <br>
     </div>
     <footer class="site-footer">
         <div class="container">
@@ -188,17 +190,15 @@
     function addtothml(payload) {
         // document.getElementById("writeprojectsHere").innerHTML = "";
         payload.forEach(member => {
-            document.getElementById("writeprojectsHere").innerHTML += "<br>" +
-                "" +
+            document.getElementById("writeprojectsHere").innerHTML += "" +
                 "                <li>\n" +
-                "                    <div class=\"media22\">\n" +
-                "                    <img alt=\"\" class=\"rounded \"\n" +
-                "                         src='" + member.imagebuffeer + "'" +
-                "                         style=\"width:100px; float: left; margin-right: 10px\">\n" +
+                "                    <div class=\"mb-3 media22\">\n" +
                 "                        <h2 class=\"title\"><a href=\"./blog.html?id=" + member.titleblob + "\">" + member.title + "</a></h2>\n" +
                 "                        <div class=\"content\">\n" +
-                "                            <p>" + member.preview + "</p>\n" +
-                "                        </div>\n" +
+                "                            <h3>" + member.preview + "</h3>\n" +
+                "                        </div>\n" + "                    <img alt=\"\" class=\"rounded \"\n" +
+                "                         src='" + member.imagebuffeer + "'" +
+                "                         style=\"width:100%; object-fit: cover; max-height: 400px; float: left; margin-right: 10px\">\n" +
                 "                    </div>\n" +
                 "                </li>"
         })
