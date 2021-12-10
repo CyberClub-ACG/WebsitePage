@@ -27,6 +27,13 @@
     <link href="product.css" rel="stylesheet">
 
     <style>
+
+        .img-fluid {
+            height: 400px;
+            object-fit: cover;
+            width: auto;
+        }
+
         .bd-placeholder-img {
             font-size: 1.125rem;
             text-anchor: middle;
@@ -218,7 +225,7 @@
     function addtothml(payload) {
         document.getElementById("writeprojectsHere").innerHTML = "";
         payload.forEach(project => {
-            document.getElementById("writeprojectsHere").innerHTML += " <div class=\"col-md-6\">\n" +
+            document.getElementById("writeprojectsHere").innerHTML += " <div class=\"col-md-4\">\n" +
                 "                                <div class=\"card shadow-sm\">\n" +
                 "                                    <img alt=\"\" class=\"img-fluid\"\n" +
                 "src='" + project.imagebuffeer + "'>" +
