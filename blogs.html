@@ -69,12 +69,18 @@
     </header>
     <div style="min-height: 100vh; width: 100vw; z-index: -1; padding: 0;">
         <div class="container" style="z-index: 1; color: black !important; ">
-            <br>
             <h2>Our blog </h2>
             <p class="text-muted">This is we can write news regarding our club, technical articles about Tech, or even
                 share our thoughts</p>
-            <ul id="writeprojectsHere" style="padding: 0;">
-            </ul>
+            <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="spinner-border" id="myspinner" role="status" style="margin: 20px auto">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+            <main>
+                <ul id="writeprojectsHere" style="padding: 0;">
+                </ul>
+            </main>
         </div>
         <br>
         <br>
@@ -147,9 +153,9 @@
 
 </html>
 <script>
-    function getTeam() {
+    async function getarticles() {
         let params = "articles";
-        getRequest(params);
+        await getRequest(params);
     }
 
     const state = [];
@@ -187,15 +193,14 @@
         }
     }
 
-    function addtothml(payload) {
-        // document.getElementById("writeprojectsHere").innerHTML = "";
-        payload.forEach(member => {
+    async function addtothml(payload) {
+        await payload.forEach(member => {
             document.getElementById("writeprojectsHere").innerHTML += "" +
                 "                <li>\n" +
                 "                    <div class=\"mb-3 media22\">\n" +
-                "                        <h2 class=\"title\"><a href=\"./blog.html?id=" + member.titleblob + "\">" + member.title + "</a></h2>\n" +
+                "                        <h3 class=\"title\"><a href=\"./blog.html?id=" + member.titleblob + "\">" + member.title + "</a></h3>\n" +
                 "                        <div class=\"content\">\n" +
-                "                            <h3>" + member.preview + "</h3>\n" +
+                "                            <p>" + member.preview + "</p>\n" +
                 "                        </div>\n" + "                    <img alt=\"\" class=\"rounded \"\n" +
                 "                         src='" + member.imagebuffeer + "'" +
                 "                         style=\"width:100%; object-fit: cover; max-height: 400px; float: left; margin-right: 10px\">\n" +
@@ -204,6 +209,22 @@
         })
     }
 
-    getTeam();
+    async function init() {
+        showLoading();
+        await getarticles();
+        hideLoading();
+    }
+
+    init();
+
+    function showLoading() {
+        document.getElementById("myspinner").style.display = "block";
+        document.getElementsByTagName("main")[0].style.display = "none";
+    }
+
+    function hideLoading() {
+        document.getElementById("myspinner").style.display = "none";
+        document.getElementsByTagName("main")[0].style.display = "block";
+    }
 </script>
 
