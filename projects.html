@@ -69,7 +69,7 @@
     </style>
 </head>
 
-<body style="overflow-x: hidden;">
+<body class="bg-light" style="overflow-x: hidden;">
 
 
 <div class="container-fluid" style="padding: 0 !important;">
@@ -106,15 +106,15 @@
             </div>
         </div>
     </header>
-    <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-        <div class="spinner-border" id="myspinner" role="status" style="margin: 20px auto">
-            <span class="visually-hidden">Loading...</span>
-        </div>
-    </div>
-    <div>
-        <div>
-            <div class="album py-5 bg-light" style="min-height: 100vh;">
-                <div class="container">
+    <div style="min-height: 100vh; width: 100vw; z-index: -1; padding: 0;">
+        <div class="container">
+            <div class="display-6 mt-3"><b>Projects</b></div>
+            <p class="text-muted">Projects & events that have already took place or upcoming ones.</p>
+            <div>
+                <div class="spinner-border" id="myspinner" role="status" style="margin: 20px auto">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="album py-3 bg-light" style="min-height: 100vh;">
                     <main>
                         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="writeprojectsHere">
                         </div>
@@ -122,67 +122,66 @@
                 </div>
             </div>
         </div>
+
+        <footer class="site-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <h6>About</h6>
+                        <p class="text-justify">The Cyber Club is open to all students who are interested in the IT
+                            field. It aims to cultivate a community of motivated
+                            individuals who are passionate about technology and want to enrich their academic and
+                            student-life experience at Deree.</p>
+                        <p>Email: dc.cyberclub@acg.edu
+                            Advisor: Prof. George Vardoulias
+                            Regular meeting time: TBA
+                        </p>
+                    </div>
+
+                    <div class="col-xs-6 col-md-3">
+                        <h6>Interests</h6>
+                        <ul class="footer-links">
+                            <li>Cybersecurity</li>
+                            <li>Software Engineering
+                            </li>
+                            <li>Machine Learning</li>
+                            <li>Artificial
+                                Intelligence
+                            </li>
+                            <li>Operating Systems</li>
+                            <li>Computer Networks &
+                                Telecommunications
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-xs-6 col-md-3">
+                        <h6>Skillset developed</h6>
+                        <ul class="footer-links">
+                            <li>Coding</li>
+                            <li>Project Management</li>
+                            <li>Public Speaking & Critical Thinking</li>
+                            <li>Entrepreneurship</li>
+                            <li>Research</li>
+                            <li>Teamwork</li>
+                            <li>Networking</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-sm-6 col-xs-12">
+                        <p class="copyright-text">Copyright &copy; 2021 All Rights Reserved by
+                            <a href="#">Cyber Club</a>. Reach out to us at: <a
+                                    href="mailto:dc.cyberclub@acg.edu">dc.cyberclub@acg.edu</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
-
-    <footer class="site-footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12 col-md-6">
-                    <h6>About</h6>
-                    <p class="text-justify">The Cyber Club is open to all students who are interested in the IT
-                        field. It aims to cultivate a community of motivated
-                        individuals who are passionate about technology and want to enrich their academic and
-                        student-life experience at Deree.</p>
-                    <p>Email: dc.cyberclub@acg.edu
-                        Advisor: Prof. George Vardoulias
-                        Regular meeting time: TBA
-                    </p>
-                </div>
-
-                <div class="col-xs-6 col-md-3">
-                    <h6>Interests</h6>
-                    <ul class="footer-links">
-                        <li>Cybersecurity</li>
-                        <li>Software Engineering
-                        </li>
-                        <li>Machine Learning</li>
-                        <li>Artificial
-                            Intelligence
-                        </li>
-                        <li>Operating Systems</li>
-                        <li>Computer Networks &
-                            Telecommunications
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="col-xs-6 col-md-3">
-                    <h6>Skillset developed</h6>
-                    <ul class="footer-links">
-                        <li>Coding</li>
-                        <li>Project Management</li>
-                        <li>Public Speaking & Critical Thinking</li>
-                        <li>Entrepreneurship</li>
-                        <li>Research</li>
-                        <li>Teamwork</li>
-                        <li>Networking</li>
-                    </ul>
-                </div>
-            </div>
-            <hr>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-sm-6 col-xs-12">
-                    <p class="copyright-text">Copyright &copy; 2021 All Rights Reserved by
-                        <a href="#">Cyber Club</a>. Reach out to us at: <a
-                                href="mailto:dc.cyberclub@acg.edu">dc.cyberclub@acg.edu</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </footer>
-</div>
 
 </body>
 
