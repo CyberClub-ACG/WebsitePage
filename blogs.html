@@ -195,17 +195,18 @@
 
     async function addtothml(payload) {
         await payload.forEach(member => {
-            document.getElementById("writeprojectsHere").innerHTML += "" +
+            document.getElementById("writeprojectsHere").innerHTML += "<div>" +
                 "                <li>\n" +
-                "                    <div class=\"mb-3 media22\">\n" +
-                "                        <h3 class=\"title\"><a href=\"./blog.html?id=" + member.titleblob + "\">" + member.title + "</a></h3>\n" +
-                "                        <div class=\"content\">\n" +
+                "               <a style='text-decoration: none; color: initial' href=\"./blog.html?id=" + member.titleblob + "\">" +
+                "                    <div>\n" +
+                "                        <h3>" + member.title + "</h3>\n" +
+                "                        <div>\n" +
                 "                            <p>" + member.preview + "</p>\n" +
-                "                        </div>\n" + "                    <img alt=\"\" class=\"rounded \"\n" +
+                "                        \n" + "                    <img alt=\"\" \n" +
                 "                         src='" + member.imagebuffeer + "'" +
-                "                         style=\"width:100%; object-fit: cover; max-height: 400px; float: left; margin-right: 10px\">\n" +
-                "                    </div>\n" +
-                "                </li>"
+                "                         style=\"width:100%; object-fit: cover; max-height: 400px; margin-right: 10px\">\n" +
+                "                    </div></div>\n" +
+                "</a>                </li>";
         })
     }
 
@@ -231,8 +232,3 @@
         integrity="sha512-YKSQecLkGrea3bKro680kYyxBrlTbD0coQvdrpZV5swPcuZbAJQurJHtfinPSjDTGBz2K4Cjs4INsjm5nhB2kg=="
         referrerpolicy="no-referrer"
         src="https://cdnjs.cloudflare.com/ajax/libs/immutable/4.0.0/immutable.min.js"></script>
-<script>
-    // var map1 = Immutable.Map({a: 1, b: 2, c: 3});
-    // var map2 = map1.set('b', 50);
-    console.log(map1.get('b'));
-</script>
