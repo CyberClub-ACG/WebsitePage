@@ -207,14 +207,7 @@
 
             const projects = [];
 
-            data.forEach((datum) => {
-                projects.push({
-                    ...datum.data,
-                    imagebuffeer: datum.imagebuffeer
-                });
-            })
-
-            await projects.forEach(project => {
+            await data.forEach(project => {
                 if (project) {
                     state.projects.push(project);
                 }
@@ -232,7 +225,7 @@
             document.getElementById("writeprojectsHere").innerHTML += " <div class=\"col-md-4\">\n" +
                 "                                <div class=\"card shadow-sm\">\n" +
                 "                                    <img alt=\"\" class=\"img-fluid\"\n" +
-                "src='" + project.imagebuffeer + "'>" +
+                "src='" + project.image + "'>" +
                 "                                    <div class=\"card-body\">\n" +
                 "                                        <p class='card-text'>" + project.description +
                 "                                        </p>\n" +

@@ -170,17 +170,7 @@
             const data = await response.json();
             state.projects = [];
 
-            const members = [];
-
-            data.forEach((datum) => {
-                console.dir(datum);
-                members.push({
-                    ...datum.data,
-                    imagebuffeer: datum.imagebuffeer
-                });
-            })
-
-            await members.forEach(member => {
+            await data.forEach(member => {
                 if (member) {
                     state.projects.push(member);
                 }
@@ -202,7 +192,7 @@
                 "                        <div>\n" +
                 "                            <p>" + member.preview + "</p>\n" +
                 "                        \n" + "                    <img alt=\"\" \n" +
-                "                         src='" + member.imagebuffeer + "'" +
+                "                         src='" + member.imagepreviewfilename + "'" +
                 "                         style=\"width:100%; object-fit: cover; max-height: 400px; margin-right: 10px\">\n" +
                 "                    </div></div>\n" +
                 "</a>                </li>";

@@ -194,22 +194,20 @@
             const data = await response.json();
             state.projects = [];
 
-            const members = [];
-
             const converter = new showdown.Converter();
-            const md = data.article.content;
+            const md = data.content;
             const mdhtml = converter.makeHtml(md);
 
-            document.getElementById("authorhere").innerText = data.article.author;
-            document.getElementById("titlehere").innerText = data.article.title;
+            document.getElementById("authorhere").innerText = data.author;
+            document.getElementById("titlehere").innerText = data.title;
             document.getElementById("imghere").innerHTML += "" +
                 "                    <img alt='' " +
-                "                         src='" + data.imagebuffeer + "'" +
+                "                         src='" + data.imagepreviewfilename + "'" +
                 "                         style=\"object-fit: cover; width: 100%; height: 100%;\">\n";
             // "                    <img alt=\"\" class=\"rounded \"\n" +
-            // "                         src='" + member.imagebuffeer + "'" +
+            // "                         src='" + member.image + "'" +
             // "                         style=\"width:100px; float: left; margin-right: 10px\">\n" +
-            // document.getElementById("contenthere").innerHTML += "<h2>" + data.article.title + "</h2>";
+            // document.getElementById("contenthere").innerHTML += "<h2>" + data.title + "</h2>";
             document.getElementById("contenthere").innerHTML += mdhtml;
         } catch (error) {
             console.log(error);
