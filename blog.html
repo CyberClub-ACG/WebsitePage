@@ -21,9 +21,14 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet">
 
-
     <link href="style.css" rel="stylesheet">
     <link href="product.css" rel="stylesheet">
+
+    <style>
+        img {
+            width: 100%;
+        }
+    </style>
 </head>
 
 <body style="overflow-x: hidden;">
@@ -194,7 +199,7 @@
             const data = await response.json();
             state.projects = [];
 
-            const converter = new showdown.Converter();
+            const converter = new showdown.Converter({parseImgDimensions: true});
             const md = data.content;
             const mdhtml = converter.makeHtml(md);
 
