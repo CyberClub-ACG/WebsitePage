@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Events & Projects | Cyber Club</title>
+    <title>Activities | Cyber Club</title>
     <link href="official logo.png" rel="shortcut icon" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css"/>
     <link
@@ -89,7 +89,7 @@
                         <div class="collapse navbar-collapse " id="navbarSupportedContent">
                             <ul class="here" style="list-style-type: none; padding: 0; margin: 0; float: left">
                                 <li><a href="index.html">Homepage</a></li>
-                                <li><a href="projects.html">Events & Projects</a></li>
+                                <li><a href="projects.html">Activities</a></li>
                                 <li><a href="blogs.html">Articles</a></li>
                                 <!-- <li><a href="opportunities.html">Opportunities </a></li> -->
                                 <!-- <li><a href="blog.html">Blog Page</a></li> -->
@@ -236,8 +236,19 @@
         })
     }
 
+    function loadLocally() {
+        if (localStorage.getItem("projects").length > 0) {
+            const projectspayload = JSON.parse(localStorage.getItem("projects"));
+            addtothml(projectspayload);
+            return true;
+        }
+
+        return false;
+    }
+
     async function init() {
-        showLoading();
+        if (loadLocally === false)
+            showLoading();
         await getprojects();
         hideLoading();
     }
