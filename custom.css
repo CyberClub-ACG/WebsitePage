@@ -11675,7 +11675,7 @@ body {
 }
 
 a {
-    color: #fdcc52;
+    color: #145889;
     transition: all .35s
 }
 
@@ -11711,12 +11711,12 @@ section h2, section .h2 {
 }
 
 .bg-primary {
-    background: #fdcc52;
-    background: linear-gradient(#fdcc52, #fdc539)
+    background: #145889;
+    background: linear-gradient(#145889, #fdc539)
 }
 
 .text-primary {
-    color: #fdcc52
+    color: #145889
 }
 
 .no-gutter > [class*=col-] {
@@ -11732,8 +11732,8 @@ section h2, section .h2 {
 
 .btn:hover, .btn:focus, .btn:active, .btn.active {
     color: #fff;
-    border-color: #fdcc52;
-    background-color: #fdcc52
+    border-color: #145889;
+    background-color: #145889
 }
 
 .btn {
@@ -11808,7 +11808,7 @@ section h2, section .h2 {
 }
 
 #mainNav .navbar-brand {
-    color: #fdcc52;
+    color: #145889;
     font-family: "Catamaran", "Helvetica", "Arial", "sans-serif";
     font-weight: 200;
     letter-spacing: 1px
@@ -11832,7 +11832,7 @@ section h2, section .h2 {
 }
 
 #mainNav .navbar-nav > li > a.active {
-    color: #fdcc52 !important;
+    color: #145889 !important;
     background-color: transparent
 }
 
@@ -11845,7 +11845,7 @@ section h2, section .h2 {
 }
 
 #mainNav .navbar-nav > li > a:hover, #mainNav .navbar-nav > li > a:focus:hover {
-    color: #fdcc52
+    color: #145889
 }
 
 @media (min-width: 992px) {
@@ -11880,7 +11880,7 @@ section h2, section .h2 {
     }
 
     #mainNav.navbar-shrink .navbar-brand:hover, #mainNav.navbar-shrink .navbar-brand:focus {
-        color: #fdcc52
+        color: #145889
     }
 
     #mainNav.navbar-shrink .navbar-nav > li > a, #mainNav.navbar-shrink .navbar-nav > li > a:focus {
@@ -11888,7 +11888,7 @@ section h2, section .h2 {
     }
 
     #mainNav.navbar-shrink .navbar-nav > li > a:hover, #mainNav.navbar-shrink .navbar-nav > li > a:focus:hover {
-        color: #fdcc52
+        color: #145889
     }
 }
 
