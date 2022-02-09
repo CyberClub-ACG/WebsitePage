@@ -47,12 +47,7 @@
                         <div class="collapse navbar-collapse " id="navbarSupportedContent">
                             <ul class="here" style="list-style-type: none; padding: 0; margin: 0; float: left">
                                 <li><a href="index.html">Homepage</a></li>
-                                <!-- <li><a href="projects.html">About</a></li> -->
-                                <li><a href="projects.html">Activities</a></li>
-                                <li><a href="blogs.html">Articles</a></li>
-                                <!-- <li><a href="opportunities.html">Opportunities </a></li> -->
-                                <!-- <li><a href="blog.html">Blog Page</a></li> -->
-                                <!-- <li><a href="blogs.html">Blog</a></li> -->
+                                <li><a href="blogs.html">The Cyber Blog</a></li>
                             </ul>
 
 
@@ -69,10 +64,11 @@
     </header>
     <div style="min-height: 100vh; width: 100vw; z-index: -1; padding: 0;">
         <div class="container" style="z-index: 1; ">
-            <div class="display-6 mt-3"><b>Articles</b></div>
+            <div class="display-6 mt-3"><b>Welcome to the Cyber Blog</b></div>
             <p class="text-muted">Here you can find articles about Tech topics written by our beloved Cyber Club
                 members.
-                If you would like to write your own, please contact us at </p> <a href="mailto:dc.cyberclub@acg.edu">dc.cyberclub@acg.edu</a>
+                If you would like to write your own, please contact us at <a href="mailto:dc.cyberclub@acg.edu">dc.cyberclub@acg.edu</a>
+            </p>
             <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class="spinner-border" id="myspinner" role="status" style="margin: 20px auto">
                     <span class="visually-hidden">Loading...</span>
@@ -190,14 +186,14 @@
                 "                <li>\n" +
                 "               <a style='text-decoration: none; color: initial' href=\"./blog.html?id=" + member.titleblob + "\">" +
                 "                    <div>\n" +
-                "                        <h3>" + member.title + "</h3>\n" +
+                "                        <h3 style='line-height: 40px; font-size: 32px; font-family: sohne, \"Helvetica Neue\", Helvetica, Arial, sans-serif; color: rgba(41, 41, 41, 1);'><b>" + member.title + "</b></h3>\n" +
                 "                        <div>\n" +
                 "                            <p>" + member.preview + "</p>\n" +
                 "                        \n" + "                    <img alt=\"\" \n" +
                 "                         src='" + member.imagepreviewfilename + "'" +
                 "                         style=\"width:100%; object-fit: cover; max-height: 400px; margin-right: 10px\">\n" +
                 "                    </div></div>\n" +
-                "</a>                </li>";
+                "</a>                </li><br>";
         })
     }
 
