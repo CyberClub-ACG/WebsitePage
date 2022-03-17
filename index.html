@@ -51,6 +51,82 @@
             transform: translate(-50%, -50%);
             color: white;
         }
+
+        .scroll-down {
+            opacity: 1;
+            -webkit-transition: all .5s ease-in 3s;
+            transition: all .5s ease-in 3s;
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            margin-left: -16px;
+            display: block;
+            width: 32px;
+            height: 32px;
+            border: 2px solid #FFF;
+            background-size: 14px auto;
+            border-radius: 50%;
+            z-index: 2;
+            -webkit-animation: bounce 2s infinite 2s;
+            animation: bounce 2s infinite 2s;
+            -webkit-transition: all .2s ease-in;
+            transition: all .2s ease-in;
+        }
+
+        .scroll-down:before {
+            position: absolute;
+            top: calc(50% - 8px);
+            left: calc(50% - 6px);
+            transform: rotate(-45deg);
+            display: block;
+            width: 12px;
+            height: 12px;
+            content: "";
+            border: 2px solid white !important;
+            border-width: 0 0 2px 2px !important;
+        }
+
+        .bounce {
+            -webkit-animation: bounce 5s infinite;
+            animation: bounce 5s infinite;
+        }
+
+        @-webkit-keyframes bounce {
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-30px);
+            }
+            60% {
+                transform: translateY(-15px);
+            }
+        }
+
+        @keyframes bounce {
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-30px);
+            }
+            60% {
+                transform: translateY(-15px);
+            }
+        }
+
+
     </style>
 </head>
 
@@ -96,6 +172,9 @@
                 to <i style="font-family: Source Sans Pro">Cyber Club</i>
                 <h4>~ <i>IT for all</i></h4>
             </h1>
+        </div>
+        <div class="bounce">
+            <a class="scroll-down" href="#team"></a>
         </div>
     </div>
     <section class="py-5 text-center container" id="team">
@@ -416,3 +495,4 @@
 
     // getTeam();
 </script>
+
