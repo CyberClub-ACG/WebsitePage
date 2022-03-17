@@ -235,12 +235,6 @@
                                     <input class="form-control" id="newmajor" placeholder="" required type="text"
                                            value="">
                                 </div>
-
-                                <div class="col-md-12">
-                                    <label class="form-label" for="newhowfoundout">How they found out</label>
-                                    <textarea class="form-control col" id="newhowfoundout"
-                                              name="howfoundout"></textarea>
-                                </div>
                             </div>
                         </form>
                     </div>
@@ -458,7 +452,6 @@
                 "                        <td id='membername'>" + member.name + "</td>\n" +
                 "                        <td id='email'>" + member.email + "</td>\n" +
                 "                        <td hidden id='studentid' >" + member.studentid + "</td>\n" +
-                "                        <td hidden id='howfoundout' >" + member.howfoundout + "</td>\n" +
                 "                        <td hidden id='major'>" + member.major + "</td>\n" +
                 "                        <td>\n" +
                 "                            <i onclick='viewMember(event)' class=\"bi bi-eye btn\"\n" +
@@ -539,9 +532,8 @@
         const name = document.getElementById("newname").value;
         const email = document.getElementById("newemail").value;
         const major = document.getElementById("newmajor").value;
-        const howfoundout = document.getElementById("newhowfoundout").value;
         const studentid = document.getElementById("newstudentid").value;
-        const payload = {name, email, major, howfoundout, studentid};
+        const payload = {name, email, major, studentid};
         await postRequest("members", payload);
         if (fetchall) {
             await fetchalldata();
@@ -737,7 +729,6 @@
             membername: e.target.parentElement.parentElement.children.namedItem("membername").innerText,
             email: e.target.parentElement.parentElement.children.namedItem("email").innerText,
             major: e.target.parentElement.parentElement.children.namedItem("major").innerText,
-            howfoundout: e.target.parentElement.parentElement.children.namedItem("howfoundout").innerText,
             studentid: e.target.parentElement.parentElement.children.namedItem("studentid").innerText,
             id: e.target.parentElement.parentElement.children.namedItem("id").innerText,
         }
@@ -752,7 +743,6 @@
             membername: e.target.parentElement.parentElement.children.namedItem("membername").innerText,
             email: e.target.parentElement.parentElement.children.namedItem("email").innerText,
             major: e.target.parentElement.parentElement.children.namedItem("major").innerText,
-            howfoundout: e.target.parentElement.parentElement.children.namedItem("howfoundout").innerText,
             studentid: e.target.parentElement.parentElement.children.namedItem("studentid").innerText,
             id: e.target.parentElement.parentElement.children.namedItem("id").innerText,
         }
@@ -815,11 +805,6 @@
             "                                    <label class='form-label' for='updatemajor'>Major</label>\n" +
             "                                    <input disabled  class='form-control' id='updatemajor'  value='" + payload.major + "' placeholder='' required type='text'\n" +
             "                                           value=''>\n" +
-            "                                </div>\n" +
-            "                                <div class='col-sm-12'>\n" +
-            "                                    <label class='form-label' for='updatemajor'>How they found out</label>\n" +
-            " <textarea disabled class='form-control col' id='newhowfoundout' " +
-            " name='howfoundout'>" + payload.howfoundout + "</textarea> " +
             "                                </div>\n" +
             "                        </form>\n" +
             "                    </div>\n" +
