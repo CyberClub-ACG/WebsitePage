@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <meta content="" name="description">
-    <link href="./dereelogospoti.jpg" rel="shortcut icon" type="image/jpg"/>
+    <link href="official logo.png" rel="shortcut icon" type="image/jpg"/>
     <meta content="Alexandros Kourtis" name="author">
     <title>Dashboard Cyber Club</title>
     <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -209,7 +209,7 @@
                                     <input class="form-control" id="newname" placeholder="" required type="text"
                                            value="">
                                     <div class="invalid-feedback" id="newnameinvalid">
-                                        Valid first name is required.
+                                        Valid name is required.
                                     </div>
                                 </div>
 
@@ -218,7 +218,7 @@
                                     <input class="form-control" id="newemail" placeholder="" required type="text"
                                            value="">
                                     <div class="invalid-feedback" id="newemailinvalid">
-                                        Valid last name is required.
+                                        Valid email is required.
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -226,7 +226,7 @@
                                     <input class="form-control" id="newstudentid" placeholder="" required
                                            type="text" value="">
                                     <div class="invalid-feedback" id="newstudentidinvalid">
-                                        Valid first name is required.
+                                        Valid student id is required.
                                     </div>
                                 </div>
 
@@ -234,20 +234,12 @@
                                     <label class="form-label" for="newmajor">Major</label>
                                     <input class="form-control" id="newmajor" placeholder="" required type="text"
                                            value="">
-                                    <div class="invalid-feedback" id="newmajorinvalid">
-                                        Valid last name is required.
-                                    </div>
                                 </div>
 
                                 <div class="col-md-12">
                                     <label class="form-label" for="newhowfoundout">How they found out</label>
                                     <textarea class="form-control col" id="newhowfoundout"
                                               name="howfoundout"></textarea>
-                                    <!--                                    <input class="form-control" id="newpassword" placeholder="" required type="text"-->
-                                    <!--                                           value="">-->
-                                    <div class="invalid-feedback" id='howfoundoutinvalid'>
-                                        Valid last name is required.
-                                    </div>
                                 </div>
                             </div>
                         </form>
@@ -575,7 +567,6 @@
             .then(data => {
                 switch (resStatus) {
                     case 200:
-                        console.log('Success:', data);
                         showToast("New member has been successfully added");
                         $(".d-block").removeClass("d-block");
                         break
@@ -598,20 +589,6 @@
                             } else {
                                 document.getElementById("newstudentidinvalid").classList.remove('d-block');
                             }
-
-                            if (data.major) {
-                                document.getElementById("newmajorinvalid").classList.add('d-block');
-                            } else {
-                                document.getElementById("newmajorinvalid").classList.remove('d-block');
-                            }
-
-                            if (data.howfoundout) {
-                                document.getElementById("howfoundoutinvalid").classList.add('d-block');
-                            } else {
-                                document.getElementById("howfoundoutinvalid").classList.remove('d-block');
-                            }
-                        } else {
-                            console.log('this is a client (probably invalid JSON) error, but also might be a server error (bad JSON parsing/validation)')
                         }
                         break
                     case 500:
@@ -812,7 +789,7 @@
             "                                    <input disabled  class='form-control' id='updatemembername' placeholder='' value='" + payload.membername + "' required type='text'\n" +
             "                                           value=''>\n" +
             "                                    <div class='invalid-feedback'>\n" +
-            "                                        Valid first name is required.\n" +
+            "                                        Valid name is required.\n" +
             "                                    </div>\n" +
             "                                </div>\n" +
             "\n" +
@@ -821,7 +798,7 @@
             "                                    <input  disabled class='form-control' id='updatemail'  value='" + payload.email + "' placeholder='' required type='text'\n" +
             "                                           value=''>\n" +
             "                                    <div class='invalid-feedback'>\n" +
-            "                                        Valid last name is required.\n" +
+            "                                        Valid email is required.\n" +
             "                                    </div>\n" +
             "                                </div>\n" +
             "\n" +
@@ -830,7 +807,7 @@
             "                                    <input disabled class='form-control' id='updatestudentid'  value='" + payload.studentid + "' placeholder='' required type='text'\n" +
             "                                           value=''>\n" +
             "                                    <div class='invalid-feedback'>\n" +
-            "                                        Valid last name is required.\n" +
+            "                                        Valid student id is required.\n" +
             "                                    </div>\n" +
             "                                </div>\n" +
             "\n" +
@@ -838,17 +815,11 @@
             "                                    <label class='form-label' for='updatemajor'>Major</label>\n" +
             "                                    <input disabled  class='form-control' id='updatemajor'  value='" + payload.major + "' placeholder='' required type='text'\n" +
             "                                           value=''>\n" +
-            "                                    <div class='invalid-feedback'>\n" +
-            "                                        Valid last name is required.\n" +
-            "                                    </div>\n" +
             "                                </div>\n" +
             "                                <div class='col-sm-12'>\n" +
             "                                    <label class='form-label' for='updatemajor'>How they found out</label>\n" +
             " <textarea disabled class='form-control col' id='newhowfoundout' " +
             " name='howfoundout'>" + payload.howfoundout + "</textarea> " +
-            "                                    <div class='invalid-feedback'>\n" +
-            "                                        Valid last name is required.\n" +
-            "                                    </div>\n" +
             "                                </div>\n" +
             "                        </form>\n" +
             "                    </div>\n" +
@@ -915,7 +886,7 @@
             "                                    <input class='form-control' id='updatemembername' placeholder='' value='" + payload.membername + "' required type='text'\n" +
             "                                           value=''>\n" +
             "                                    <div class='invalid-feedback'>\n" +
-            "                                        Valid first name is required.\n" +
+            "                                        Valid name is required.\n" +
             "                                    </div>\n" +
             "                                </div>\n" +
             "\n" +
@@ -924,7 +895,7 @@
             "                                    <input class='form-control' id='updatemail'  value='" + payload.email + "' placeholder='' required type='text'\n" +
             "                                           value=''>\n" +
             "                                    <div class='invalid-feedback'>\n" +
-            "                                        Valid last name is required.\n" +
+            "                                        Valid email name is required.\n" +
             "                                    </div>\n" +
             "                                </div>\n" +
             "\n" +
@@ -933,7 +904,7 @@
             "                                    <input class='form-control' id='updatestudentid'  value='" + payload.studentid + "' placeholder='' required type='text'\n" +
             "                                           value=''>\n" +
             "                                    <div class='invalid-feedback'>\n" +
-            "                                        Valid last name is required.\n" +
+            "                                        Valid student id name is required.\n" +
             "                                    </div>\n" +
             "                                </div>\n" +
             "\n" +
@@ -941,9 +912,6 @@
             "                                    <label class='form-label' for='updatemajor'>Major</label>\n" +
             "                                    <input class='form-control' id='updatemajor'  value='" + payload.major + "' placeholder='' required type='text'\n" +
             "                                           value=''>\n" +
-            "                                    <div class='invalid-feedback'>\n" +
-            "                                        Valid last name is required.\n" +
-            "                                    </div>\n" +
             "                                </div>\n" +
             "                        </form>\n" +
             "                    </div>\n" +
