@@ -229,12 +229,6 @@
                                         Valid student id is required.
                                     </div>
                                 </div>
-
-                                <div class="col-sm-6">
-                                    <label class="form-label" for="newmajor">Major</label>
-                                    <input class="form-control" id="newmajor" placeholder="" required type="text"
-                                           value="">
-                                </div>
                             </div>
                         </form>
                     </div>
@@ -248,13 +242,13 @@
         <!---->
         <div class="modal" id="myReportModal" tabindex="-1">
             <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Save report</h5>
-                        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form class="needs-validation" novalidate>
+                <form class="needs-validation" novalidate onsubmit="exportToCSV(event)">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Save report</h5>
+                            <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+                        </div>
+                        <div class="modal-body">
                             <div class="row g-3">
                                 <div class="col-sm-6">
                                     <label class="form-label" for="title">Title</label>
@@ -265,13 +259,13 @@
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
+                            <button class="btn btn-primary" type="submit">Save changes</button>
+                        </div>
                     </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
-                        <button class="btn btn-primary" onclick='exportToCSV()' type="button">Save changes</button>
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
         <!---->
@@ -348,8 +342,20 @@
         await postRequest("reports", payload);
     }
 
-    function exportToCSV() {
+    function exportToCSV(e) {
+        e.preventDefault();
         const outputData = state.members.map(Object.values);
+
+        // const newarray = [10][10];
+        // console.dir(outputData);
+        //
+        // for (let i = 0; i < outputData.length; i++) {
+        //     for (let j = 0; j < outputData[i].length; j++) {
+        //         newarray[i][j] = outputData[i][j];
+        //     }
+        // }
+        //
+        // console.dir(newarray);
 
         let csvContent = "data:text/csv;charset=utf-8,"
             + outputData.map(e => e.join(",")).join("\n");
@@ -398,9 +404,8 @@
         const membername = document.getElementById("updatemembername").value;
         const email = document.getElementById("updatemail").value;
         const studentid = document.getElementById("updatestudentid").value;
-        const major = document.getElementById("updatemajor").value;
 
-        const payload = {name: membername, email, major, studentid};
+        const payload = {name: membername, email, studentid};
 
         const xhttp = new XMLHttpRequest();
 
@@ -415,7 +420,6 @@
                         const response = JSON.parse(xhttp.response);
                         document.getElementById(id).children.namedItem("membername").textContent = response.name;
                         document.getElementById(id).children.namedItem("email").textContent = response.email;
-                        document.getElementById(id).children.namedItem("major").textContent = response.major;
                         document.getElementById(id).children.namedItem("studentid").textContent = response.studentid;
                         closeModal();
                         showToast("The member with id: " + response._id + " has been successfully updated.");
@@ -452,7 +456,6 @@
                 "                        <td id='membername'>" + member.name + "</td>\n" +
                 "                        <td id='email'>" + member.email + "</td>\n" +
                 "                        <td hidden id='studentid' >" + member.studentid + "</td>\n" +
-                "                        <td hidden id='major'>" + member.major + "</td>\n" +
                 "                        <td>\n" +
                 "                            <i onclick='viewMember(event)' class=\"bi bi-eye btn\"\n" +
                 "                               style=\"font-size: 17px; cursor: pointer\"></i>\n" +
@@ -531,9 +534,8 @@
     async function addNew() {
         const name = document.getElementById("newname").value;
         const email = document.getElementById("newemail").value;
-        const major = document.getElementById("newmajor").value;
         const studentid = document.getElementById("newstudentid").value;
-        const payload = {name, email, major, studentid};
+        const payload = {name, email, studentid};
         await postRequest("members", payload);
         if (fetchall) {
             await fetchalldata();
@@ -728,7 +730,6 @@
         const payload = {
             membername: e.target.parentElement.parentElement.children.namedItem("membername").innerText,
             email: e.target.parentElement.parentElement.children.namedItem("email").innerText,
-            major: e.target.parentElement.parentElement.children.namedItem("major").innerText,
             studentid: e.target.parentElement.parentElement.children.namedItem("studentid").innerText,
             id: e.target.parentElement.parentElement.children.namedItem("id").innerText,
         }
@@ -742,7 +743,6 @@
         const payload = {
             membername: e.target.parentElement.parentElement.children.namedItem("membername").innerText,
             email: e.target.parentElement.parentElement.children.namedItem("email").innerText,
-            major: e.target.parentElement.parentElement.children.namedItem("major").innerText,
             studentid: e.target.parentElement.parentElement.children.namedItem("studentid").innerText,
             id: e.target.parentElement.parentElement.children.namedItem("id").innerText,
         }
@@ -755,7 +755,6 @@
         const payload = {
             membername: e.target.parentElement.parentElement.children.namedItem("membername").innerText,
             email: e.target.parentElement.parentElement.children.namedItem("email").innerText,
-            major: e.target.parentElement.parentElement.children.namedItem("major").innerText,
             studentid: e.target.parentElement.parentElement.children.namedItem("studentid").innerText,
             id: e.target.parentElement.parentElement.children.namedItem("id").innerText,
         }
@@ -799,12 +798,6 @@
             "                                    <div class='invalid-feedback'>\n" +
             "                                        Valid student id is required.\n" +
             "                                    </div>\n" +
-            "                                </div>\n" +
-            "\n" +
-            "                                <div class='col-sm-6'>\n" +
-            "                                    <label class='form-label' for='updatemajor'>Major</label>\n" +
-            "                                    <input disabled  class='form-control' id='updatemajor'  value='" + payload.major + "' placeholder='' required type='text'\n" +
-            "                                           value=''>\n" +
             "                                </div>\n" +
             "                        </form>\n" +
             "                    </div>\n" +
@@ -891,12 +884,6 @@
             "                                    <div class='invalid-feedback'>\n" +
             "                                        Valid student id name is required.\n" +
             "                                    </div>\n" +
-            "                                </div>\n" +
-            "\n" +
-            "                                <div class='col-sm-6'>\n" +
-            "                                    <label class='form-label' for='updatemajor'>Major</label>\n" +
-            "                                    <input class='form-control' id='updatemajor'  value='" + payload.major + "' placeholder='' required type='text'\n" +
-            "                                           value=''>\n" +
             "                                </div>\n" +
             "                        </form>\n" +
             "                    </div>\n" +
