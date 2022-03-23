@@ -82,7 +82,7 @@
     sessionStorage.clear();
     $("#myform").submit(function (event) {
         event.preventDefault();
-        if (document.getElementById("floatingPassword").value == 'cyberadmin123') {
+        if (document.getElementById("floatingPassword").value === 'cyberadmin123') {
             sessionStorage.setItem("secret", "cyberadmin123");
             window.location.href = "members.html";
         } else {
