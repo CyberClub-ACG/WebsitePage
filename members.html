@@ -710,7 +710,8 @@
     async function deleteMember(event, id, name) {
         event.preventDefault();
         document.getElementById("TotalMembersNumber").innerText = "Total members: " + (--state.count);
-        document.getElementById("totalPagesNumber").innerText = "Total pages: " + Math.ceil(state.count / 10);
+        if (document.getElementById("totalPagesNumber"))
+            document.getElementById("totalPagesNumber").innerText = "Total pages: " + Math.ceil(state.count / 10);
         try {
             await fetch("https://websitebackendcyberclubacg.herokuapp.com/members/" + id, {
                 method: "DELETE",
