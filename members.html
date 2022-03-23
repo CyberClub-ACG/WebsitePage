@@ -58,9 +58,10 @@
             margin: 5px
         }
 
-        .sidebar {
-            height: auto !important;
-            position: absolute !important;
+        footer {
+            position: absolute;
+            z-index: 88888 !important;
+            width: 100%;
         }
     </style>
 </head>
@@ -85,8 +86,8 @@
 
 <div class="container-fluid">
     <div class="row">
-        <nav class="bg-light col-md-3 col-lg-2 d-md-block bg-light sidebar collapse" id="sidebarMenu">
-            <div class="position-sticky pt-3">
+        <div class="bg-light col-md-3 col-lg-2 d-md-block sidebar collapse" id="sidebarMenu">
+            <div class="pt-3 bg-light ">
                 <ul class="nav flex-column">
                     <!--                    <li class="nav-item">-->
                     <!--                        <a class="nav-link" href="./projects.html">-->
@@ -150,65 +151,177 @@
                 </li> -->
                 </ul>
             </div>
-        </nav>
+        </div>
     </div>
-</div>
 
-<div class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-    <div class="spinner-border" id="myspinner" role="status" style="margin: 20px auto">
-        <span class="visually-hidden">Loading...</span>
+    <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4" id="spinnerwrapper" style="min-height: 100vh !important;">
+        <div class="spinner-border " id="myspinner" role="status" style="margin: 20px auto; ">
+            <span class="visually-hidden">Loading...</span>
+        </div>
     </div>
-</div>
 
-<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="min-height: 100vh !important;">
 
-    <div
-            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h2>Club members </h2>
-        <div class="btn-toolbar mb-2 mb-md-0">
-            <div class="btn-group me-2">
-                <div class="dropdown">
+        <div
+                class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h2>Club members </h2>
+            <div class="btn-toolbar mb-2 mb-md-0">
+                <div class="btn-group me-2">
+                    <div class="dropdown">
                                 <span id="fetchbtn">
                                 </span>
 
-                    <button aria-expanded="false"
-                            class="mybtn btn btn-sm btn btn-outline-secondary dropdown-toggle"
-                            data-bs-toggle="dropdown" type="button">
-                        Sort by
-                    </button>
-                    <ul aria-labelledby="dropdownMenuButton1" class="dropdown-menu">
-                        <li><a class="dropdown-item" onclick="sortByDefault()">Default (By Date)</a></li>
-                        <li><a class="dropdown-item" onclick="sortByName()">Name</a></li>
-                    </ul>
-                </div>
-                <div class="dropdown">
-                    <button aria-expanded="false" class="mybtn btn btn-sm btn btn-outline-secondary"
-                            onclick="openReportDialog()" type="button">
-                        Export to CSV
-                    </button>
+                        <button aria-expanded="false"
+                                class="mybtn btn btn-sm btn btn-outline-secondary dropdown-toggle"
+                                data-bs-toggle="dropdown" type="button">
+                            Sort by
+                        </button>
+                        <ul aria-labelledby="dropdownMenuButton1" class="dropdown-menu">
+                            <li><a class="dropdown-item" onclick="sortByDefault()">Default (By Date)</a></li>
+                            <li><a class="dropdown-item" onclick="sortByName()">Name</a></li>
+                        </ul>
+                    </div>
+                    <div class="dropdown">
+                        <button aria-expanded="false" class="mybtn btn btn-sm btn btn-outline-secondary"
+                                onclick="openReportDialog()" type="button">
+                            Export to CSV
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="table-responsive">
-        <table class="table table-striped table-sm">
-            <thead>
-            <tr>
-                <th>Student Id</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Action</th>
-            </tr>
-            </thead>
-            <tbody id="writeMembersHere">
-            </tbody>
-        </table>
-    </div>
-    <button class="btn btn-dark text-white" onclick="openModal()" style="color: white !important">Add new club member
-    </button>
-    <span id="metainfo" style="float: right">
+        <div class="table-responsive">
+            <table class="table table-striped table-sm">
+                <thead>
+                <tr>
+                    <th>Student Id</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody id="writeMembersHere">
+                </tbody>
+            </table>
+        </div>
+        <button class="btn btn-dark text-white" onclick="openModal()" style="color: white !important">Add new club
+            member
+        </button>
+        <span id="metainfo" style="float: right">
                 </span>
-</main>
+
+    </main>
+
+</div>
+
+<div class="modal" id="myModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add new club member</h5>
+                <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+            </div>
+            <div class="modal-body">
+                <form class="needs-validation" novalidate>
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <label class="form-label" for="newname">Name</label>
+                            <input class="form-control" id="newname" placeholder="" required type="text"
+                                   value="">
+                            <div class="invalid-feedback" id="newnameinvalid">
+                                Valid name is required.
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label class="form-label" for="newemail">Email</label>
+                            <input class="form-control" id="newemail" placeholder="" required type="text"
+                                   value="">
+                            <div class="invalid-feedback" id="newemailinvalid">
+                                Valid email is required.
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="form-label" for="newstudentid">Student id</label>
+                            <input class="form-control" id="newstudentid" placeholder="" required
+                                   type="text" value="">
+                            <div class="invalid-feedback" id="newstudentidinvalid">
+                                Valid student id is required.
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
+                <button class="btn btn-primary" onclick='addNew()' type="button">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!---->
+<div class="modal" id="myReportModal" tabindex="-1">
+    <div class="modal-dialog">
+        <form class="needs-validation" novalidate onsubmit="exportToCSV(event)">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Save report</h5>
+                    <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <label class="form-label" for="title">Title</label>
+                            <input class="form-control" id="titlereport" placeholder="" required type="text"
+                                   value="">
+                            <div class="invalid-feedback">
+                                title is required.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
+                    <button class="btn btn-primary" type="submit">Save changes</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!---->
+    <div class="modal" id="myEditModal" tabindex="-1">
+    </div>
+    <!--view modal-->
+    <div class="modal" id="myViewModal" tabindex="-1">
+    </div>
+
+
+    <!--mydeletedialog-->
+    <div class="modal" id="mydeletedialog" tabindex="-1">
+    </div>
+
+    <div aria-atomic="true" aria-live="assertive"
+         class="position-fixed toast align-items-center bottom-0 start-50 translate-middle-x text-white bg-primary border-0"
+         id="toast" role="alert" style="margin-bottom: 20px">
+        <div class="d-flex">
+            <div class="toast-body">
+            </div>
+            <button aria-label="Close" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                    type="button"></button>
+        </div>
+    </div>
+
+    <div aria-atomic="true" aria-live="assertive"
+         class="position-fixed toast align-items-center bottom-0 start-50 translate-middle-x text-white bg-primary border-0"
+         id="toast" role="alert" style="margin-bottom: 20px">
+        <div class="d-flex">
+            <div class="toast-body">
+            </div>
+            <button aria-label="Close" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                    type="button"></button>
+        </div>
+    </div>
+</div>
 
 <footer class="site-footer">
     <div class="container" style="text-align: left ">
@@ -297,121 +410,15 @@
         </div>
     </div>
 </footer>
-<div class="modal" id="myModal" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Add new club member</h5>
-                <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
-            </div>
-            <div class="modal-body">
-                <form class="needs-validation" novalidate>
-                    <div class="row g-3">
-                        <div class="col-sm-6">
-                            <label class="form-label" for="newname">Name</label>
-                            <input class="form-control" id="newname" placeholder="" required type="text"
-                                   value="">
-                            <div class="invalid-feedback" id="newnameinvalid">
-                                Valid name is required.
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <label class="form-label" for="newemail">Email</label>
-                            <input class="form-control" id="newemail" placeholder="" required type="text"
-                                   value="">
-                            <div class="invalid-feedback" id="newemailinvalid">
-                                Valid email is required.
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <label class="form-label" for="newstudentid">Student id</label>
-                            <input class="form-control" id="newstudentid" placeholder="" required
-                                   type="text" value="">
-                            <div class="invalid-feedback" id="newstudentidinvalid">
-                                Valid student id is required.
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
-                <button class="btn btn-primary" onclick='addNew()' type="button">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!---->
-<div class="modal" id="myReportModal" tabindex="-1">
-    <div class="modal-dialog">
-        <form class="needs-validation" novalidate onsubmit="exportToCSV(event)">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Save report</h5>
-                    <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row g-3">
-                        <div class="col-sm-6">
-                            <label class="form-label" for="title">Title</label>
-                            <input class="form-control" id="titlereport" placeholder="" required type="text"
-                                   value="">
-                            <div class="invalid-feedback">
-                                title is required.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
-                    <button class="btn btn-primary" type="submit">Save changes</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-<!---->
-<div class="modal" id="myEditModal" tabindex="-1">
-</div>
-<!--view modal-->
-<div class="modal" id="myViewModal" tabindex="-1">
-</div>
-</div>
-</div>
-
-<!--mydeletedialog-->
-<div class="modal" id="mydeletedialog" tabindex="-1">
-</div>
-
-<div aria-atomic="true" aria-live="assertive"
-     class="position-fixed toast align-items-center bottom-0 start-50 translate-middle-x text-white bg-primary border-0"
-     id="toast" role="alert" style="margin-bottom: 20px">
-    <div class="d-flex">
-        <div class="toast-body">
-        </div>
-        <button aria-label="Close" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
-                type="button"></button>
-    </div>
-</div>
-
-<div aria-atomic="true" aria-live="assertive"
-     class="position-fixed toast align-items-center bottom-0 start-50 translate-middle-x text-white bg-primary border-0"
-     id="toast" role="alert" style="margin-bottom: 20px">
-    <div class="d-flex">
-        <div class="toast-body">
-        </div>
-        <button aria-label="Close" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
-                type="button"></button>
-    </div>
-</div>
-
 <script crossorigin="anonymous"
         integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-        referrerpolicy="no-referrer" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script crossorigin="anonymous" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        referrerpolicy="no-referrer"
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
-<script crossorigin="anonymous" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
+<script crossorigin="anonymous"
+        integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
         src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"></script>
 <script type="text/javascript">
 
@@ -540,11 +547,13 @@
     }
 
     function showLoading() {
+        document.getElementById("spinnerwrapper").style.display = "block";
         document.getElementById("myspinner").style.display = "block";
         document.getElementsByTagName("main")[0].style.display = "none";
     }
 
     function hideLoading() {
+        document.getElementById("spinnerwrapper").style.display = "none";
         document.getElementById("myspinner").style.display = "none";
         document.getElementsByTagName("main")[0].style.display = "block";
     }
