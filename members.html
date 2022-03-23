@@ -569,8 +569,6 @@
                 "                        <td id='email'>" + member.email + "</td>\n" +
                 "                        <td hidden id='studentid' >" + member.studentid + "</td>\n" +
                 "                        <td>\n" +
-                "                            <i onclick='viewMember(event)' class=\"bi bi-eye btn\"\n" +
-                "                               style=\"font-size: 17px; cursor: pointer\"></i>\n" +
                 "                            <i onclick='editMember(event)' class=\"bi bi-pencil btn\"\n" +
                 "                               style=\"font-size: 17px; cursor: pointer\"></i>\n" +
                 "                            <i onclick='openDeleteDialog(\"" + member.name + "\", \"" + member._id + "\")' class=\"bi bi-trash btn\"\n" +
@@ -850,18 +848,6 @@
         const copyStr = payload.studentid + ", " + payload.membername + ", " + payload.email;
         showToast("Copied to clipboard succesffully");
         navigator.clipboard.writeText(copyStr);
-    }
-
-    function viewMember(e) {
-        const payload = {
-            membername: e.target.parentElement.parentElement.children.namedItem("membername").innerText,
-            email: e.target.parentElement.parentElement.children.namedItem("email").innerText,
-            studentid: e.target.parentElement.parentElement.children.namedItem("studentid").innerText,
-            id: e.target.parentElement.parentElement.children.namedItem("id").innerText,
-        }
-
-        document.getElementById("myViewModal").innerHTML = buildViewModal(payload);
-        openViewModal();
     }
 
     function editMember(e) {
