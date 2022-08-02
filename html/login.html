@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="" name="description">
+    <meta content="Alexandros Kourtis" name="author">
+
+    <link href="../cyberweb%20logo.png" rel="shortcut icon" type="image/jpg"/>
+    <title>Cyberweb</title>
+    <link href="https://getbootstrap.com/docs/5.0/examples/dashboard/" rel="canonical">
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" rel="stylesheet">
+    <link crossorigin="anonymous"
+          href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap-grid.min.css"
+          integrity="sha512-Aa+z1qgIG+Hv4H2W3EMl3btnnwTQRA47ZiSecYSkWavHUkBF2aPOIIvlvjLCsjapW1IfsGrEO3FU693ReouVTA=="
+          referrerpolicy="no-referrer" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" rel="stylesheet">
+    <meta content="#7952b3" name="theme-color">
+
+    <link href="../css/stylemembers.css" rel="stylesheet">
+
+    <style>
+        .form-signin {
+            width: 100%;
+            max-width: 330px;
+            padding: 15px;
+            margin: auto;
+        }
+
+        .form-signin .checkbox {
+            font-weight: 400;
+        }
+
+        .form-signin .form-floating:focus-within {
+            z-index: 2;
+        }
+
+        .form-signin input[type="email"] {
+            margin-bottom: -1px;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        .form-signin input[type="password"] {
+            margin-bottom: 10px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+
+        html, body {
+            background-color: #202020;
+        }
+    </style>
+</head>
+<body>
+
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="./login.html">Cyber<span
+            style="color: #0d6efd">web</span></a>
+    <button aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation"
+            class="navbar-toggler position-absolute d-md-none collapsed" data-bs-target="#sidebarMenu"
+            data-bs-toggle="collapse"
+            type="button">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</header>
+
+<div class="container" style="justify-content: center; align-items: center; display: flex; min-height: 65vh;">
+    <main class="form-signin" style="text-align: center">
+        <img alt="" src="../cyberweb%20logo.png" style="margin: auto; width: 100px; height: 100px">
+        <h4 class="m-3 text-white"><b>Login</b></h4>
+        <form id="myform">
+            <div class="form-floating">
+                <input class="form-control" id="floatingPassword" placeholder="Password" type="password">
+                <label for="floatingPassword">Enter your Cyberweb password</label>
+            </div>
+
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+        </form>
+    </main>
+</div>
+
+<script crossorigin="anonymous"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        referrerpolicy="no-referrer" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    sessionStorage.clear();
+    $("#myform").submit(function (event) {
+        event.preventDefault();
+        if (document.getElementById("floatingPassword").value === 'cyberadmin123') {
+            sessionStorage.setItem("secret", "cyberadmin123");
+            window.location.href = "members.html";
+        } else {
+            alert("Bad credentials");
+        }
+    });
+</script>
+</body>
+</html>

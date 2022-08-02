@@ -1,0 +1,895 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="" name="description">
+    <link href="../cyberweb%20logo.png" rel="shortcut icon" type="image/jpg"/>
+    <meta content="Alexandros Kourtis" name="author">
+    <title>Dashboard Cyber Club</title>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" rel="stylesheet">
+    <meta content="#0275d8" name="theme-color">
+
+    <link href="../css/custom.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/stylemembers.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        .modal .btn {
+            color: white !important;
+        }
+
+        .toast {
+            background: #0275d8 !important;
+        }
+
+        .dropdown-item {
+            cursor: pointer;
+        }
+
+        .modal-dialog {
+            max-width: 750px;
+        }
+
+        .mybtn {
+            margin-right: 5px;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+
+        i {
+            color: #212529 !important;
+        }
+
+        .btn {
+            color: #212529 !important;
+            border: 1px solid #212529 !important;
+            margin: 5px
+        }
+
+        footer {
+            position: absolute;
+            z-index: 88888 !important;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="./members.html">Cyber Club Dashboard</a>
+    <button aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation"
+            class="navbar-toggler position-absolute d-md-none collapsed" data-bs-target="#sidebarMenu"
+            data-bs-toggle="collapse" type="button">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <input aria-label="Search" class="form-control form-control-dark w-100" oninput="filter(event)"
+           placeholder="Search" type="text">
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+            <a class="nav-link" href="login.html">Sign out</a>
+        </li>
+    </ul>
+</header>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="bg-light col-md-3 col-lg-2 d-md-block sidebar collapse" id="sidebarMenu">
+            <div class="pt-3 bg-light ">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="./members.html">
+                            <span data-feather="users"></span>
+                            Club Members
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4" id="spinnerwrapper" style="min-height: 100vh !important;">
+        <div class="spinner-border " id="myspinner" role="status" style="margin: 20px auto; ">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="min-height: 100vh !important;">
+
+        <div
+                class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h2>Club members </h2>
+            <div class="btn-toolbar mb-2 mb-md-0">
+                <div class="btn-group me-2">
+                    <div class="dropdown">
+                                <span id="fetchbtn">
+                                </span>
+
+                        <button aria-expanded="false"
+                                class="mybtn btn btn-sm btn btn-outline-secondary dropdown-toggle"
+                                data-bs-toggle="dropdown" type="button">
+                            Sort by
+                        </button>
+                        <ul aria-labelledby="dropdownMenuButton1" class="dropdown-menu">
+                            <li><a class="dropdown-item" onclick="sortByDefault()">Default (By Date)</a></li>
+                            <li><a class="dropdown-item" onclick="sortByName()">Name</a></li>
+                        </ul>
+                    </div>
+                    <div class="dropdown">
+                        <button aria-expanded="false" class="mybtn btn btn-sm btn btn-outline-secondary"
+                                onclick="openReportDialog()" type="button">
+                            Export to CSV
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped table-sm">
+                <thead>
+                <tr>
+                    <th>Student Id</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody id="writeMembersHere">
+                </tbody>
+            </table>
+        </div>
+        <button class="btn btn-dark text-white" onclick="openModal()" style="color: white !important">Add new club
+            member
+        </button>
+        <span id="metainfo" style="float: right">
+                </span>
+
+    </main>
+
+</div>
+
+<div class="modal" id="myModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add new club member</h5>
+                <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+            </div>
+            <div class="modal-body">
+                <form class="needs-validation" novalidate>
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <label class="form-label" for="newname">Name</label>
+                            <input class="form-control" id="newname" placeholder="" required type="text"
+                                   value="">
+                            <div class="invalid-feedback" id="newnameinvalid">
+                                Valid name is required.
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label class="form-label" for="newemail">Email</label>
+                            <input class="form-control" id="newemail" placeholder="" required type="text"
+                                   value="">
+                            <div class="invalid-feedback" id="newemailinvalid">
+                                Valid email is required.
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="form-label" for="newstudentid">Student id</label>
+                            <input class="form-control" id="newstudentid" placeholder="" required
+                                   type="text" value="">
+                            <div class="invalid-feedback" id="newstudentidinvalid">
+                                Valid student id is required.
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
+                <button class="btn btn-primary" onclick='addNew()' type="button">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="myReportModal" tabindex="-1">
+    <div class="modal-dialog">
+        <form class="needs-validation" novalidate onsubmit="exportToCSV(event)">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Save report</h5>
+                    <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <label class="form-label" for="titlereport">Title</label>
+                            <input class="form-control" id="titlereport" placeholder="" required type="text"
+                                   value="">
+                            <div class="invalid-feedback">
+                                title is required.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
+                    <button class="btn btn-primary" type="submit">Save changes</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal" id="myEditModal" tabindex="-1">
+</div>
+
+<!--mydeletedialog-->
+<div class="modal" id="mydeletedialog" tabindex="-1">
+</div>
+
+<div aria-atomic="true" aria-live="assertive"
+     class="position-fixed toast align-items-center bottom-0 start-50 translate-middle-x text-white bg-primary border-0"
+     role="alert" style="margin-bottom: 20px">
+    <div class="d-flex">
+        <div class="toast-body">
+        </div>
+        <button aria-label="Close" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                type="button"></button>
+    </div>
+</div>
+
+<div aria-atomic="true" aria-live="assertive"
+     class="position-fixed toast align-items-center bottom-0 start-50 translate-middle-x text-white bg-primary border-0"
+     id="toast" role="alert" style="margin-bottom: 20px">
+    <div class="d-flex">
+        <div class="toast-body">
+        </div>
+        <button aria-label="Close" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                type="button"></button>
+    </div>
+</div>
+</div>
+
+<footer class="site-footer">
+    <div class="container" style="text-align: left ">
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <h6>About</h6>
+                <h5>The Cyber Club is open to all students who are interested in the IT
+                    field. It aims to cultivate a community of motivated
+                    individuals who are passionate about technology and want to enrich their academic and
+                    student-life experience at Deree.</h5>
+                <h5>Email: dc.cyberclub@acg.edu
+                </h5>
+                <h5>
+                    Advisor: George Vardoulias
+                </h5>
+            </div>
+
+            <div class="col-xs-6 col-md-3">
+                <h6>Interests</h6>
+                <ul class="footer-links">
+                    <li>
+                        <h5>Cybersecurity</h5>
+                    </li>
+                    <li>
+                        <h5>Software Engineering</h5>
+                    </li>
+                    <li>
+                        <h5>Machine Learning</h5>
+                    </li>
+                    <li>
+                        <h5>Artificial
+                            Intelligence</h5>
+                    </li>
+                    <li>
+                        <h5>Operating Systems</h5>
+                    </li>
+                    </li>
+                    <li>
+                        <h5>Computer Networks</h5>
+                    </li>
+                    <li>
+                        <h5>Telecommunications</h5>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-xs-6 col-md-3">
+                <h6>Skillset developed</h6>
+                <ul class="footer-links">
+                    <li>
+                        <h5>Coding & Algorithms</h5>
+                    </li>
+                    <li>
+                        <h5>Project Management</h5>
+                    </li>
+                    <li>
+                        <h5>Public Speaking & Critical Thinking</h5>
+                    </li>
+                    <li>
+                        <h5>Entrepreneurship</h5>
+                    </li>
+                    <li>
+                        <h5>Research</h5>
+                    </li>
+                    <li>
+                        <h5>Teamwork</h5>
+                    </li>
+                    <li>
+                        <h5>Networking</h5>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <br>
+    </div>
+    <div class="container">
+        <div class="row" style="text-align: left ">
+            <div class="col-md-8 col-sm-6 col-xs-12">
+                <p class="copyright-text">Copyright &copy; 2021 All Rights Reserved by
+                    <a href="#">Cyber Club</a>. Reach out to us at: <a
+                            href="mailto:dc.cyberclub@acg.edu">dc.cyberclub@acg.edu</a>. <a
+                            href="login.html">Portal.</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+<script crossorigin="anonymous"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        referrerpolicy="no-referrer"
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
+        src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"></script>
+<script type="text/javascript">
+
+    function getKey() {
+        if (sessionStorage.getItem('secret') && sessionStorage.getItem('secret') === 'cyberadmin123') {
+            return sessionStorage.getItem('secret');
+        } else {
+            window.location.href = "login.html";
+        }
+    }
+
+    getKey();
+
+    'use strict'
+    feather.replace();
+    let fileReport = null;
+
+    const state = {
+        count: 0,
+        members: [],
+    }
+
+    function openReportDialog() {
+        $("#myReportModal").modal('show');
+    }
+
+    async function storeReport() {
+        const file = fileReport;
+        const title = document.getElementById("titlereport").value;
+        const payload = {title, file};
+        await postRequest("reports", payload);
+    }
+
+    function exportToCSV(e) {
+        e.preventDefault();
+        const outputData = state.members.map(Object.values);
+
+        // const newarray = [10][10];
+        // console.dir(outputData);
+        //
+        // for (let i = 0; i < outputData.length; i++) {
+        //     for (let j = 0; j < outputData[i].length; j++) {
+        //         newarray[i][j] = outputData[i][j];
+        //     }
+        // }
+        //
+        // console.dir(newarray);
+
+        let csvContent = "data:text/csv;charset=utf-8,"
+            + outputData.map(e => e.join(",")).join("\n");
+
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        fileReport = document.getElementById("titlereport").value + ".csv";
+        link.setAttribute("download", fileReport);
+        document.body.appendChild(link);
+
+        link.click();
+        // storeReport();
+        closeModal();
+    }
+
+    async function sortByDefault() {
+        const sorted = state.members.sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt));
+        await loadTable(sorted);
+    }
+
+    async function sortByName() {
+        showLoading();
+        const sorted = state.members.sort((a, b) => a.name.localeCompare(b.name));
+        await loadTable(sorted);
+        hideLoading();
+    }
+
+    async function filter(event) {
+        const keyword = event.target.value.toLowerCase().trim();
+        const results = [];
+        if (state.members.length > 0) {
+            state.members.forEach(member => {
+                if (member.name.toLowerCase().includes(keyword) || member.email.toLowerCase().includes(keyword) || member.studentid.toLowerCase().includes(keyword)) {
+                    results.push(member);
+                }
+            });
+
+            await loadTable(results);
+            hideLoading();
+        }
+    }
+
+    function update(id) {
+        const route = "members/" + id;
+        const membername = document.getElementById("updatemembername").value;
+        const email = document.getElementById("updatemail").value;
+        const studentid = document.getElementById("updatestudentid").value;
+
+        const payload = {name: membername, email, studentid};
+
+        const xhttp = new XMLHttpRequest();
+
+        // websitebackendcyberclubacg.herokuapp.com
+        xhttp.open("PUT", "http://localhost:4009/" + route, true);
+        xhttp.setRequestHeader('xapikey', 'teststringnothardcodeda');
+        xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+        xhttp.onreadystatechange = async () => {
+            if (xhttp.readyState === 4) {
+                if (xhttp.status === 200) {
+                    if (xhttp.response) {
+                        const response = JSON.parse(xhttp.response);
+                        document.getElementById(id).children.namedItem("membername").textContent = response.name;
+                        document.getElementById(id).children.namedItem("email").textContent = response.email;
+                        document.getElementById(id).children.namedItem("studentid").textContent = response.studentid;
+                        closeModal();
+                        showToast("The member has been successfully updated.");
+                    }
+                }
+            }
+        }
+
+        xhttp.onerror = function (e) {
+            console.log("Error:", e);
+        };
+
+        xhttp.send(JSON.stringify(payload));
+
+    }
+
+    function showLoading() {
+        document.getElementById("spinnerwrapper").style.display = "block";
+        document.getElementById("myspinner").style.display = "block";
+        document.getElementsByTagName("main")[0].style.display = "none";
+    }
+
+    function hideLoading() {
+        document.getElementById("spinnerwrapper").style.display = "none";
+        document.getElementById("myspinner").style.display = "none";
+        document.getElementsByTagName("main")[0].style.display = "block";
+    }
+
+    async function loadTable(payload) {
+        document.getElementById("writeMembersHere").innerHTML = "";
+        payload.forEach(member => {
+            document.getElementById("writeMembersHere").innerHTML += "" +
+                "<tr id='" + member._id + "'>\n" +
+                "                        <td id='studentid'>" + member.studentid + "</td>\n" +
+                "                        <td  hidden id='id'>" + member._id + "</td>\n" +
+                "                        <td id='membername'>" + member.name + "</td>\n" +
+                "                        <td id='email'>" + member.email + "</td>\n" +
+                "                        <td hidden id='studentid' >" + member.studentid + "</td>\n" +
+                "                        <td>\n" +
+                "                            <i onclick='editMember(event)' class=\"bi bi-pencil btn\"\n" +
+                "                               style=\"font-size: 17px; cursor: pointer\"></i>\n" +
+                "                            <i onclick='openDeleteDialog(\"" + member.name + "\", \"" + member._id + "\")' class=\"bi bi-trash btn\"\n" +
+                "                               style=\"font-size: 17px; cursor: pointer\"></i>\n" +
+                "                            <i onclick='copyRow(event)' class=\"bi bi-clipboard btn\"\n" +
+                "                               style=\"font-size: 17px; cursor: pointer\"></i>\n" +
+                "                        </td>\n" +
+                "                    </tr>"
+        })
+    }
+
+    async function openDeleteDialog(name, id) {
+        document.getElementById("mydeletedialog").innerHTML = "";
+        document.getElementById("mydeletedialog").innerHTML += "<div>" +
+            "        <form class=\"needs-validation\" novalidate>\n" +
+            "            <div class=\"modal-dialog\">\n" +
+            "                <div class=\"modal-content\">\n" +
+            "                <div class=\"modal-header\">\n" +
+            "                <h5 class=\"modal-title\">Deletion Confirmation </h5>\n" +
+            "            <button aria-label=\"Close\" class=\"btn-close\" data-bs-dismiss=\"modal\" type=\"button\"></button>\n" +
+            "                </div>\n" +
+            "              <div class=\"modal-body\">\n" +
+            "                <h6>Are you sure you want to proceed with the deletion? </h6>\n" +
+            "                <div class=\"row g-3\">\n" +
+            "                                <div class='col'>\n" +
+            "                                     <label class='form-label form-control col-md-2' style='border: 0; float: left; padding-left: 5px; ' for='viewid'>Name:</label>\n" +
+            "                                    <input disabled style='float: left' class='form-control col-md-10' id='viewid' placeholder='' value='" + name + "' required type='text'\n" +
+            "                                           value=''>\n" +
+            "                                    <div class='invalid-feedback'>\n" +
+            "                                        Valid role is required.\n" +
+            "                                    </div>\n" +
+            "                                </div>\n" +
+            "                                </div>\n" +
+            "\n" +
+            "            </div>\n" +
+            "            <div class=\"modal-footer\">\n" +
+            "                <button class=\"btn btn-secondary\" data-bs-dismiss=\"modal\" type=\"button\">Cancel</button>\n <span hidden name='theid' id='theid'>" + id + "</span>" +
+            "                <button class=\"btn btn-primary\" id=\"focusBtn\"  onclick='deleteMember(event, \"" + id + "\", \"" + name + "\")' >Delete\n" +
+            "                </button>\n" +
+            "                </div>\n" +
+            "                </div>\n" +
+            "                </div>\n" +
+            "                </div>\n" +
+            "                </form></div>";
+
+        $("#mydeletedialog").modal('show');
+        $("#focusBtn").trigger('focus');
+    }
+
+    async function callback(payload) {
+        state.members = [];
+        const data = JSON.parse(payload);
+        await data.forEach(member => {
+            if (member)
+                state.members.push(member);
+        });
+
+        await sortByDefault();
+        hideLoading();
+    }
+
+    async function deleteRequest(route, callback) {
+        const xhttp = new XMLHttpRequest();
+        xhttp.open("DELETE", "http://localhost:4009/" + route, true);
+        xhttp.setRequestHeader('xapikey', 'teststringnothardcodeda');
+        xhttp.onerror = function (e) {
+            console.log("Error:", e);
+        };
+
+        xhttp.send();
+    }
+
+    async function addNew() {
+        const name = document.getElementById("newname").value;
+        const email = document.getElementById("newemail").value;
+        const studentid = document.getElementById("newstudentid").value;
+        const payload = {name, email, studentid};
+        await postRequest("members", payload);
+        if (fetchall) {
+            await fetchalldata();
+        } else {
+            await getMembers();
+        }
+    }
+
+    async function postRequest(route, payload) {
+        let resStatus = 0;
+        await fetch("http://localhost:4009/" + route, {
+            method: 'POST',
+            headers: {
+                'xapikey': 'teststringnothardcodeda',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload),
+        })
+            .then(response => {
+                resStatus = response.status;
+                return response.json();
+            })
+            .then(data => {
+                switch (resStatus) {
+                    case 200:
+                        showToast("New member has been successfully added");
+                        $(".d-block").removeClass("d-block");
+                        break
+                    case 400:
+                        if (resStatus.toString() === '400') {
+                            if (data.name) {
+                                document.getElementById("newnameinvalid").classList.add('d-block');
+                            } else {
+                                document.getElementById("newnameinvalid").classList.remove('d-block');
+                            }
+
+                            if (data.email) {
+                                document.getElementById("newemailinvalid").classList.add('d-block');
+                            } else {
+                                document.getElementById("newemailinvalid").classList.remove('d-block');
+                            }
+
+                            if (data.studentid) {
+                                document.getElementById("newstudentidinvalid").classList.add('d-block');
+                            } else {
+                                document.getElementById("newstudentidinvalid").classList.remove('d-block');
+                            }
+                        }
+                        break
+                    case 500:
+                        console.log('server error, try again')
+                        break
+                    default:
+                        console.log('unhandled')
+                        break
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    }
+
+    async function getRequest(params) {
+        try {
+            const options = {
+                headers: {
+                    'xapikey': 'teststringnothardcodeda'
+                }
+            }
+            const response = await fetch('http://localhost:4009/' + params, options);
+            const data = await response.json();
+            state.members = [];
+            await data.members.forEach(member => {
+                if (member)
+                    state.members.push(member);
+            });
+
+            await sortByDefault();
+            hideLoading();
+            return data;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    let fetchall = false;
+
+    function init() {
+        fetchall = false;
+        showLoading();
+        getMembers();
+
+        document.getElementById("fetchbtn").innerHTML = "";
+        document.getElementById("fetchbtn").innerHTML += "<button aria-expanded=\"false\"\n" +
+            "    class=\"mybtn btn btn-sm btn btn-outline-secondary\"\n" +
+            "        onclick=\"fetchalldata()\" type=\"button\">\n" +
+            "            Fetch all data\n" +
+            "        </button>";
+    }
+
+    let page = 1;
+    let totalpages = 1;
+
+    init();
+
+    async function prevPage() {
+        if (page - 1 !== 0) {
+            page = page - 1;
+        }
+        await getMembers();
+    }
+
+    async function nextPage() {
+        if (page + 1 <= totalpages) {
+            page = page + 1;
+        }
+        await getMembers();
+    }
+
+    async function getMembers() {
+        if (page >= 0) {
+            let params = "members/" + parseInt(page - 1);
+            const data = await getRequest(params, callback);
+            state.count = data.count;
+            totalpages = Math.ceil(data.pages);
+            document.getElementById("metainfo").innerHTML = "";
+            document.getElementById("metainfo").innerHTML += "<div><button style=\"color: white !important\" class=\"btn btn-dark text-white pull-right\" onclick=\"prevPage()\"><\n" +
+                "                </button>\n" +
+                "                <button style=\"color: white !important\" class=\"btn btn-dark text-white pull-right\" >\n" +
+                "                " + page + "\n" +
+                "                </button>\n" +
+                "                <button  style=\"color: white !important\" class=\"btn btn-dark text-white pull-right\" onclick=\"nextPage()\">\n" +
+                "                >\n" +
+                "                </button>\n" +
+                "                <h6 id=\"TotalMembersNumber\">Total members: " + data.count + "</h6>\n" +
+                "            <h6 id=\"totalPagesNumber\">Total pages: " + Math.ceil(data.pages) + "</h6></div>"
+        }
+    }
+
+    function openModal() {
+        $("#myModal").modal('show');
+    }
+
+    function closeModal() {
+        $(".modal").modal('hide');
+        $(".modal-dialog").modal('hide');
+    }
+
+    function openEditModal() {
+        $("#myEditModal").modal('show');
+    }
+
+    $('#myModal').on('show.bs.modal', function (e) {
+    });
+
+
+    $('#myEditModal').on('show.bs.modal', function (e) {
+    });
+
+    const options = {
+        animation: true,
+        autohide: true,
+        delay: 2000
+    }
+
+    function showToast(text) {
+        const toastEl = document.getElementById("toast");
+        toastEl.getElementsByClassName("toast-body")[0].innerText = text;
+        new bootstrap.Toast(toastEl, options).show();
+    }
+
+    async function deleteMember(event, id, name) {
+        event.preventDefault();
+        document.getElementById("TotalMembersNumber").innerText = "Total members: " + (--state.count);
+        if (document.getElementById("totalPagesNumber"))
+            document.getElementById("totalPagesNumber").innerText = "Total pages: " + Math.ceil(state.count / 10);
+        try {
+            await fetch("http://localhost:4009/members/" + id, {
+                method: "DELETE",
+                headers: {
+                    'xapikey': 'teststringnothardcodeda',
+                },
+            });
+            document.getElementById(id).remove();
+            showToast(name + " has been removed from the club.");
+            closeModal();
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    function copyRow(e) {
+        const payload = {
+            membername: e.target.parentElement.parentElement.children.namedItem("membername").innerText,
+            email: e.target.parentElement.parentElement.children.namedItem("email").innerText,
+            studentid: e.target.parentElement.parentElement.children.namedItem("studentid").innerText,
+            id: e.target.parentElement.parentElement.children.namedItem("id").innerText,
+        }
+
+        const copyStr = payload.studentid + ", " + payload.membername + ", " + payload.email;
+        showToast("Copied to clipboard succesffully");
+        navigator.clipboard.writeText(copyStr);
+    }
+
+    function editMember(e) {
+        const payload = {
+            membername: e.target.parentElement.parentElement.children.namedItem("membername").innerText,
+            email: e.target.parentElement.parentElement.children.namedItem("email").innerText,
+            studentid: e.target.parentElement.parentElement.children.namedItem("studentid").innerText,
+            id: e.target.parentElement.parentElement.children.namedItem("id").innerText,
+        }
+
+        document.getElementById("myEditModal").innerHTML = buildEditModal(payload);
+        openEditModal();
+    }
+
+    async function fetchalldata() {
+        showLoading();
+        fetchall = true;
+        document.getElementById("fetchbtn").innerHTML = "";
+        document.getElementById("fetchbtn").innerHTML += "<button aria-expanded=\"false\"\n" +
+            "    class=\"mybtn btn btn-sm btn btn-outline-secondary\"\n" +
+            "        onclick=\"init()\" type=\"button\">\n" +
+            "            Unfetch all data\n" +
+            "        </button>";
+
+        try {
+            const options = {
+                headers: {
+                    'xapikey': 'teststringnothardcodeda'
+                }
+            }
+            const response = await fetch('http://localhost:4009/members', options);
+            const data = await response.json();
+            console.log("data: ", data);
+            state.members = [];
+
+            state.members = [];
+            console.log("data: ", data);
+            await Promise.all(data.map(async (member) => {
+                if (member)
+                    state.members.push(member);
+            }));
+
+            await sortByDefault();
+            hideLoading();
+
+            document.getElementById("metainfo").innerHTML = "";
+            document.getElementById("metainfo").innerHTML +=
+                "                <h6 id=\"TotalMembersNumber\">Total members: " + data.length + "</h6>\n";
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
+    function buildEditModal(payload) {
+        return " <div class='modal-dialog'>\n" +
+            "                <div class='modal-content'>\n" +
+            "                    <div class='modal-header'>\n" +
+            "                        <h5 class='modal-title'>Edit member info</h5>\n" +
+            "                        <button aria-label='Close' class='btn-close' data-bs-dismiss='modal' type='button'></button>\n" +
+            "                    </div>\n" +
+            "                    <div class='modal-body'>\n" +
+            "                        <form class='needs-validation' novalidate>\n" +
+            "                            <div class='row g-3'>\n" +
+            "                                <div class='col-sm-6'>\n" +
+            "                                    <label class='form-label' for='updatemembername'>Name</label>\n" +
+            "                                    <input class='form-control' id='updatemembername' placeholder='' value='" + payload.membername + "' required type='text'\n" +
+            "                                           value=''>\n" +
+            "                                    <div class='invalid-feedback'>\n" +
+            "                                        Valid name is required.\n" +
+            "                                    </div>\n" +
+            "                                </div>\n" +
+            "\n" +
+            "                                <div class='col-sm-6'>\n" +
+            "                                    <label class='form-label' for='updatemail'>Email</label>\n" +
+            "                                    <input class='form-control' id='updatemail'  value='" + payload.email + "' placeholder='' required type='text'\n" +
+            "                                           value=''>\n" +
+            "                                    <div class='invalid-feedback'>\n" +
+            "                                        Valid email name is required.\n" +
+            "                                    </div>\n" +
+            "                                </div>\n" +
+            "\n" +
+            "                                <div class='col-sm-6'>\n" +
+            "                                    <label class='form-label' for='updatestudentid'>Student id</label>\n" +
+            "                                    <input class='form-control' id='updatestudentid'  value='" + payload.studentid + "' placeholder='' required type='text'\n" +
+            "                                           value=''>\n" +
+            "                                    <div class='invalid-feedback'>\n" +
+            "                                        Valid student id name is required.\n" +
+            "                                    </div>\n" +
+            "                                </div>\n" +
+            "                        </form>\n" +
+            "                    </div>\n" +
+            "                    <div class='modal-footer'>\n" +
+            "                        <button class='btn btn-secondary' data-bs-dismiss='modal' type='button'>Close</button>\n" +
+            "                        <button class='btn btn-primary' type='button' onclick=update('" + payload.id + "')>Save changes</button>\n" +
+            "                    </div>\n" +
+            "                </div>\n" +
+            "            </div>\n";
+    }
+</script>
+
+</body>
+
+</html>
