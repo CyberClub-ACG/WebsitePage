@@ -15,4 +15,5 @@ https://dccyberclub.com
 - imrorve responsive
 - fix xsl file download
 - add same footer
-- cyberweb! 
+- cyberweb!
+- hide mongodb and aws connection details and other env/config vars  
