@@ -820,11 +820,9 @@
             }
             const response = await fetch('https://cyberweb-backend.herokuapp.com/members', options);
             const data = await response.json();
-            console.log("data: ", data);
             state.members = [];
 
             state.members = [];
-            console.log("data: ", data);
             await Promise.all(data.map(async (member) => {
                 if (member)
                     state.members.push(member);
