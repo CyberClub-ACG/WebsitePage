@@ -16,4 +16,5 @@ https://dccyberclub.com
 - fix xsl file download
 - add same footer
 - cyberweb!
-- hide mongodb and aws connection details and other env/config vars  
+- hide mongodb and aws connection details and other env/config vars
+- add img lazy load for events and blog and team
