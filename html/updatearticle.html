@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="" name="description">
+    <link href="./dereelogospoti.jpg" rel="shortcut icon" type="image/jpg"/>
+    <meta content="Alexandros Kourtis" name="author">
+    <title>Dashboard Cyber Club</title>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" rel="stylesheet">
+    <meta content="#7952b3" name="theme-color">
+
+    <link href="style.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" rel="stylesheet">
+    <meta content="#7952b3" name="theme-color">
+
+
+    <style>
+        .dropdown-item {
+            cursor: pointer;
+        }
+
+        .modal-dialog {
+            max-width: 750px;
+        }
+
+        .mybtn {
+            margin-right: 5px;
+        }
+
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-member-select: none;
+            -moz-member-select: none;
+            member-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="./members.html">Cyber Club Dashboard</a>
+    <button aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation"
+            class="navbar-toggler position-absolute d-md-none collapsed" data-bs-target="#sidebarMenu"
+            data-bs-toggle="collapse" type="button">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+            <a class="nav-link" href="./login.html">Sign out</a>
+        </li>
+    </ul>
+</header>
+
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse" id="sidebarMenu">
+            <div class="position-sticky pt-3">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./members.html">
+                            <span data-feather="users"></span>
+                            Club Members
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./projects.html">
+                            <span data-feather="users"></span>
+                            Projects
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="./articles.html">
+                            <span data-feather="file"></span>
+                            Articles
+                        </a>
+                    </li>
+                    <!-- <li class="nav-item">
+                    <a class="nav-link" href="./feedback.html">
+                        <span data-feather="message-square"></span>
+                        Feedback
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./questions.html">
+                        <span data-feather="help-circle"></span>
+                        Questions
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./event.html">
+                        <span data-feather="calendar"></span>
+                        Event
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./dashboard.html">
+                        <span data-feather="bar-chart-2"></span>
+                        Dashboard
+                    </a>
+                </li> -->
+                </ul>
+            </div>
+        </nav>
+
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h2>Edit article</h2>
+                <span id="viewbtn"></span>
+            </div>
+            <form class="needs-validation" novalidate>
+                <div class="row g-3">
+                    <div class="col-sm-6">
+                        <label class="form-label" for="title">Title of the article </label>
+                        <input class="form-control" id="title" placeholder="Eg. World domination by the machine... "
+                               required type="text" value="">
+                        <div class="invalid-feedback">
+                            Valid title is required.
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row g-3">
+                    <div class="col-sm-6">
+                        <label class="form-label" for="preview">Description/Preview of the article </label>
+                        <input class="form-control" id="preview" placeholder="Eg. Short synopsis of the article... "
+                               required type="text" value="">
+                        <div class="invalid-feedback">
+                            Valid title is required.
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row g-3">
+                    <div class="col-sm-6">
+                        <label class="form-label" for="author">Author of the article </label>
+                        <input class="form-control" id="author" placeholder="Eg. John Doe... " required type="text"
+                               value="">
+                        <div class="invalid-feedback">
+                            Valid title is required.
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row g-3">
+                    <div class="col-sm-6">
+                        <label class="form-label" for="imagepreviewintext">File name of the image selected for the
+                            article </label>
+                        <input class="form-control" id="imagepreviewintext" placeholder="File selected" required
+                               type="text" value="">
+                        <br>
+                        <button class="btn btn-dark" onclick="shownewimageinput(event)">Clear Image</button>
+                        <input class="form-control mt-3" id="imagepreview" onchange="fileChange(event)"
+                               placeholder="Eg. John Doe... " required style="display: none;" type="file"
+                               value="">
+                        <div class="invalid-feedback">
+                            Valid title is required.
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <br>
+
+            <label for="content">
+                <h5>Content:</h5>
+            </label>
+            <br>
+            <textarea id="content" name="text"></textarea>
+            <button class="btn btn-dark text-white" onclick="updateArticle()">Save changes</button>
+            <button class="btn btn-dark text-white" onclick="reset()">Reset changes</button>
+            <br>
+            <br>
+        </main>
+        <div class="modal" id="myModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add new club article</h5>
+                        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="needs-validation" novalidate>
+                            <div class="row g-3">
+                                <div class="col-sm-6">
+                                    <label class="form-label" for="newname">Name</label>
+                                    <input class="form-control" id="newname" placeholder="" required type="text"
+                                           value="">
+                                    <div class="invalid-feedback">
+                                        Valid first name is required.
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <label class="form-label" for="newemail">Email</label>
+                                    <input class="form-control" id="newemail" placeholder="" required type="text"
+                                           value="">
+                                    <div class="invalid-feedback">
+                                        Valid last name is required.
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="form-label" for="newstudentid">Student id</label>
+                                    <input class="form-control" id="newstudentid" placeholder="" required
+                                           type="text" value="">
+                                    <div class="invalid-feedback">
+                                        Valid first name is required.
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <label class="form-label" for="newmajor">Major</label>
+                                    <input class="form-control" id="newmajor" placeholder="" required type="text"
+                                           value="">
+                                    <div class="invalid-feedback">
+                                        Valid last name is required.
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label class="form-label" for="newrole">Role</label>
+                                    <select class="form-select" id="newrole" required>
+                                        <option value="Blogger">Choose...</option>
+                                        <option value="Admin">Admin</option>
+                                        <option value="Manager">Manager</option>
+                                        <option value="Blogger">Blogger</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Please select a valid country.
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label class="form-label" for="newhowfoundout">How they found out</label>
+                                    <textarea class="form-control col" id="newhowfoundout"
+                                              name="howfoundout"></textarea>
+                                    <!--                                    <input class="form-control" id="newpassword" placeholder="" required type="text"-->
+                                    <!--                                           value="">-->
+                                    <div class="invalid-feedback">
+                                        Valid last name is required.
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
+                        <button class="btn btn-primary" onclick='addNew()' type="button">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--report modal-->
+        <div class="modal" id="myReportModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Save report</h5>
+                        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="needs-validation" novalidate>
+                            <div class="row g-3">
+                                <div class="col-sm-6">
+                                    <label class="form-label" for="title">Title</label>
+                                    <input class="form-control" id="titlereport" placeholder="" required type="text"
+                                           value="">
+                                    <div class="invalid-feedback">
+                                        title is required.
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
+                        <button class="btn btn-primary" onclick='exportToCSV()' type="button">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--edit modal-->
+        <div class="modal" id="myEditModal" tabindex="-1">
+        </div>
+        <!--view modal-->
+        <div class="modal" id="myViewModal" tabindex="-1">
+        </div>
+    </div>
+</div>
+
+<div class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <div class="spinner-border" id="myspinner" role="status" style="margin: 20px auto">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+
+<div aria-atomic="true" aria-live="assertive"
+     class="position-fixed toast align-items-center bottom-0 start-50 translate-middle-x text-white bg-primary border-0"
+     id="toast" role="alert" style="margin-bottom: 20px">
+    <div class="d-flex">
+        <div class="toast-body">
+        </div>
+        <button aria-label="Close" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                type="button"></button>
+    </div>
+</div>
+
+<script crossorigin="anonymous"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        referrerpolicy="no-referrer" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script crossorigin="anonymous" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+<script crossorigin="anonymous" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
+        src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"></script>
+<link href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+<script>
+    showLoading();
+    'use strict'
+
+    const state = {
+        imagepreview: null,
+        imagepreviewfilename: null
+    }
+
+    const toastoptions = {
+        animation: true,
+        autohide: true,
+        delay: 2000
+    }
+
+    function showToast(text) {
+        const toastEl = document.getElementById("toast");
+        toastEl.getElementsByClassName("toast-body")[0].innerText = text;
+        new bootstrap.Toast(toastEl, toastoptions).show();
+    }
+
+
+    function showLoading() {
+        document.getElementById("myspinner").style.display = "block";
+        document.getElementsByTagName("main")[0].style.display = "none";
+    }
+
+    function hideLoading() {
+        document.getElementById("myspinner").style.display = "none";
+        document.getElementsByTagName("main")[0].style.display = "block";
+    }
+
+    const simplemde = new SimpleMDE({
+        element: document.getElementById("content"),
+        placeholder: "Type here...",
+        spellChecker: false,
+    });
+
+
+    let btnisPressed = false;
+
+    function updateArticle() {
+        if (!state.imagepreview && btnisPressed) { // if cleared yet no image
+            showToast("Must have an image");
+            return;
+        } else if (btnisPressed && state.imagepreview) { // if cleared and uploaded image
+            let urlParams = new URLSearchParams(window.location.search);
+            let id = urlParams.get('id');
+
+            let title = document.getElementById("title").value;
+            let author = document.getElementById("author").value;
+            let preview = document.getElementById("preview").value;
+            let content = simplemde.value();
+            let imagepreview = state.imagepreview;
+            let imagepreviewfilename = state.imagepreviewfilename;
+            let payload = {title, author, content, preview, imagepreviewfilename};
+            let route = "article/" + id;
+
+            let formData = new FormData();
+            formData.append("imagepreview", imagepreview);
+            formData.append("payload", JSON.stringify(payload));
+            postRequest2(route, formData);
+        } else {
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get('id');
+            const title = document.getElementById("title").value;
+            const author = document.getElementById("author").value;
+            const preview = document.getElementById("preview").value;
+            const imagepreview = null;
+            const content = simplemde.value();
+            const payload = {title, author, content, preview};
+
+            const route = "articles/" + id;
+            postRequest(route, payload);
+        }
+    }
+
+
+    async function postRequest2(route, payload) {
+        await fetch("https://cyberweb-backend.herokuapp.com/" + route, {
+            method: 'POST',
+            headers: {
+                'xapikey': 'teststringnothardcodeda',
+            },
+            body: payload,
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                showToast("New article has been successfully added");
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    }
+
+    async function postRequest(route, payload) {
+        await fetch("https://cyberweb-backend.herokuapp.com/" + route, {
+            method: 'PUT',
+            headers: {
+                'xapikey': 'teststringnothardcodeda',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload),
+        })
+            .then(response => response.json())
+            .then(async data => {
+                await getArticle();
+                showToast("The article has been updated successfully");
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    }
+
+    async function getRequest(route) {
+        const options = {
+            headers: {
+                'xapikey': 'teststringnothardcodeda'
+            }
+        }
+        return await fetch('https://cyberweb-backend.herokuapp.com/' + route, options)
+            .then(response => response.json())
+            .then(data => {
+                hideLoading();
+                return data;
+            })
+            .catch(err => console.log(err));
+    }
+
+    async function getArticle() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('id');
+        const article = await getRequest('articles/' + id);
+        document.getElementById("title").value = article.title;
+        document.getElementById("author").value = article.author;
+        document.getElementById("preview").value = article.preview;
+        document.getElementById("imagepreviewintext").value = article.imagepreviewfilename;
+        document.getElementById("viewbtn").innerHTML = "<a href='https://frozen-citadel-66566.herokuapp.com/blog.html?title=" + article.titleblob + "' target='_blank'>\n" +
+            "            <button class='btn btn-dark text-white' style='float: right'>View online\n" +
+            "        </button>\n" +
+            "        </a>";
+        simplemde.value(article.content);
+    }
+
+    getArticle();
+
+    function reset() {
+        window.location.reload();
+    }
+
+    function fileChange(event) {
+        state.imagepreview = event.target.files[0];
+        state.imagepreviewfilename = event.target.files[0].name;
+    }
+
+    function shownewimageinput(e) {
+        btnisPressed = true;
+        e.preventDefault();
+        document.getElementById("imagepreview").style.display = "block";
+        document.getElementById("imagepreviewintext").style.display = "none";
+    }
+</script>
+
+</body>
+
+</html>
