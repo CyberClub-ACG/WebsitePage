@@ -102,8 +102,8 @@
                 <br>
                 <div class="row g-3">
                     <div class="col-sm-6">
-                        <label class="form-label" for="preview">Description/Preview of the article </label>
-                        <input class="form-control" id="preview" placeholder="Eg. Short synopsis of the article... "
+                        <label class="form-label" for="description">Description/Preview of the article </label>
+                        <input class="form-control" id="description" placeholder="Eg. Short synopsis of the article... "
                                required type="text" value="">
                         <div class="invalid-feedback">
                             Valid title is required.
@@ -124,8 +124,8 @@
                 <br>
                 <div class="row g-3">
                     <div class="col-sm-6">
-                        <label class="form-label" for="imagepreview">Image of the article </label>
-                        <input class="form-control" id="imagepreview" onchange="fileChange(event)"
+                        <label class="form-label" for="imagefile">Image of the article </label>
+                        <input class="form-control" id="imagefile" onchange="fileChange(event)"
                                placeholder="Eg. John Doe... " required type="file" value="">
                         <div class="invalid-feedback">
                             Valid title is required.
@@ -170,76 +170,96 @@
 <link href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
 <script>
-    'use strict'
-    feather.replace();
-
     const state = {
-        imagepreview: null,
-        imagepreviewfilename: null
+        imagefile: null,
+        imagefilename: null,
+        simplemde: configMDTextarea()
     }
 
-    const simplemde = new SimpleMDE({
-        element: document.getElementById("content"),
-        placeholder: "Type here...",
-        spellChecker: false,
-    });
+    function configMDTextarea() {
+        return new SimpleMDE({
+            element: document.getElementById("content"),
+            placeholder: "Type here...",
+            spellChecker: false,
+        });
+    }
 
-    function addArticle(e) {
-        if (!state.imagepreview) {
+    function init() {
+        feather.replace();
+        'use strict'
+    }
+
+    init();
+
+    function isImageUploaded() {
+        if (!state.imagefile) {
             showToast("Must have an image");
-            return;
+            return false;
         }
+        return true;
+    }
 
+    function buildNewArticlePayload() {
         const title = document.getElementById("title").value;
         const author = document.getElementById("author").value;
-        const preview = document.getElementById("preview").value;
-        const imagepreviewfilename = state.imagepreviewfilename;
-        const imagepreview = state.imagepreview;
-        const content = simplemde.value();
-        const payload = {title, author, content, preview, imagepreviewfilename};
-        const route = "articles/";
+        const description = document.getElementById("description").value;
+        const imagefilename = state.imagefilename;
+        const content = state.simplemde.value();
 
+        return {author, title, content, description, imagefilename: imagefilename};
+    }
+
+
+    function buildFormData(newArticlePayload) {
         let formData = new FormData();
-        formData.append("imagepreview", imagepreview);
-        formData.append("payload", JSON.stringify(payload));
+        formData.append("imagefile", state.imagefile);
+        formData.append("payload", JSON.stringify(newArticlePayload));
+        return formData;
+    }
 
-        postRequest(route, formData);
+    async function addArticle(e) {
+        if (!isImageUploaded())
+            return;
+
+        const newArticlePayload = buildNewArticlePayload();
+        const formData = buildFormData(newArticlePayload);
+
+        const route = "articles/";
+        const data = await postRequest(route, formData);
+        showToast(data.message);
     }
 
     async function postRequest(route, payload) {
-        await fetch("https://cyberweb-backend.herokuapp.com/" + route, {
+        return await fetch("https://cyberweb-backend.herokuapp.com/" + route, {
             method: 'POST',
             headers: {
                 'xapikey': 'teststringnothardcodeda',
             },
             body: payload,
         })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Success:', data);
-                showToast("New article has been successfully added");
-            })
+            .then(response => response)
             .catch((error) => {
-                console.error('Error:', error);
+                showToast("Something went wrong on the server. Please contact the developer.");
+                console.dir(error);
             });
     }
 
-    const toastoptions = {
-        animation: true,
-        autohide: true,
-        delay: 2000
-    }
 
     function showToast(text) {
+        const toastoptions = {
+            animation: true,
+            autohide: true,
+            delay: 2000
+        }
+
         const toastEl = document.getElementById("toast");
         toastEl.getElementsByClassName("toast-body")[0].innerText = text;
         new bootstrap.Toast(toastEl, toastoptions).show();
     }
 
     function fileChange(event) {
-        state.imagepreview = event.target.files[0];
-        state.imagepreviewfilename = event.target.files[0].name;
-        console.log(state);
+        state.imagefile = event.target.files[0];
+        state.imagefilename = event.target.files[0].name;
     }
 </script>
 

@@ -146,7 +146,7 @@
                 </table>
             </div>
             <a href="newarticle.html">
-                <button class="btn btn-dark text-white">Add new article</button>
+                <button class="btn btn-dark text-white" style="color: white !important">Add new article</button>
             </a>
         </main>
         <!--report modal-->
@@ -339,14 +339,14 @@
         payload.forEach(article => {
             document.getElementById("writeArticlesHere").innerHTML += "" +
                 "<tr id='" + article._id + "'>\n" +
-                "                        <td id='image'>" + "<img style='width: 70px' alt='...' class='card-img-top'\n" + "      src='" + article.imagebuffeer + "'></td>\n" +
-                "                        <td id='studentid'>" + article.data.title + "</td>\n" +
-                "                        <td  hidden id='id'>" + article.data._id + "</td>\n" +
-                "                        <td id='articlename'>" + article.data.author + "</td>\n" +
+                "                        <td id='image'>" + "<img style='width: 70px' alt='...' class='card-img-top'\n" + "      src='https://mybucketkourtis.s3.eu-west-3.amazonaws.com/cyberclub/guy.jpg'></td>\n" +
+                "                        <td id='studentid'>" + article.title + "</td>\n" +
+                "                        <td  hidden id='id'>" + article._id + "</td>\n" +
+                "                        <td id='articlename'>" + article.author + "</td>\n" +
                 "                        <td> \n" +
-                "                            <a target='_blank' class='bi bi-eye btn' style='font-size: 17px; cursor: pointer' href='https://frozen-citadel-66566.herokuapp.com/blog.html?title=" + article.data.titleblob + "'></a>\n" +
-                "                            <a  class='bi bi-pencil btn' style='font-size: 17px; cursor: pointer' href='updatearticle.html?id=" + article.data._id + "'></a>\n" +
-                "                            <i onclick='openDeleteDialog(\"" + article.data.title + "\", \"" + article.data._id + "\")' class=\"bi bi-trash btn\"\n" +
+                "                            <a target='_blank' class='bi bi-eye btn' style='font-size: 17px; cursor: pointer' href='https://frozen-citadel-66566.herokuapp.com/blog.html?title=" + article.titleblob + "'></a>\n" +
+                "                            <a  class='bi bi-pencil btn' style='font-size: 17px; cursor: pointer' href='updatearticle.html?id=" + article._id + "'></a>\n" +
+                "                            <i onclick='openDeleteDialog(\"" + article.title + "\", \"" + article._id + "\")' class=\"bi bi-trash btn\"\n" +
                 "                               style=\"font-size: 17px; cursor: pointer\"></i>\n" +
                 "                        </td>\n" +
                 "                    </tr>"
@@ -403,17 +403,6 @@
         hideLoading();
     }
 
-    async function deleteRequest(route, callback) {
-        const xhttp = new XMLHttpRequest();
-        xhttp.open("DELETE", "https://cyberweb-backend.herokuapp.com/" + route, true);
-        xhttp.setRequestHeader('xapikey', 'teststringnothardcodeda');
-        xhttp.onerror = function (e) {
-            console.log("Error:", e);
-        };
-
-        xhttp.send();
-    }
-
     async function getRequest(params) {
         try {
             const options = {
@@ -443,26 +432,15 @@
 
     init();
 
-    function getArticles() {
+    async function getArticles() {
         let params = "articles";
-        getRequest(params, callback);
-    }
-
-    function openModal() {
-        $("#myModal").modal('show');
+        await getRequest(params, callback);
+        hideLoading();
     }
 
     function closeModal() {
         $(".modal").modal('hide');
         $(".modal-dialog").modal('hide');
-    }
-
-    function openViewModal(e) {
-        $("#myViewModal").modal('show');
-    }
-
-    function openEditModal(e) {
-        $("#myEditModal").modal('show');
     }
 
     $('#myModal').on('show.bs.modal', function (e) {
@@ -496,172 +474,6 @@
             console.log(err);
         }
         getArticles();
-    }
-
-    function viewArticle(e) {
-        const payload = {
-            articlename: e.target.parentElement.parentElement.children.namedItem("articlename").innerText,
-            email: e.target.parentElement.parentElement.children.namedItem("email").innerText,
-            role: e.target.parentElement.parentElement.children.namedItem("role").innerText,
-            major: e.target.parentElement.parentElement.children.namedItem("major").innerText,
-            howfoundout: e.target.parentElement.parentElement.children.namedItem("howfoundout").innerText,
-            studentid: e.target.parentElement.parentElement.children.namedItem("studentid").innerText,
-            id: e.target.parentElement.parentElement.children.namedItem("id").innerText,
-        }
-
-        document.getElementById("myViewModal").innerHTML = buildViewModal(payload);
-        openViewModal();
-    }
-
-    function editArticle(e) {
-        const payload = {
-            articlename: e.target.parentElement.parentElement.children.namedItem("articlename").innerText,
-            email: e.target.parentElement.parentElement.children.namedItem("email").innerText,
-            role: e.target.parentElement.parentElement.children.namedItem("role").innerText,
-            major: e.target.parentElement.parentElement.children.namedItem("major").innerText,
-            studentid: e.target.parentElement.parentElement.children.namedItem("studentid").innerText,
-            id: e.target.parentElement.parentElement.children.namedItem("id").innerText,
-        }
-
-        document.getElementById("myEditModal").innerHTML = buildEditModal(payload);
-        openEditModal();
-    }
-
-    function buildViewModal(payload) {
-        return " <div class='modal-dialog'>\n" +
-            "                <div class='modal-content'>\n" +
-            "                    <div class='modal-header'>\n" +
-            "                        <h5 class='modal-title'>View article info</h5>\n" +
-            "                        <button aria-label='Close' class='btn-close' data-bs-dismiss='modal' type='button'></button>\n" +
-            "                    </div>\n" +
-            "                    <div class='modal-body'>\n" +
-            "                        <form class='needs-validation' novalidate>\n" +
-            "                            <div class='row g-3'>\n" +
-            "                                <div class='col-sm-6'>\n" +
-            "                                    <label class='form-label' for='updatearticlename'>Name</label>\n" +
-            "                                    <input disabled  class='form-control' id='updatearticlename' placeholder='' value='" + payload.data.articlename + "' required type='text'\n" +
-            "                                           value=''>\n" +
-            "                                    <div class='invalid-feedback'>\n" +
-            "                                        Valid first name is required.\n" +
-            "                                    </div>\n" +
-            "                                </div>\n" +
-            "\n" +
-            "                                <div class='col-sm-6'>\n" +
-            "                                    <label class='form-label' for='updatemail'>Email</label>\n" +
-            "                                    <input  disabled class='form-control' id='updatemail'  value='" + payload.data.email + "' placeholder='' required type='text'\n" +
-            "                                           value=''>\n" +
-            "                                    <div class='invalid-feedback'>\n" +
-            "                                        Valid last name is required.\n" +
-            "                                    </div>\n" +
-            "                                </div>\n" +
-            "\n" +
-            "                                <div class='col-sm-6'>\n" +
-            "                                    <label class='form-label' for='updatestudentid'>Student id</label>\n" +
-            "                                    <input disabled class='form-control' id='updatestudentid'  value='" + payload.data.studentid + "' placeholder='' required type='text'\n" +
-            "                                           value=''>\n" +
-            "                                    <div class='invalid-feedback'>\n" +
-            "                                        Valid last name is required.\n" +
-            "                                    </div>\n" +
-            "                                </div>\n" +
-            "\n" +
-            "                                <div class='col-sm-6'>\n" +
-            "                                    <label class='form-label' for='updatemajor'>Major</label>\n" +
-            "                                    <input disabled  class='form-control' id='updatemajor'  value='" + payload.major + "' placeholder='' required type='text'\n" +
-            "                                           value=''>\n" +
-            "                                    <div class='invalid-feedback'>\n" +
-            "                                        Valid last name is required.\n" +
-            "                                    </div>\n" +
-            "                                </div>\n" +
-            "                                <div class='col-md-12'>\n" +
-            "                                    <label class='form-label' for='updaterole'>Role</label>\n" +
-            "                                    <input disabled  class='form-control' id='updatemajor'  value='" + payload.role + "' placeholder='' required type='text'\n" +
-            "                                           value=''>\n" +
-            "                                    <div class='invalid-feedback'>\n" +
-            "                                        Please select a valid role.\n" +
-            "                                    </div>\n" +
-            "                                </div>\n" +
-            "                                <div class='col-sm-12'>\n" +
-            "                                    <label class='form-label' for='updatemajor'>How they found out</label>\n" +
-            " <textarea disabled class='form-control col' id='newhowfoundout' " +
-            " name='howfoundout'>" + payload.howfoundout + "</textarea> " +
-            "                                    <div class='invalid-feedback'>\n" +
-            "                                        Valid last name is required.\n" +
-            "                                    </div>\n" +
-            "                                </div>\n" +
-            "                        </form>\n" +
-            "                    </div>\n" +
-            "                    <div class='modal-footer'>\n" +
-            "                        <button class='btn btn-secondary' data-bs-dismiss='modal' type='button'>Close</button>\n" +
-            "                    </div>\n" +
-            "                </div>\n" +
-            "            </div>\n";
-    }
-
-    function buildEditModal(payload) {
-        return " <div class='modal-dialog'>\n" +
-            "                <div class='modal-content'>\n" +
-            "                    <div class='modal-header'>\n" +
-            "                        <h5 class='modal-title'>Edit article info</h5>\n" +
-            "                        <button aria-label='Close' class='btn-close' data-bs-dismiss='modal' type='button'></button>\n" +
-            "                    </div>\n" +
-            "                    <div class='modal-body'>\n" +
-            "                        <form class='needs-validation' novalidate>\n" +
-            "                            <div class='row g-3'>\n" +
-            "                                <div class='col-sm-6'>\n" +
-            "                                    <label class='form-label' for='updatearticlename'>Name</label>\n" +
-            "                                    <input class='form-control' id='updatearticlename' placeholder='' value='" + payload.articlename + "' required type='text'\n" +
-            "                                           value=''>\n" +
-            "                                    <div class='invalid-feedback'>\n" +
-            "                                        Valid first name is required.\n" +
-            "                                    </div>\n" +
-            "                                </div>\n" +
-            "\n" +
-            "                                <div class='col-sm-6'>\n" +
-            "                                    <label class='form-label' for='updatemail'>Email</label>\n" +
-            "                                    <input class='form-control' id='updatemail'  value='" + payload.email + "' placeholder='' required type='text'\n" +
-            "                                           value=''>\n" +
-            "                                    <div class='invalid-feedback'>\n" +
-            "                                        Valid last name is required.\n" +
-            "                                    </div>\n" +
-            "                                </div>\n" +
-            "\n" +
-            "                                <div class='col-sm-6'>\n" +
-            "                                    <label class='form-label' for='updatestudentid'>Student id</label>\n" +
-            "                                    <input class='form-control' id='updatestudentid'  value='" + payload.studentid + "' placeholder='' required type='text'\n" +
-            "                                           value=''>\n" +
-            "                                    <div class='invalid-feedback'>\n" +
-            "                                        Valid last name is required.\n" +
-            "                                    </div>\n" +
-            "                                </div>\n" +
-            "\n" +
-            "                                <div class='col-sm-6'>\n" +
-            "                                    <label class='form-label' for='updatemajor'>Major</label>\n" +
-            "                                    <input class='form-control' id='updatemajor'  value='" + payload.major + "' placeholder='' required type='text'\n" +
-            "                                           value=''>\n" +
-            "                                    <div class='invalid-feedback'>\n" +
-            "                                        Valid last name is required.\n" +
-            "                                    </div>\n" +
-            "                                </div>\n" +
-            "                                <div class='col-md-12'>\n" +
-            "                                    <label class='form-label' for='updaterole'>Role</label>\n" +
-            "                                    <select class='form-select' id='updaterole' required>\n" +
-            "                                        <option value='" + payload.role + "'>" + payload.role + "</option>\n" +
-            "                                        <option value='Admin'>Admin</option>\n" +
-            "                                        <option value='Manager'>Manager</option>\n" +
-            "                                        <option value='Blogger'>Blogger</option>\n" +
-            "                                    </select>\n" +
-            "                                    <div class='invalid-feedback'>\n" +
-            "                                        Please select a valid role.\n" +
-            "                                    </div>\n" +
-            "                                </div>\n" +
-            "                        </form>\n" +
-            "                    </div>\n" +
-            "                    <div class='modal-footer'>\n" +
-            "                        <button class='btn btn-secondary' data-bs-dismiss='modal' type='button'>Close</button>\n" +
-            "                        <button class='btn btn-primary' type='button' onclick=update('" + payload.id + "')>Save changes</button>\n" +
-            "                    </div>\n" +
-            "                </div>\n" +
-            "            </div>\n";
     }
 </script>
 
