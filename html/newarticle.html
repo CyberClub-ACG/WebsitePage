@@ -237,7 +237,7 @@
             },
             body: payload,
         })
-            .then(response => response)
+            .then(response => response.json())
             .catch((error) => {
                 showToast("Something went wrong on the server. Please contact the developer.");
                 console.dir(error);
