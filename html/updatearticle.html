@@ -5,45 +5,49 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <meta content="" name="description">
-    <link href="./dereelogospoti.jpg" rel="shortcut icon" type="image/jpg"/>
     <meta content="Alexandros Kourtis" name="author">
+    <link href="../img/other/cyberweb%20logo.png" rel="shortcut icon" type="image/jpg"/>
     <title>Dashboard Cyber Club</title>
     <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" rel="stylesheet">
-    <meta content="#7952b3" name="theme-color">
+    <meta content="#0275d8" name="theme-color">
 
-    <link href="style.css" rel="stylesheet">
+    <link href="../css/custom.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/stylemembers.css" rel="stylesheet">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" rel="stylesheet">
-    <meta content="#7952b3" name="theme-color">
-
 
     <style>
-        .dropdown-item {
-            cursor: pointer;
+        .modal .btn {
+            color: white !important;
+        }
+
+        .toast {
+            background: #0275d8 !important;
         }
 
         .modal-dialog {
             max-width: 750px;
         }
 
-        .mybtn {
-            margin-right: 5px;
+        i {
+            color: #212529 !important;
         }
 
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-member-select: none;
-            -moz-member-select: none;
-            member-select: none;
+        .btn {
+            border: 1px solid #212529 !important;
         }
 
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
+        footer {
+            position: absolute;
+            z-index: 88888 !important;
+            width: 100%;
+        }
+
+        .main {
+            height: 100vh;
         }
     </style>
 </head>
@@ -51,7 +55,8 @@
 <body>
 
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="./members.html">Cyber Club Dashboard</a>
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="./login.html">Cyber<span
+            style="color: #0d6efd">Web</span> Dashboard</a>
     <button aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation"
             class="navbar-toggler position-absolute d-md-none collapsed" data-bs-target="#sidebarMenu"
             data-bs-toggle="collapse" type="button">
@@ -105,8 +110,8 @@
                 <br>
                 <div class="row g-3">
                     <div class="col-sm-6">
-                        <label class="form-label" for="preview">Description/Preview of the article </label>
-                        <input class="form-control" id="preview" placeholder="Eg. Short synopsis of the article... "
+                        <label class="form-label" for="description">Description/description of the article </label>
+                        <input class="form-control" id="description" placeholder="Eg. Short synopsis of the article... "
                                required type="text" value="">
                         <div class="invalid-feedback">
                             Valid title is required.
@@ -127,13 +132,13 @@
                 <br>
                 <div class="row g-3">
                     <div class="col-sm-6">
-                        <label class="form-label" for="imagepreviewintext">File name of the image selected for the
+                        <label class="form-label" for="imagefilename">File name of the image selected for the
                             article </label>
-                        <input class="form-control" id="imagepreviewintext" placeholder="File selected" required
+                        <input class="form-control" id="imagefilename" placeholder="File selected" required
                                type="text" value="">
                         <br>
                         <button class="btn btn-dark" onclick="shownewimageinput(event)">Clear Image</button>
-                        <input class="form-control mt-3" id="imagepreview" onchange="fileChange(event)"
+                        <input class="form-control mt-3" id="imagedescription" onchange="fileChange(event)"
                                placeholder="Eg. John Doe... " required style="display: none;" type="file"
                                value="">
                         <div class="invalid-feedback">
@@ -297,12 +302,23 @@
 <link href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
 <script>
+    function getKey() {
+        if (!sessionStorage.getItem('secret')) {
+            window.location.href = "login.html";
+        }
+    }
+
+    getKey();
+
     showLoading();
+    feather.replace();
     'use strict'
 
     const state = {
-        imagepreview: null,
-        imagepreviewfilename: null
+        imagedescription: null,
+        imagedescriptionfilename: null,
+        id: null,
+        initialimagefilename: null
     }
 
     const toastoptions = {
@@ -338,35 +354,34 @@
     let btnisPressed = false;
 
     function updateArticle() {
-        if (!state.imagepreview && btnisPressed) { // if cleared yet no image
+        if (!state.imagedescription && btnisPressed) { // if cleared yet no image
             showToast("Must have an image");
             return;
-        } else if (btnisPressed && state.imagepreview) { // if cleared and uploaded image
+        } else if (btnisPressed && state.imagedescription) { // if cleared and uploaded image
             let urlParams = new URLSearchParams(window.location.search);
-            let id = urlParams.get('id');
+            let id = state.id;
 
             let title = document.getElementById("title").value;
             let author = document.getElementById("author").value;
-            let preview = document.getElementById("preview").value;
+            let description = document.getElementById("description").value;
             let content = simplemde.value();
-            let imagepreview = state.imagepreview;
-            let imagepreviewfilename = state.imagepreviewfilename;
-            let payload = {title, author, content, preview, imagepreviewfilename};
+            let imagefile = state.imagedescription;
+            let imagefilename = state.imagedescriptionfilename;
+            let payload = {title, author, content, description, imagefilename};
             let route = "article/" + id;
 
             let formData = new FormData();
-            formData.append("imagepreview", imagepreview);
+            formData.append("imagefile", imagefile);
             formData.append("payload", JSON.stringify(payload));
             postRequest2(route, formData);
         } else {
-            const urlParams = new URLSearchParams(window.location.search);
-            const id = urlParams.get('id');
+            let id = state.id;
             const title = document.getElementById("title").value;
             const author = document.getElementById("author").value;
-            const preview = document.getElementById("preview").value;
-            const imagepreview = null;
+            const description = document.getElementById("description").value;
             const content = simplemde.value();
-            const payload = {title, author, content, preview};
+            const imagefilename = state.initialimagefilename;
+            const payload = {title, author, content, imagefilename, description};
 
             const route = "articles/" + id;
             postRequest(route, payload);
@@ -385,7 +400,7 @@
             .then(response => response.json())
             .then(data => {
                 console.log('Success:', data);
-                showToast("New article has been successfully added");
+                showToast("The article has been updated successfully");
             })
             .catch((error) => {
                 console.error('Error:', error);
@@ -394,7 +409,7 @@
 
     async function postRequest(route, payload) {
         await fetch("https://cyberweb-backend.herokuapp.com/" + route, {
-            method: 'PUT',
+            method: 'POST',
             headers: {
                 'xapikey': sessionStorage.getItem('secret'),
                 'Content-Type': 'application/json',
@@ -429,12 +444,14 @@
 
     async function getArticle() {
         const urlParams = new URLSearchParams(window.location.search);
-        const id = urlParams.get('id');
-        const article = await getRequest('articles/' + id);
+        const titleslug = urlParams.get('titleslug');
+        const article = await getRequest('articles/findByslug/' + titleslug);
+        state.initialimagefilename = article.imagefilename;
+        state.id = article._id;
         document.getElementById("title").value = article.title;
         document.getElementById("author").value = article.author;
-        document.getElementById("preview").value = article.preview;
-        document.getElementById("imagepreviewintext").value = article.imagepreviewfilename;
+        document.getElementById("description").value = article.description;
+        document.getElementById("imagefilename").value = article.imagefilename;
         document.getElementById("viewbtn").innerHTML = "<a href='https://frozen-citadel-66566.herokuapp.com/blog.html?title=" + article.titleblob + "' target='_blank'>\n" +
             "            <button class='btn btn-dark text-white' style='float: right'>View online\n" +
             "        </button>\n" +
@@ -449,15 +466,15 @@
     }
 
     function fileChange(event) {
-        state.imagepreview = event.target.files[0];
-        state.imagepreviewfilename = event.target.files[0].name;
+        state.imagedescription = event.target.files[0];
+        state.imagedescriptionfilename = event.target.files[0].name;
     }
 
     function shownewimageinput(e) {
         btnisPressed = true;
         e.preventDefault();
-        document.getElementById("imagepreview").style.display = "block";
-        document.getElementById("imagepreviewintext").style.display = "none";
+        document.getElementById("imagedescription").style.display = "block";
+        document.getElementById("imagefilename").style.display = "none";
     }
 </script>
 
