@@ -266,7 +266,7 @@
         payload.forEach(article => {
             document.getElementById("writeArticlesHere").innerHTML += "" +
                 "<tr id='" + article._id + "'>\n" +
-                "                        <td id='image'>" + "<img style='width: 70px' alt='...' class='card-img-top'\n" + "      src='https://mybucketkourtis.s3.eu-west-3.amazonaws.com/cyberclub/guy.jpg'></td>\n" +
+                "                        <td id='image'>" + "<img style='width: 70px' alt='...' class='card-img-top'\n" + "      src='https://mybucketkourtis.s3.eu-west-3.amazonaws.com/cyberclub/articles/" + article.imagefilename + "'></td>\n" +
                 "                        <td id='studentid'>" + article.title + "</td>\n" +
                 "                        <td  hidden id='id'>" + article._id + "</td>\n" +
                 "                        <td id='articlename'>" + article.author + "</td>\n" +
