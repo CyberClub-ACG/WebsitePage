@@ -378,7 +378,7 @@
         await fetch("https://cyberweb-backend.herokuapp.com/" + route, {
             method: 'POST',
             headers: {
-                'xapikey': 'teststringnothardcodeda',
+                'xapikey': sessionStorage.getItem('secret'),
             },
             body: payload,
         })
@@ -396,7 +396,7 @@
         await fetch("https://cyberweb-backend.herokuapp.com/" + route, {
             method: 'PUT',
             headers: {
-                'xapikey': 'teststringnothardcodeda',
+                'xapikey': sessionStorage.getItem('secret'),
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(payload),
@@ -415,7 +415,7 @@
     async function getRequest(route) {
         const options = {
             headers: {
-                'xapikey': 'teststringnothardcodeda'
+                'xapikey': sessionStorage.getItem('secret')
             }
         }
         return await fetch('https://cyberweb-backend.herokuapp.com/' + route, options)

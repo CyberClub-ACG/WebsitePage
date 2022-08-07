@@ -233,7 +233,7 @@
         return await fetch("https://cyberweb-backend.herokuapp.com/" + route, {
             method: 'POST',
             headers: {
-                'xapikey': 'teststringnothardcodeda',
+                'xapikey': sessionStorage.getItem('secret'),
             },
             body: payload,
         })

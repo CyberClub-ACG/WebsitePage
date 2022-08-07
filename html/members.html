@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <meta content="" name="description">
-    <link href="../img/other/cyberweb%20logo.png" rel="shortcut icon" type="image/jpg"/>
     <meta content="Alexandros Kourtis" name="author">
+    <link href="../img/other/cyberweb%20logo.png" rel="shortcut icon" type="image/jpg"/>
     <title>Dashboard Cyber Club</title>
     <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" rel="stylesheet">
@@ -55,213 +55,217 @@
             z-index: 88888 !important;
             width: 100%;
         }
+
+        .main {
+            height: 100vh;
+        }
     </style>
 </head>
 
 <body>
+<div class="main">
+    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="./login.html">Cyber<span
+                style="color: #0d6efd">web</span></a>
+        <button aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation"
+                class="navbar-toggler position-absolute d-md-none collapsed" data-bs-target="#sidebarMenu"
+                data-bs-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <input aria-label="Search" class="form-control form-control-dark w-100" oninput="filter(event)"
+               placeholder="Search" type="text">
+        <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+                <a class="nav-link" href="login.html">Sign out</a>
+            </li>
+        </ul>
+    </header>
 
-<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="./login.html">Cyber<span
-            style="color: #0d6efd">web</span></a>
-    <button aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation"
-            class="navbar-toggler position-absolute d-md-none collapsed" data-bs-target="#sidebarMenu"
-            data-bs-toggle="collapse" type="button">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <input aria-label="Search" class="form-control form-control-dark w-100" oninput="filter(event)"
-           placeholder="Search" type="text">
-    <ul class="navbar-nav px-3">
-        <li class="nav-item text-nowrap">
-            <a class="nav-link" href="login.html">Sign out</a>
-        </li>
-    </ul>
-</header>
-
-<div class="container-fluid">
-    <div class="row">
-        <div class="bg-light col-md-3 col-lg-2 d-md-block sidebar collapse" id="sidebarMenu">
-            <div class="pt-3 bg-light ">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="./members.html">
-                            <span data-feather="users"></span>
-                            Club Members
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="./articles.html">
-                            <span data-feather="file"></span>
-                            Articles
-                        </a>
-                    </li>
-                </ul>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="bg-light col-md-3 col-lg-2 d-md-block sidebar collapse" id="sidebarMenu">
+                <div class="pt-3 bg-light ">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="./members.html">
+                                <span data-feather="users"></span>
+                                Club Members
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./articles.html">
+                                <span data-feather="file"></span>
+                                Articles
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4" id="spinnerwrapper" style="min-height: 100vh !important;">
-        <div class="spinner-border " id="myspinner" role="status" style="margin: 20px auto; ">
-            <span class="visually-hidden">Loading...</span>
+        <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4" id="spinnerwrapper" style="min-height: 100vh !important;">
+            <div class="spinner-border " id="myspinner" role="status" style="margin: 20px auto; ">
+                <span class="visually-hidden">Loading...</span>
+            </div>
         </div>
-    </div>
 
-    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="min-height: 100vh !important;">
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="min-height: 100vh !important;">
 
-        <div
-                class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h2>Club members </h2>
-            <div class="btn-toolbar mb-2 mb-md-0">
-                <div class="btn-group me-2">
-                    <div class="dropdown">
+            <div
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h2>Club members </h2>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <div class="btn-group me-2">
+                        <div class="dropdown">
                                 <span id="fetchbtn">
                                 </span>
 
-                        <button aria-expanded="false"
-                                class="mybtn btn btn-sm btn btn-outline-secondary dropdown-toggle"
-                                data-bs-toggle="dropdown" type="button">
-                            Sort by
-                        </button>
-                        <ul aria-labelledby="dropdownMenuButton1" class="dropdown-menu">
-                            <li><a class="dropdown-item" onclick="sortByDefault()">Default (By Date)</a></li>
-                            <li><a class="dropdown-item" onclick="sortByName()">Name</a></li>
-                        </ul>
-                    </div>
-                    <div class="dropdown">
-                        <button aria-expanded="false" class="mybtn btn btn-sm btn btn-outline-secondary"
-                                onclick="openReportDialog()" type="button">
-                            Export to CSV
-                        </button>
+                            <button aria-expanded="false"
+                                    class="mybtn btn btn-sm btn btn-outline-secondary dropdown-toggle"
+                                    data-bs-toggle="dropdown" type="button">
+                                Sort by
+                            </button>
+                            <ul aria-labelledby="dropdownMenuButton1" class="dropdown-menu">
+                                <li><a class="dropdown-item" onclick="sortByDefault()">Default (By Date)</a></li>
+                                <li><a class="dropdown-item" onclick="sortByName()">Name</a></li>
+                            </ul>
+                        </div>
+                        <div class="dropdown">
+                            <button aria-expanded="false" class="mybtn btn btn-sm btn btn-outline-secondary"
+                                    onclick="openReportDialog()" type="button">
+                                Export to CSV
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="table-responsive">
-            <table class="table table-striped table-sm">
-                <thead>
-                <tr>
-                    <th>Student Id</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Action</th>
-                </tr>
-                </thead>
-                <tbody id="writeMembersHere">
-                </tbody>
-            </table>
-        </div>
-        <button class="btn btn-dark text-white" onclick="openModal()" style="color: white !important">Add new club
-            member
-        </button>
-        <span id="metainfo" style="float: right">
+            <div class="table-responsive">
+                <table class="table table-striped table-sm">
+                    <thead>
+                    <tr>
+                        <th>Student Id</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody id="writeMembersHere">
+                    </tbody>
+                </table>
+            </div>
+            <button class="btn btn-dark text-white" onclick="openModal()" style="color: white !important">Add new club
+                member
+            </button>
+            <span id="metainfo" style="float: right">
                 </span>
 
-    </main>
+        </main>
 
-</div>
-
-<div class="modal" id="myModal" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Add new club member</h5>
-                <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
-            </div>
-            <div class="modal-body">
-                <form class="needs-validation" novalidate>
-                    <div class="row g-3">
-                        <div class="col-sm-6">
-                            <label class="form-label" for="newname">Name</label>
-                            <input class="form-control" id="newname" placeholder="" required type="text"
-                                   value="">
-                            <div class="invalid-feedback" id="newnameinvalid">
-                                Valid name is required.
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <label class="form-label" for="newemail">Email</label>
-                            <input class="form-control" id="newemail" placeholder="" required type="text"
-                                   value="">
-                            <div class="invalid-feedback" id="newemailinvalid">
-                                Valid email is required.
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <label class="form-label" for="newstudentid">Student id</label>
-                            <input class="form-control" id="newstudentid" placeholder="" required
-                                   type="text" value="">
-                            <div class="invalid-feedback" id="newstudentidinvalid">
-                                Valid student id is required.
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
-                <button class="btn btn-primary" onclick='addNew()' type="button">Save changes</button>
-            </div>
-        </div>
     </div>
-</div>
 
-<div class="modal" id="myReportModal" tabindex="-1">
-    <div class="modal-dialog">
-        <form class="needs-validation" novalidate onsubmit="exportToCSV(event)">
+    <div class="modal" id="myModal" tabindex="-1">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Save report</h5>
+                    <h5 class="modal-title">Add new club member</h5>
                     <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="row g-3">
-                        <div class="col-sm-6">
-                            <label class="form-label" for="titlereport">Title</label>
-                            <input class="form-control" id="titlereport" placeholder="" required type="text"
-                                   value="">
-                            <div class="invalid-feedback">
-                                title is required.
+                    <form class="needs-validation" novalidate>
+                        <div class="row g-3">
+                            <div class="col-sm-6">
+                                <label class="form-label" for="newname">Name</label>
+                                <input class="form-control" id="newname" placeholder="" required type="text"
+                                       value="">
+                                <div class="invalid-feedback" id="newnameinvalid">
+                                    Valid name is required.
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label class="form-label" for="newemail">Email</label>
+                                <input class="form-control" id="newemail" placeholder="" required type="text"
+                                       value="">
+                                <div class="invalid-feedback" id="newemailinvalid">
+                                    Valid email is required.
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="form-label" for="newstudentid">Student id</label>
+                                <input class="form-control" id="newstudentid" placeholder="" required
+                                       type="text" value="">
+                                <div class="invalid-feedback" id="newstudentidinvalid">
+                                    Valid student id is required.
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
-                    <button class="btn btn-primary" type="submit">Save changes</button>
+                    <button class="btn btn-primary" onclick='addNew()' type="button">Save changes</button>
                 </div>
             </div>
-        </form>
-    </div>
-</div>
-<div class="modal" id="myEditModal" tabindex="-1">
-</div>
-
-<!--mydeletedialog-->
-<div class="modal" id="mydeletedialog" tabindex="-1">
-</div>
-
-<div aria-atomic="true" aria-live="assertive"
-     class="position-fixed toast align-items-center bottom-0 start-50 translate-middle-x text-white bg-primary border-0"
-     role="alert" style="margin-bottom: 20px">
-    <div class="d-flex">
-        <div class="toast-body">
         </div>
-        <button aria-label="Close" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
-                type="button"></button>
     </div>
-</div>
 
-<div aria-atomic="true" aria-live="assertive"
-     class="position-fixed toast align-items-center bottom-0 start-50 translate-middle-x text-white bg-primary border-0"
-     id="toast" role="alert" style="margin-bottom: 20px">
-    <div class="d-flex">
-        <div class="toast-body">
+    <div class="modal" id="myReportModal" tabindex="-1">
+        <div class="modal-dialog">
+            <form class="needs-validation" novalidate onsubmit="exportToCSV(event)">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Save report</h5>
+                        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row g-3">
+                            <div class="col-sm-6">
+                                <label class="form-label" for="titlereport">Title</label>
+                                <input class="form-control" id="titlereport" placeholder="" required type="text"
+                                       value="">
+                                <div class="invalid-feedback">
+                                    title is required.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
+                        <button class="btn btn-primary" type="submit">Save changes</button>
+                    </div>
+                </div>
+            </form>
         </div>
-        <button aria-label="Close" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
-                type="button"></button>
+    </div>
+    <div class="modal" id="myEditModal" tabindex="-1">
+    </div>
+
+    <!--mydeletedialog-->
+    <div class="modal" id="mydeletedialog" tabindex="-1">
+    </div>
+
+    <div aria-atomic="true" aria-live="assertive"
+         class="position-fixed toast align-items-center bottom-0 start-50 translate-middle-x text-white bg-primary border-0"
+         role="alert" style="margin-bottom: 20px">
+        <div class="d-flex">
+            <div class="toast-body">
+            </div>
+            <button aria-label="Close" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                    type="button"></button>
+        </div>
+    </div>
+
+    <div aria-atomic="true" aria-live="assertive"
+         class="position-fixed toast align-items-center bottom-0 start-50 translate-middle-x text-white bg-primary border-0"
+         id="toast" role="alert" style="margin-bottom: 20px">
+        <div class="d-flex">
+            <div class="toast-body">
+            </div>
+            <button aria-label="Close" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                    type="button"></button>
+        </div>
     </div>
 </div>
-
 <footer class="site-footer">
     <div class="container" style="text-align: left ">
         <div class="row">
@@ -365,9 +369,7 @@
 <script type="text/javascript">
 
     function getKey() {
-        if (sessionStorage.getItem('secret') && sessionStorage.getItem('secret') === 'cyberadmin123') {
-            return sessionStorage.getItem('secret');
-        } else {
+        if (!sessionStorage.getItem('secret')) {
             window.location.href = "login.html";
         }
     }
@@ -463,7 +465,7 @@
 
         // websitebackendcyberclubacg.herokuapp.com
         xhttp.open("PUT", "https://cyberweb-backend.herokuapp.com/" + route, true);
-        xhttp.setRequestHeader('xapikey', 'teststringnothardcodeda');
+        xhttp.setRequestHeader('xapikey', sessionStorage.getItem('secret'));
         xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
         xhttp.onreadystatechange = async () => {
@@ -576,7 +578,7 @@
     async function deleteRequest(route, callback) {
         const xhttp = new XMLHttpRequest();
         xhttp.open("DELETE", "https://cyberweb-backend.herokuapp.com/" + route, true);
-        xhttp.setRequestHeader('xapikey', 'teststringnothardcodeda');
+        xhttp.setRequestHeader('xapikey', sessionStorage.getItem('secret'));
         xhttp.onerror = function (e) {
             console.log("Error:", e);
         };
@@ -602,7 +604,7 @@
         await fetch("https://cyberweb-backend.herokuapp.com/" + route, {
             method: 'POST',
             headers: {
-                'xapikey': 'teststringnothardcodeda',
+                'xapikey': sessionStorage.getItem('secret'),
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(payload),
@@ -655,7 +657,7 @@
         try {
             const options = {
                 headers: {
-                    'xapikey': 'teststringnothardcodeda'
+                    'xapikey': sessionStorage.getItem('secret')
                 }
             }
             const response = await fetch('https://cyberweb-backend.herokuapp.com/' + params, options);
@@ -748,13 +750,13 @@
     $('#myEditModal').on('show.bs.modal', function (e) {
     });
 
-    const options = {
-        animation: true,
-        autohide: true,
-        delay: 2000
-    }
-
     function showToast(text) {
+        const options = {
+            animation: true,
+            autohide: true,
+            delay: 2000
+        }
+
         const toastEl = document.getElementById("toast");
         toastEl.getElementsByClassName("toast-body")[0].innerText = text;
         new bootstrap.Toast(toastEl, options).show();
@@ -769,7 +771,7 @@
             await fetch("https://cyberweb-backend.herokuapp.com/members/" + id, {
                 method: "DELETE",
                 headers: {
-                    'xapikey': 'teststringnothardcodeda',
+                    'xapikey': sessionStorage.getItem('secret'),
                 },
             });
             document.getElementById(id).remove();
@@ -818,7 +820,7 @@
         try {
             const options = {
                 headers: {
-                    'xapikey': 'teststringnothardcodeda'
+                    'xapikey': sessionStorage.getItem('secret')
                 }
             }
             const response = await fetch('https://cyberweb-backend.herokuapp.com/members', options);
