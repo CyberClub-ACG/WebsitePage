@@ -228,9 +228,6 @@
                                 <label class="form-label" for="titlereport">Title</label>
                                 <input class="form-control" id="titlereport" placeholder="" required type="text"
                                        value="">
-                                <div class="invalid-feedback">
-                                    title is required.
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -239,7 +236,7 @@
                             <span class=\"visually-hidden\"></span>
                         </div>
                         <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
-                        <button class="btn btn-primary" id="savebtn" type="submit">Save changes</button>
+                        <button class="btn btn-primary" id="reportbtn" type="submit">Save changes</button>
                     </div>
                 </div>
             </form>
@@ -397,20 +394,16 @@
         $("#myReportModal").modal('show');
     }
 
-    async function storeReport() {
-        const file = fileReport;
-        const title = document.getElementById("titlereport").value;
-        const payload = {title, file};
-        await postRequest("reports", payload);
-    }
-
     function exportToCSV(e) {
+        disableReport();
+        showLoadingBtn();
         e.preventDefault();
         let membersdata = state.members;
 
         membersdata.forEach(
             data => {
                 delete data.createdAt;
+                delete data.role;
                 delete data.updatedAt;
                 delete data.howfoundout;
                 delete data.major;
@@ -432,8 +425,10 @@
         document.body.appendChild(link);
 
         link.click();
-        // storeReport();
-        closeModal();
+        showToast("Report is downloaded successfully");
+        hideLoadingBtn();
+        enableReport();
+        closeModalReport()
     }
 
     async function sortByDefault() {
@@ -744,6 +739,10 @@
         $("#myModal").modal('show');
     }
 
+    function closeModalReport() {
+        $("#myReportModal").modal('hide');
+    }
+
     function closeModal() {
         $("#mydeletedialog").modal('hide');
     }
@@ -932,6 +931,16 @@
     function enableSave() {
         document.getElementById("savebtn").disabled = false;
         makeBtnBlue("savebtn");
+    }
+
+    function enableReport() {
+        document.getElementById("reportbtn").disabled = false;
+        makeBtnBlue("reportbtn");
+    }
+
+    function disableReport() {
+        document.getElementById("reportbtn").disabled = true;
+        makeBtnGray("reportbtn");
     }
 
     function disableSave() {
