@@ -57,7 +57,7 @@
         }
 
         .main {
-            height: 100vh;
+            min-height: 100vh;
         }
     </style>
 </head>
@@ -109,11 +109,10 @@
             </div>
         </div>
 
-        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="min-height: 100vh !important;">
-
+        <main class="mb-5 col-md-9 h-100 ms-sm-auto col-lg-10 px-md-4" style="min-height: 100vh !important;">
             <div
                     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h2>Club members </h2>
+                <h3>Club members </h3>
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <div class="btn-group me-2">
                         <div class="dropdown">
@@ -153,21 +152,20 @@
                     </tbody>
                 </table>
             </div>
-            <button class="btn btn-dark text-white" onclick="openModal()" style="color: white !important">Add new club
-                member
-            </button>
-            <span id="metainfo" style="float: right">
+            <div style="height: 150px">
+                <button class="btn btn-dark text-white" onclick="openModal()" style="color: white !important">Add new
+                </button>
+                <span id="metainfo" style="float: right">
                 </span>
-
+            </div>
         </main>
-
     </div>
 
     <div class="modal" id="myModal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Add new club member</h5>
+                    <h5 class="modal-title">Add new</h5>
                     <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
                 </div>
                 <div class="modal-body">

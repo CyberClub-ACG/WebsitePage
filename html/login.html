@@ -30,7 +30,7 @@
 
     <style>
         #myspinner {
-            display: none;
+            visibility: hidden;
         }
 
         .modal .btn {
@@ -136,15 +136,6 @@
         integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
         src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"></script>
 <script>
-
-    function getKey() {
-        if (sessionStorage.getItem('secret')) {
-            window.location.href = "members.html";
-        }
-    }
-
-    getKey();
-
     sessionStorage.clear();
 
     function enableSignIn() {
@@ -172,11 +163,11 @@
     }
 
     function showLoading() {
-        document.getElementById("myspinner").style.display = "block";
+        document.getElementById("myspinner").style.visibility = "visible";
     }
 
     function hideLoading() {
-        document.getElementById("myspinner").style.display = "none";
+        document.getElementById("myspinner").style.visibility = "hidden";
     }
 
     $("#myform").submit(async function (event) {
