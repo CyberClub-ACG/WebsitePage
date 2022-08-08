@@ -625,36 +625,18 @@
                         $(".d-block").removeClass("d-block");
                         break
                     case 400:
-                        if (resStatus.toString() === '400') {
-                            if (data.name) {
-                                document.getElementById("newnameinvalid").classList.add('d-block');
-                            } else {
-                                document.getElementById("newnameinvalid").classList.remove('d-block');
-                            }
-
-                            if (data.email) {
-                                document.getElementById("newemailinvalid").classList.add('d-block');
-                            } else {
-                                document.getElementById("newemailinvalid").classList.remove('d-block');
-                            }
-
-                            if (data.studentid) {
-                                document.getElementById("newstudentidinvalid").classList.add('d-block');
-                            } else {
-                                document.getElementById("newstudentidinvalid").classList.remove('d-block');
-                            }
-                        }
+                        showToast("Could not be added");
                         break
                     case 500:
-                        console.log('server error, try again')
+                        showToast("Could not be added");
                         break
                     default:
-                        console.log('unhandled')
+                        showToast("Could not be added");
                         break
                 }
             })
             .catch((error) => {
-                console.error('Error:', error);
+                showToast("Could not be added");
             });
     }
 

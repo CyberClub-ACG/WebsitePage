@@ -222,15 +222,15 @@
     async function addtothml(payload) {
         await payload.forEach(member => {
             document.getElementById("writeprojectsHere").innerHTML += "<div>" +
-                "                <li>\n" +
+                "                <li class='mt-5'>\n" +
                 "               <a style='text-decoration: none; color: initial' href='blog.html?titleslug=" + member.titleslug + "'>" +
                 "                    <div>\n" +
-                "                        <h2 style='line-height: 40px; font-size: 32px; font-family: sohne, \"Helvetica Neue\", Helvetica, Arial, sans-serif; color: rgba(41, 41, 41, 1);'><b>" + member.title + "</b></h2>\n" +
+                "                        <h1 style='line-height: 40px; font-family: sohne, \"Helvetica Neue\", Helvetica, Arial, sans-serif; color: rgba(41, 41, 41, 1);'><b>" + member.title + "</b></h1>\n" +
                 "                        <div>\n" +
                 "                            <p>" + member.description + "</p>\n" +
                 "                        \n" + "                    <img alt=\"\" \n" +
                 "                         src='https://mybucketkourtis.s3.eu-west-3.amazonaws.com/cyberclub/articles/" + member.imagefilename + "'" +
-                "                         style=\"width:100%; object-fit: cover; max-height: 400px; margin-right: 10px\">\n" +
+                "                         style=\"width:100%; object-fit: cover; max-height: 650px; margin-right: 10px\">\n" +
                 "                    </div></div>\n" +
                 "</a>                </li><br>";
         })

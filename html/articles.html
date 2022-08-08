@@ -20,6 +20,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" rel="stylesheet">
 
     <style>
+        .myspinnerBtn {
+            visibility: hidden;
+        }
+
         .modal .btn {
             color: white !important;
         }
@@ -277,10 +281,13 @@
 </footer>
 <script crossorigin="anonymous"
         integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-        referrerpolicy="no-referrer" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script crossorigin="anonymous" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        referrerpolicy="no-referrer"
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
-<script crossorigin="anonymous" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
+<script crossorigin="anonymous"
+        integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
         src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"></script>
 <script type="text/javascript">
 
@@ -374,8 +381,11 @@
             "\n" +
             "            </div>\n" +
             "            <div class=\"modal-footer\">\n" +
+            "            <div class=\"spinner-border myspinnerBtn\" role=\"status\" style=\"margin:5px;\">\n" +
+            "                <span class=\"visually-hidden\"></span>\n" +
+            "            </div>\n" +
             "                <button class=\"btn btn-secondary\" data-bs-dismiss=\"modal\" type=\"button\">Cancel</button>\n <span hidden name='theid' id='theid'>" + id + "</span>" +
-            "                <button class=\"btn btn-primary\" id=\"focusBtn\"  onclick='deleteArticle(event, \"" + id + "\", \"" + title + "\")' >Delete\n" +
+            "                <button class=\"btn btn-primary\" id='deletebtn'   onclick='deleteArticle(event, \"" + id + "\", \"" + title + "\")' >Delete\n" +
             "                </button>\n" +
             "                </div>\n" +
             "                </div>\n" +
@@ -384,7 +394,7 @@
             "                </form></div>";
 
         $("#mydeletedialog").modal('show');
-        $("#focusBtn").trigger('focus');
+        $("#deletebtn").trigger('focus');
     }
 
     async function callback(payload) {
@@ -454,8 +464,24 @@
         new bootstrap.Toast(toastEl, options).show();
     }
 
+    function showLoadingBtn() {
+        const cols = document.getElementsByClassName("myspinnerBtn");
+        for (let i = 0; i < cols.length; i++) {
+            cols[i].style.visibility = "visible";
+        }
+    }
+
+    function hideLoadingBtn() {
+        const cols = document.getElementsByClassName("myspinnerBtn");
+        for (let i = 0; i < cols.length; i++) {
+            cols[i].style.visibility = "hidden";
+        }
+    }
+
     async function deleteArticle(event, id, title) {
         event.preventDefault();
+        disableDelete();
+        showLoadingBtn();
 
         try {
             await fetch("https://cyberweb-backend.herokuapp.com/articles/" + id, {
@@ -470,7 +496,35 @@
             console.log(err);
         }
         await getArticles();
+        enableDelete();
+        hideLoadingBtn();
     }
+
+
+    function enableDelete() {
+        document.getElementById("deletebtn").disabled = false;
+        makeBtnBlue("deletebtn");
+    }
+
+    function disableDelete() {
+        document.getElementById("deletebtn").disabled = true;
+        makeBtnGray("deletebtn");
+    }
+
+    function makeBtnBlue(id) {
+        changeClass(id, "btn-primary", "btn-secondary");
+    }
+
+    function makeBtnGray(id) {
+        changeClass(id, "btn-secondary", "btn-primary");
+    }
+
+    function changeClass(id, newclassname, oldclassname) {
+        const elm = document.getElementById(id);
+        elm.classList.add(newclassname);
+        elm.classList.remove(oldclassname);
+    }
+
 </script>
 
 </body>

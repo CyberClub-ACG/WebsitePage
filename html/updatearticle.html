@@ -407,7 +407,7 @@
     async function updateArticle() {
         showLoadingBtn();
         disableBtn();
-        if (!state.imagedescription == null && btnisPressed) { // if cleared yet no image
+        if (!state.imagedescription && btnisPressed) { // if cleared yet no image
             showToast("Must have an image");
         } else if (btnisPressed && state.imagedescription) { // if cleared and uploaded image
             let urlParams = new URLSearchParams(window.location.search);
@@ -426,7 +426,6 @@
             formData.append("imagefile", imagefile);
             formData.append("payload", JSON.stringify(payload));
             await postRequest2(route, formData);
-            showToast("The article has been updated successfully");
         } else {
             let id = state.id;
             const title = document.getElementById("title").value;
@@ -438,7 +437,6 @@
 
             const route = "articles/" + id;
             await postRequest(route, payload);
-            showToast("The article has been updated successfully");
         }
         hideLoadingBtn();
         enableBtn();
@@ -453,8 +451,13 @@
             },
             body: payload,
         })
-            .then(response => response.json())
+            .then(async response => await response.json())
+            .then(async data => {
+                showToast("The article has been updated successfully");
+                window.location.assign("https://dccyberclub.com/html/updatearticle.html?titleslug=" + data.titleslug);
+            })
             .catch((error) => {
+                showToast("Something went wrong");
                 console.error('Error:', error);
             });
     }
@@ -468,8 +471,13 @@
             },
             body: JSON.stringify(payload),
         })
-            .then(response => response.json())
+            .then(async response => await response.json())
+            .then(async data => {
+                showToast("The article has been updated successfully");
+                window.location.assign("https://dccyberclub.com/html/updatearticle.html?titleslug=" + data.titleslug);
+            })
             .catch((error) => {
+                showToast("Something went wrong");
                 console.error('Error:', error);
             });
     }
@@ -481,12 +489,27 @@
             }
         }
         return await fetch('https://cyberweb-backend.herokuapp.com/' + route, options)
-            .then(response => response.json())
-            .then(data => {
+            .then(async response => await response.json())
+            .then(async data => {
                 hideLoading();
                 return data;
             })
             .catch(err => console.log(err));
+    }
+
+    async function getArticleBySlugTitle(titleslug) {
+        const article = await getRequest('articles/findByslug/' + titleslug);
+        state.initialimagefilename = article.imagefilename;
+        state.id = article._id;
+        document.getElementById("title").value = article.title;
+        document.getElementById("author").value = article.author;
+        document.getElementById("description").value = article.description;
+        document.getElementById("imagefilename").value = article.imagefilename;
+        document.getElementById("viewbtn").innerHTML = "<a target='_blank' href='blog.html?titleslug=" + article.titleslug + "'>\n" +
+            "            <button class='btn btn-dark text-white' style='float: right'>View online\n" +
+            "        </button>\n" +
+            "        </a>";
+        simplemde.value(article.content);
     }
 
     async function getArticle() {
@@ -519,6 +542,7 @@
 
     function shownewimageinput(e) {
         btnisPressed = true;
+        state.imagedescription = null;
         e.preventDefault();
         document.getElementById("imagedescription").style.display = "block";
         document.getElementById("imagefilename").style.display = "none";
