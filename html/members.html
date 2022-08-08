@@ -20,6 +20,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" rel="stylesheet">
 
     <style>
+        .myspinnerBtn {
+            visibility: hidden;
+        }
+
         .modal .btn {
             color: white !important;
         }
@@ -104,8 +108,8 @@
         </div>
 
         <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4" id="spinnerwrapper" style="min-height: 100vh !important;">
-            <div class="spinner-border " id="myspinner" role="status" style="margin: 20px auto; ">
-                <span class="visually-hidden">Loading...</span>
+            <div class="spinner-border " id="myspinner" role="status" style="margin: 20px auto">
+                <span class="visually-hidden"></span>
             </div>
         </div>
 
@@ -200,8 +204,11 @@
                     </form>
                 </div>
                 <div class="modal-footer">
+                    <div class="spinner-border myspinnerBtn" role="status" style="margin:5px">
+                        <span class="visually-hidden"></span>
+                    </div>
                     <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
-                    <button class="btn btn-primary" onclick='addNew()' type="button">Save changes</button>
+                    <button class="btn btn-primary" id="savebtn" onclick='addNew()' type="button">Save changes</button>
                 </div>
             </div>
         </div>
@@ -228,8 +235,11 @@
                         </div>
                     </div>
                     <div class="modal-footer">
+                        <div class="spinner-border myspinnerBtn" role="status" style="margin:5px">
+                            <span class=\"visually-hidden\"></span>
+                        </div>
                         <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
-                        <button class="btn btn-primary" type="submit">Save changes</button>
+                        <button class="btn btn-primary" id="savebtn" type="submit">Save changes</button>
                     </div>
                 </div>
             </form>
@@ -396,21 +406,23 @@
 
     function exportToCSV(e) {
         e.preventDefault();
-        const outputData = state.members.map(Object.values);
+        let membersdata = state.members;
 
-        // const newarray = [10][10];
-        // console.dir(outputData);
-        //
-        // for (let i = 0; i < outputData.length; i++) {
-        //     for (let j = 0; j < outputData[i].length; j++) {
-        //         newarray[i][j] = outputData[i][j];
-        //     }
-        // }
-        //
-        // console.dir(newarray);
+        membersdata.forEach(
+            data => {
+                delete data.createdAt;
+                delete data.updatedAt;
+                delete data.howfoundout;
+                delete data.major;
+                delete data.__v;
+                delete data._id;
+            }
+        )
 
-        let csvContent = "data:text/csv;charset=utf-8,"
-            + outputData.map(e => e.join(",")).join("\n");
+        membersdata = membersdata.map(Object.values)
+
+        let csvContent = "data:text/csv;charset=utf-8," + "NAME, EMAIL, STUDENT ID" + "\n"
+            + membersdata.map(e => e.join(",")).join("\n");
 
         const encodedUri = encodeURI(csvContent);
         const link = document.createElement("a");
@@ -452,6 +464,8 @@
     }
 
     function update(id) {
+        disableUpdate();
+        showLoadingBtn();
         const route = "members/" + id;
         const membername = document.getElementById("updatemembername").value;
         const email = document.getElementById("updatemail").value;
@@ -475,7 +489,10 @@
                         document.getElementById(id).children.namedItem("email").textContent = response.email;
                         document.getElementById(id).children.namedItem("studentid").textContent = response.studentid;
                         closeModal();
+                        await getMembers();
                         showToast("The member has been successfully updated.");
+                        enableUpdate();
+                        hideLoadingBtn();
                     }
                 }
             }
@@ -486,7 +503,6 @@
         };
 
         xhttp.send(JSON.stringify(payload));
-
     }
 
     function showLoading() {
@@ -548,8 +564,11 @@
             "\n" +
             "            </div>\n" +
             "            <div class=\"modal-footer\">\n" +
+            "            <div class=\"spinner-border myspinnerBtn\" role=\"status\" style=\"margin:5px;\">\n" +
+            "                <span class=\"visually-hidden\"></span>\n" +
+            "            </div>\n" +
             "                <button class=\"btn btn-secondary\" data-bs-dismiss=\"modal\" type=\"button\">Cancel</button>\n <span hidden name='theid' id='theid'>" + id + "</span>" +
-            "                <button class=\"btn btn-primary\" id=\"focusBtn\"  onclick='deleteMember(event, \"" + id + "\", \"" + name + "\")' >Delete\n" +
+            "                <button class=\"btn btn-primary\" id='deletebtn'  onclick='deleteMember(event, \"" + id + "\", \"" + name + "\")' >Delete\n" +
             "                </button>\n" +
             "                </div>\n" +
             "                </div>\n" +
@@ -558,7 +577,7 @@
             "                </form></div>";
 
         $("#mydeletedialog").modal('show');
-        $("#focusBtn").trigger('focus');
+        $("#savebtn").trigger('focus');
     }
 
     async function callback(payload) {
@@ -573,18 +592,9 @@
         hideLoading();
     }
 
-    async function deleteRequest(route, callback) {
-        const xhttp = new XMLHttpRequest();
-        xhttp.open("DELETE", "https://cyberweb-backend.herokuapp.com/" + route, true);
-        xhttp.setRequestHeader('xapikey', sessionStorage.getItem('secret'));
-        xhttp.onerror = function (e) {
-            console.log("Error:", e);
-        };
-
-        xhttp.send();
-    }
-
     async function addNew() {
+        disableSave();
+        showLoadingBtn();
         const name = document.getElementById("newname").value;
         const email = document.getElementById("newemail").value;
         const studentid = document.getElementById("newstudentid").value;
@@ -595,6 +605,8 @@
         } else {
             await getMembers();
         }
+        enableSave();
+        hideLoadingBtn();
     }
 
     async function postRequest(route, payload) {
@@ -733,19 +745,16 @@
     }
 
     function closeModal() {
-        $(".modal").modal('hide');
-        $(".modal-dialog").modal('hide');
+        $("#mydeletedialog").modal('hide');
     }
 
     function openEditModal() {
         $("#myEditModal").modal('show');
     }
 
-    $('#myModal').on('show.bs.modal', function (e) {
-    });
-
-
     $('#myEditModal').on('show.bs.modal', function (e) {
+    });
+    $('#myModal').on('show.bs.modal', function (e) {
     });
 
     function showToast(text) {
@@ -762,6 +771,8 @@
 
     async function deleteMember(event, id, name) {
         event.preventDefault();
+        disableDelete();
+        showLoadingBtn();
         document.getElementById("TotalMembersNumber").innerText = "Total members: " + (--state.count);
         if (document.getElementById("totalPagesNumber"))
             document.getElementById("totalPagesNumber").innerText = "Total pages: " + Math.ceil(state.count / 10);
@@ -775,6 +786,8 @@
             document.getElementById(id).remove();
             showToast(name + " has been removed from the club.");
             closeModal();
+            enableDelete();
+            hideLoadingBtn();
         } catch (err) {
             console.log(err);
         }
@@ -800,6 +813,8 @@
             studentid: e.target.parentElement.parentElement.children.namedItem("studentid").innerText,
             id: e.target.parentElement.parentElement.children.namedItem("id").innerText,
         }
+
+        console.dir(payload);
 
         document.getElementById("myEditModal").innerHTML = buildEditModal(payload);
         openEditModal();
@@ -882,12 +897,74 @@
             "                                </div>\n" +
             "                        </form>\n" +
             "                    </div>\n" +
-            "                    <div class='modal-footer'>\n" +
+            "                    <div class='modal-footer mt-4'>\n" +
+            "            <div class=\"spinner-border myspinnerBtn\"role=\"status\" style=\"margin:5px; \">\n" +
+            "                <span class=\"visually-hidden\"></span>\n" +
+            "            </div>\n" +
             "                        <button class='btn btn-secondary' data-bs-dismiss='modal' type='button'>Close</button>\n" +
-            "                        <button class='btn btn-primary' type='button' onclick=update('" + payload.id + "')>Save changes</button>\n" +
+            "                        <button class='btn btn-primary' type='button' onclick=update('" + payload.id + "') id='updatebtn'>Save changes</button>\n" +
             "                    </div>\n" +
             "                </div>\n" +
             "            </div>\n";
+    }
+
+
+    function enableDelete() {
+        document.getElementById("deletebtn").disabled = false;
+        makeBtnBlue("deletebtn");
+    }
+
+    function disableDelete() {
+        document.getElementById("deletebtn").disabled = true;
+        makeBtnGray("deletebtn");
+    }
+
+    function enableUpdate() {
+        document.getElementById("updatebtn").disabled = false;
+        makeBtnBlue("updatebtn");
+    }
+
+    function disableUpdate() {
+        document.getElementById("updatebtn").disabled = true;
+        makeBtnGray("updatebtn");
+    }
+
+    function enableSave() {
+        document.getElementById("savebtn").disabled = false;
+        makeBtnBlue("savebtn");
+    }
+
+    function disableSave() {
+        document.getElementById("savebtn").disabled = true;
+        makeBtnGray("savebtn");
+    }
+
+    function makeBtnBlue(id) {
+        changeClass(id, "btn-primary", "btn-secondary");
+    }
+
+    function makeBtnGray(id) {
+        changeClass(id, "btn-secondary", "btn-primary");
+    }
+
+    function changeClass(id, newclassname, oldclassname) {
+        const elm = document.getElementById(id);
+        elm.classList.add(newclassname);
+        elm.classList.remove(oldclassname);
+    }
+
+    function showLoadingBtn() {
+        const cols = document.getElementsByClassName("myspinnerBtn");
+        for (let i = 0; i < cols.length; i++) {
+            cols[i].style.visibility = "visible";
+        }
+    }
+
+    function hideLoadingBtn() {
+        const cols = document.getElementsByClassName("myspinnerBtn");
+        for (let i = 0; i < cols.length; i++) {
+            cols[i].style.visibility = "hidden";
+        }
     }
 </script>
 
