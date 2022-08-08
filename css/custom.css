@@ -11718,8 +11718,7 @@ section h2, section .h2 {
 
 .btn {
     color: #fff;
-    border: 1px solid;
-    border-color: #fff
+    border: 1px solid #fff;
 }
 
 .btn:hover, .btn:focus, .btn:active, .btn.active {
@@ -11728,8 +11727,11 @@ section h2, section .h2 {
     background-color: #145889
 }
 
-.btn {
+.bi {
     border-radius: 300px;
+}
+
+.btn {
     font-family: "Lato", "Helvetica", "Arial", "sans-serif";
     letter-spacing: 2px;
     text-transform: uppercase

@@ -5,9 +5,10 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <meta content="" name="description">
-    <link href="../img/other/cyberweb%20logo.png" rel="shortcut icon" type="image/jpg"/>
     <meta content="Alexandros Kourtis" name="author">
-    <title>Dashboard Cyber Club</title>
+
+    <link href="../img/other/cyberweb%20logo.png" rel="shortcut icon" type="image/jpg"/>
+    <title>CyberWeb Dashboard</title>
     <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" rel="stylesheet">
@@ -43,21 +44,34 @@
             z-index: 88888 !important;
             width: 100%;
         }
+
+        #myspinner {
+            visibility: hidden;
+        }
+
+        footer {
+            position: absolute;
+            z-index: 88888 !important;
+            width: 100%;
+        }
     </style>
 </head>
 
 <body>
 
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="./members.html">Cyber Club Dashboard</a>
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="./login.html">Cyber<span
+            style="color: #0d6efd"><b>Web</b></span> Dashboard</a>
     <button aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation"
             class="navbar-toggler position-absolute d-md-none collapsed" data-bs-target="#sidebarMenu"
             data-bs-toggle="collapse" type="button">
         <span class="navbar-toggler-icon"></span>
     </button>
+    <input aria-label="Search" class="form-control form-control-dark w-100" oninput="filter(event)"
+           placeholder="Search" type="text">
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-            <a class="nav-link" href="./login.html">Sign out</a>
+            <a class="nav-link" href="login.html">Sign out</a>
         </li>
     </ul>
 </header>
@@ -84,9 +98,8 @@
         </nav>
 
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-            <div
-                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h2>Add new article</h2>
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h3>Add new article</h3>
             </div>
             <form class="needs-validation" novalidate>
                 <div class="row g-3">
@@ -134,21 +147,117 @@
                 </div>
             </form>
             <br>
-
             <label for="content">
                 <h5>Content:</h5>
             </label>
-            <br>
             <textarea id="content" name="text"></textarea>
-            <button class="btn btn-dark text-white" onclick="addArticle()" style="color: white !important">Add new
-                article
-            </button>
+            <div>
+                <div id="spinnerwrapper">
+                    <button class="btn btn-dark text-white" id="btn" onclick="addArticle()"
+                            style="color: white !important; float: left"
+                            type="button">Add new article
+                    </button>
+                    <div class="spinner-border" id="myspinner" role="status"
+                         style="display: inline-block; margin: 10px">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
             <br>
             <br>
         </main>
     </div>
 </div>
+<footer class="site-footer">
+    <div class="container" style="text-align: left ">
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <h6>About</h6>
+                <h5>The Cyber Club is open to all students who are interested in the IT
+                    field. It aims to cultivate a community of motivated
+                    individuals who are passionate about technology and want to enrich their academic and
+                    student-life experience at Deree.</h5>
+                <h5>Email: dc.cyberclub@acg.edu
+                </h5>
+                <h5>
+                    Advisor: George Vardoulias
+                </h5>
+            </div>
 
+            <div class="col-xs-6 col-md-3">
+                <h6>Interests</h6>
+                <ul class="footer-links">
+                    <li>
+                        <h5>Cybersecurity</h5>
+                    </li>
+                    <li>
+                        <h5>Software Engineering</h5>
+                    </li>
+                    <li>
+                        <h5>Machine Learning</h5>
+                    </li>
+                    <li>
+                        <h5>Artificial
+                            Intelligence</h5>
+                    </li>
+                    <li>
+                        <h5>Operating Systems</h5>
+                    </li>
+                    <li>
+                        <h5>Computer Networks</h5>
+                    </li>
+                    <li>
+                        <h5>Telecommunications</h5>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-xs-6 col-md-3">
+                <h6>Skillset developed</h6>
+                <ul class="footer-links">
+                    <li>
+                        <h5>Coding & Algorithms</h5>
+                    </li>
+                    <li>
+                        <h5>Project Management</h5>
+                    </li>
+                    <li>
+                        <h5>Public Speaking & Critical Thinking</h5>
+                    </li>
+                    <li>
+                        <h5>Entrepreneurship</h5>
+                    </li>
+                    <li>
+                        <h5>Research</h5>
+                    </li>
+                    <li>
+                        <h5>Teamwork</h5>
+                    </li>
+                    <li>
+                        <h5>Networking</h5>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <br>
+    </div>
+    <div class="container">
+        <div class="row" style="text-align: left ">
+            <div class="col-md-10 col-sm-10 col-xs-10">
+                <p class="copyright-text" style="float:left;">Copyright &copy; 2022 All Rights Reserved by
+                    <a href="#">Cyber Club</a>. Reach out to us at: <a
+                            href="mailto:dc.cyberclub@acg.edu">dc.cyberclub@acg.edu</a>.
+                    <br><br>Secret portal: <a
+                            href="../html/login.html">cyberweb</a>
+                </p>
+                <img alt="" src="../img/other/logo_trans.png"
+                     style="float: right; width: 50px; height: 50px">
+
+            </div>
+        </div>
+    </div>
+</footer>
 <div aria-atomic="true" aria-live="assertive"
      class="position-fixed toast align-items-center bottom-0 start-50 translate-middle-x text-white bg-primary border-0"
      id="toast" role="alert" style="margin-bottom: 20px">
@@ -162,10 +271,13 @@
 
 <script crossorigin="anonymous"
         integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-        referrerpolicy="no-referrer" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script crossorigin="anonymous" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        referrerpolicy="no-referrer"
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
-<script crossorigin="anonymous" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
+<script crossorigin="anonymous"
+        integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
         src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"></script>
 <link href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
@@ -221,19 +333,24 @@
         if (!isImageUploaded())
             return;
 
+        showLoading();
+        disableBtn();
+
         const newArticlePayload = buildNewArticlePayload();
         const formData = buildFormData(newArticlePayload);
 
         const route = "articles/";
         const data = await postRequest(route, formData);
         showToast(data.message);
+        hideLoading();
+        enableBtn();
     }
 
     async function postRequest(route, payload) {
         return await fetch("https://cyberweb-backend.herokuapp.com/" + route, {
             method: 'POST',
             headers: {
-                'xapikey': sessionStorage.getItem('secret'),
+                'xapikey': localStorage.getItem('secret'),
             },
             body: payload,
         })
@@ -244,6 +361,39 @@
             });
     }
 
+
+    function enableBtn() {
+        document.getElementById("btn").disabled = false;
+        makeBtnBlue("btn");
+    }
+
+    function disableBtn() {
+        document.getElementById("btn").disabled = true;
+        makeBtnGray("btn");
+        makeBtnGray("btn");
+    }
+
+    function makeBtnBlue(id) {
+        changeClass(id, "btn-primary", "btn-secondary");
+    }
+
+    function makeBtnGray(id) {
+        changeClass(id, "btn-secondary", "btn-primary");
+    }
+
+    function changeClass(id, newclassname, oldclassname) {
+        const elm = document.getElementById(id);
+        elm.classList.add(newclassname);
+        elm.classList.remove(oldclassname);
+    }
+
+    function showLoading() {
+        document.getElementById("myspinner").style.visibility = "visible";
+    }
+
+    function hideLoading() {
+        document.getElementById("myspinner").style.visibility = "hidden";
+    }
 
     function showToast(text) {
         const toastoptions = {
