@@ -49,8 +49,14 @@
             width: 100%;
         }
 
+        footer {
+            position: absolute;
+            z-index: 88888 !important;
+            width: 100%;
+        }
+
         .main {
-            height: 100vh;
+            min-height: 100vh;
         }
 
         #myspinner {
@@ -493,7 +499,7 @@
         document.getElementById("author").value = article.author;
         document.getElementById("description").value = article.description;
         document.getElementById("imagefilename").value = article.imagefilename;
-        document.getElementById("viewbtn").innerHTML = "<a href='https://frozen-citadel-66566.herokuapp.com/blog.html?title=" + article.titleblob + "' target='_blank'>\n" +
+        document.getElementById("viewbtn").innerHTML = "<a target='_blank' href='blog.html?titleslug=" + article.titleslug + "'>\n" +
             "            <button class='btn btn-dark text-white' style='float: right'>View online\n" +
             "        </button>\n" +
             "        </a>";
