@@ -29,6 +29,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" rel="stylesheet">
 
     <style>
+        #myspinner {
+            display: none;
+        }
+
         .modal .btn {
             color: white !important;
         }
@@ -86,14 +90,8 @@
 <body>
 
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="./login.html">Cyber<span
-            style="color: #0d6efd">Web</span> Dashboard</a>
-    <button aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation"
-            class="navbar-toggler position-absolute d-md-none collapsed" data-bs-target="#sidebarMenu"
-            data-bs-toggle="collapse"
-            type="button">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 w-100 text-center" href="./login.html">Cyber<span
+            style="color: #0d6efd"><b>Web</b></span> Dashboard</a>
 </header>
 
 <div class="container" style="justify-content: center; align-items: center; display: flex; min-height: 65vh;">
@@ -104,11 +102,16 @@
         <form id="myform">
             <div class="form-floating">
                 <input class="form-control" id="floatingPassword" placeholder="Password" type="password">
-                <label for="floatingPassword">Enter your Cyberweb password</label>
+                <label for="floatingPassword">Enter your CyberWeb password</label>
             </div>
 
-            <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+            <button class="w-100 btn btn-lg btn-primary" id="signinbtn" type="submit">Sign in</button>
         </form>
+        <div class="mt-5 text-white" id="spinnerwrapper">
+            <div class="spinner-border " id="myspinner" role="status" style="margin: 20px auto; ">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
     </main>
 </div>
 
@@ -144,10 +147,44 @@
 
     sessionStorage.clear();
 
+    function enableSignIn() {
+        document.getElementById("signinbtn").disabled = false;
+        makeBtnBlue("signinbtn");
+    }
+
+    function disableSignIn() {
+        document.getElementById("signinbtn").disabled = true;
+        makeBtnGray("signinbtn");
+    }
+
+    function makeBtnBlue(id) {
+        changeClass(id, "btn-primary", "btn-secondary");
+    }
+
+    function makeBtnGray(id) {
+        changeClass(id, "btn-secondary", "btn-primary");
+    }
+
+    function changeClass(id, newclassname, oldclassname) {
+        const elm = document.getElementById(id);
+        elm.classList.add(newclassname);
+        elm.classList.remove(oldclassname);
+    }
+
+    function showLoading() {
+        document.getElementById("myspinner").style.display = "block";
+    }
+
+    function hideLoading() {
+        document.getElementById("myspinner").style.display = "none";
+    }
+
     $("#myform").submit(async function (event) {
         event.preventDefault();
+        showLoading();
+        disableSignIn();
 
-        const data = await fetch("https://cyberweb-backend.herokuapp.com/user/login", {
+        await fetch("https://cyberweb-backend.herokuapp.com/user/login", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -156,7 +193,7 @@
         })
             .then(res => res.json())
             .then(data => {
-                console.dir(data);
+                showToast("Successful login");
                 sessionStorage.setItem("secret", data.code);
                 window.location.href = "members.html";
             })
@@ -164,6 +201,8 @@
                 showToast("Could not log in");
                 console.dir(error);
             });
+        enableSignIn();
+        hideLoading();
     });
 
     function showToast(text) {
