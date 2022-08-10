@@ -41,7 +41,7 @@
 
         .toast {
             background: #0275d8 !important;
-z-index: 9999999999999 !important;
+            z-index: 9999999999999 !important;
         }
 
         i {
@@ -118,23 +118,14 @@ z-index: 9999999999999 !important;
         <main>
             <article class="container blog-post mt-2">
                 <div>
-                    <h1 id="titlehere"
-                        style="line-height: 40px; color: rgba(41, 41, 41, 1);"></h1>
-                    <br>
-                    <!--                    <div>-->
-                    <!--                        <p>Article written by: <a-->
-                    <!--                                href="https://www.instagram.com/kourtis.alexandros/">Kourtis-->
-                    <!--                            Alexandros</a>-->
-                    <!--                        </p>-->
-                    <!--                        <p>Published on the 3rd of December 2021</p>-->
-                    <!--                    </div>-->
+                    <h3 id="titlehere"
+                        style="color: rgba(41, 41, 41, 1);"></h3>
+                    <p class="text-muted"
+                       id="descriptionhere"></p>
                     <div class="mb-3" id="imghere"
-                         style="width: 100%; height: 60vh; margin-right: 20px; float: left;">
-
-
+                         style="width: 100%; height: 50vh; margin-right: 20px; float: left;">
                     </div>
                     <div id="contenthere">
-
                     </div>
                 </div>
 
@@ -288,6 +279,7 @@ z-index: 9999999999999 !important;
 
             document.getElementById("authorhere").innerText = data.author;
             document.getElementById("titlehere").innerText = data.title;
+            document.getElementById("descriptionhere").innerText = data.description;
             document.getElementById("imghere").innerHTML += "" +
                 "                    <img alt='' " +
                 "                         src='https://mybucketkourtis.s3.eu-west-3.amazonaws.com/cyberclub/articles/" + data.imagefilename + "'" + "'" +
