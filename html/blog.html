@@ -283,7 +283,7 @@
             document.getElementById("imghere").innerHTML += "" +
                 "                    <img alt='' " +
                 "                         src='https://mybucketkourtis.s3.eu-west-3.amazonaws.com/cyberclub/articles/" + data.imagefilename + "'" + "'" +
-                "                         style=\"object-fit: cover; width: 100%; height: 100%;\">\n";
+                "                         style=\"object-fit: contain; width: 100%; height: 100%;\">\n";
             document.getElementById("contenthere").innerHTML += mdhtml;
         } catch (error) {
             console.log(error);
