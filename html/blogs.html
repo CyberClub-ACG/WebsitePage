@@ -237,19 +237,20 @@
         await payload.forEach(member => {
             document.getElementById("writeprojectsHere").innerHTML += "<div>" +
                 "                <li class='mt-5'>\n" +
-                "               <a style='text-decoration: none; color: initial' href='blog.html?titleslug=" + member.titleslug + "'>" +
                 "                    <div>\n" +
+                "               <a style='color: initial' href='blog.html?titleslug=" + member.titleslug + "'>" +
                 "                        <h2 style='line-height: 40px; font-family: sohne, \"Helvetica Neue\", Helvetica, Arial, sans-serif; color: rgba(41, 41, 41, 1);'><b>" + member.title + "</b></h2>\n" +
+                "               </a>" +
                 "                        <div>\n" +
                 "                            <p>" + member.description + "</p>\n" +
                 "                        \n" + "                    <img alt=\"\" \n" +
                 "                         src='https://mybucketkourtis.s3.eu-west-3.amazonaws.com/cyberclub/articles/" + member.imagefilename + "'" +
                 "                         style=\"    width: 100%;\n" +
-                "    object-fit: contain;\n" +
-                "    max-height: 500px;\n" +
+                "    object-fit: cover;\n" +
+                "    max-height: 400px;\n" +
                 "    margin-right: 10px;\">\n" +
                 "                    </div></div>\n" +
-                "</a>                </li><br>";
+                "               </li><br>";
         })
     }
 
