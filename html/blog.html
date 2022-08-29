@@ -341,10 +341,10 @@
 
             const urlimg = "https://mybucketkourtis.s3.eu-west-3.amazonaws.com/cyberclub/articles/" + data.imagefilename;
 
-            $('head').append('<meta property="og:title" content=' + data.title + '>');
-            $('head').append('<meta property="og:description" content=' + data.title + '>');
-            $('head').append('<meta property="og:url" content=' + window.location.href + '>');
-            $('head').append('<meta property="og:image" content=' + urlimg + '>');
+            $('head').append('<meta property="og:title" content=' + data.title + '/>');
+            $('head').append('<meta property="og:description" content=' + data.title + '/>');
+            $('head').append('<meta property="og:url" content=' + window.location.href + '/>');
+            $('head').append('<meta property="og:image" content=' + urlimg + '/>');
 
             document.getElementById("descriptionhere").innerText = data.description;
             document.getElementById("contenthere").innerHTML += mdhtml;
