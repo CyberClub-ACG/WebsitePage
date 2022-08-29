@@ -334,7 +334,7 @@
             const title = data.title;
 
             // jQuery('head').append(`<meta property="og:title" content="${title}" />`);
-            jQuery('head').append(`<meta property="og:image" content="${urlimg}" />`);
+            jQuery('head').append(`<meta property="og:image" content="${urlimg}" >`);
             var html = '';
             $("head meta").each(function () {
                 html += $(this).clone().wrap('<div>').parent().html();
