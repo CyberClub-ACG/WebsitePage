@@ -15,10 +15,13 @@ body {
     cursor: pointer;
 }
 
+.here li a {
+    font-family: "Source Sans Pro", sans-serif !important;
+}
+
 #header li a {
     color: white !important;
     font-size: 20px !important;
-    font-family: "Source Sans Pro", sans-serif !important;
 }
 
 #footer li {
@@ -211,12 +214,7 @@ ul li {
     list-style: none;
 }
 
-
-#header ul li a {
-    text-decoration: none !important;
-}
-
-#header ul li a:hover {
+.here li a:hover {
     text-decoration: underline !important;
 }
 
@@ -386,4 +384,49 @@ img.zoom-img {
 
 .CodeMirror {
     height: 600px !important;
+}
+
+#socialsheader a {
+    text-decoration: none;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+@media (max-width: 760px) {
+
+    #header li {
+        float: none !important;
+        left: clear !important;
+        display: block !important;
+        padding-top: 5px;
+    }
+
+    .here li {
+        float: none !important;
+        left: clear !important;
+        display: block !important;
+    }
+
+    .here li a {
+        padding-left: 0 !important;
+    }
+
+    #socialsheader a {
+        text-decoration: none !important;
+        padding-left: 0 !important;
+    }
+
+    .here {
+        float: none !important;
+    }
+
+    #socialsheader {
+        float: none !important;
+    }
+
+    #parentsocialsheader {
+        left: clear !important;
+        display: block !important;
+        float: none !important;
+    }
 }
