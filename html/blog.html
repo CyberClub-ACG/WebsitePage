@@ -349,11 +349,13 @@
             document.querySelector('meta[property="og:url"]').remove();
             document.querySelector('meta[property="og:image"]').remove();
 
+            const urlimg = "https://mybucketkourtis.s3.eu-west-3.amazonaws.com/cyberclub/articles/" + data.imagefilename;
 
-            document.querySelector('meta[property="og:title"]').setAttribute("content", data.title);
-            document.querySelector('meta[property="og:description"]').setAttribute("content", data.title);
-            document.querySelector('meta[property="og:url"]').setAttribute("content", window.location.href);
-            document.querySelector('meta[property="og:image"]').setAttribute("content", "http://mybucketkourtis.s3.eu-west-3.amazonaws.com/cyberclub/articles/" + data.imagefilename);
+            jQuery('head').append('<meta property="og:title" content=' + data.title + '>');
+            jQuery('head').append('<meta property="og:description" content=' + data.title + '>');
+            jQuery('head').append('<meta property="og:url" content=' + window.location.href + '>');
+            jQuery('head').append('<meta property="og:image" content=' + urlimg + '>');
+
             document.getElementById("descriptionhere").innerText = data.description;
             document.getElementById("contenthere").innerHTML += mdhtml;
             document.getElementById("imghere").innerHTML += "" +
