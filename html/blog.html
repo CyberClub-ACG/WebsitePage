@@ -341,7 +341,7 @@
             document.getElementById("authorhere").innerText = data.author;
             document.getElementById("titlehere").innerText = data.title;
             document.querySelector('meta[property="og:title"]').setAttribute("content", data.title);
-            document.querySelector('meta[property="og:image"]').setAttribute("content", "https://mybucketkourtis.s3.eu-west-3.amazonaws.com/cyberclub/articles/" + data.imagefilename);
+            document.querySelector('meta[property="og:image"]').setAttribute("content", "http://mybucketkourtis.s3.eu-west-3.amazonaws.com/cyberclub/articles/" + data.imagefilename);
             document.getElementById("descriptionhere").innerText = data.description;
             document.getElementById("contenthere").innerHTML += mdhtml;
             document.getElementById("imghere").innerHTML += "" +
