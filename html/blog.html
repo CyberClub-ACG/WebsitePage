@@ -335,11 +335,7 @@
 
             // jQuery('head').append(`<meta property="og:title" content="${title}" />`);
             jQuery('head').append(`<meta property="og:image" content="${urlimg}" >`);
-            var html = '';
-            $("head meta").each(function () {
-                html += $(this).clone().wrap('<div>').parent().html();
-            });
-            alert(html);
+  
             (function (d, s, id) {
                 var js, fjs = d.getElementsByTagName(s)[0];
                 if (d.getElementById(id)) return;
