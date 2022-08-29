@@ -330,12 +330,13 @@
             document.getElementById("titlehere").innerText = data.title;
 
 
-            const urlimg = "http://mybucketkourtis.s3.eu-west-3.amazonaws.com/cyberclub/articles/" + data.imagefilename;
+            const urlimg = "https://mybucketkourtis.s3.eu-west-3.amazonaws.com/cyberclub/articles/" + data.imagefilename;
 
-            $('head').append('<meta property="og:title" content=' + data.title + '/>');
-            $('head').append('<meta property="og:description" content=' + data.title + '/>');
-            $('head').append('<meta property="og:url" content=' + window.location.href + '/>');
-            $('head').append('<meta property="og:image" content=' + urlimg + '/>');
+            jQuery('head').append('<meta property="og:title" content=' + data.title + '/>');
+            jQuery('head').append('<meta property="og:title" content=' + data.title + '/>');
+            jQuery('head').append('<meta property="og:description" content=' + data.title + '/>');
+            jQuery('head').append('<meta property="og:url" content=' + window.location.href + '/>');
+            jQuery('head').append('<meta property="og:image" content=' + urlimg + '/>');
 
             (function (d, s, id) {
                 var js, fjs = d.getElementsByTagName(s)[0];
