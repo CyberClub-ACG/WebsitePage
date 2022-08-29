@@ -343,6 +343,13 @@
 
             document.getElementById("authorhere").innerText = data.author;
             document.getElementById("titlehere").innerText = data.title;
+
+            document.querySelector('meta[property="og:title"]').remove();
+            document.querySelector('meta[property="og:description"]').remove();
+            document.querySelector('meta[property="og:url"]').remove();
+            document.querySelector('meta[property="og:image"]').remove();
+
+
             document.querySelector('meta[property="og:title"]').setAttribute("content", data.title);
             document.querySelector('meta[property="og:description"]').setAttribute("content", data.title);
             document.querySelector('meta[property="og:url"]').setAttribute("content", window.location.href);
