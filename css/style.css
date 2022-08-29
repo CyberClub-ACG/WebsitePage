@@ -383,3 +383,7 @@ img.zoom-img {
     border-radius: 100%;
     background-color: #33353d;
 }
+
+.CodeMirror {
+    height: 600px !important;
+}
