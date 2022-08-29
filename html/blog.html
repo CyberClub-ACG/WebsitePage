@@ -162,7 +162,10 @@
         <div class="fb-share-button"
              data-layout="button_count"
              data-size="large" id="parentfbshare"><a class="fb-xfbml-parse-ignore" id="fbshare"
-                                                     target="_blank">Share</a></div>
+                                                     target="_blank">Share</a>
+        </div>
+        <a class="twitter-share-button" data-show-count="false" href="https://twitter.com/share?ref_src=twsrc%5Etfw">Tweet</a>
+        <script async charset="utf-8" src="https://platform.twitter.com/widgets.js"></script>
     </div>
 
     <div id="joinus"
@@ -330,7 +333,7 @@
 
             document.getElementById("authorhere").innerText = data.author;
             document.getElementById("titlehere").innerText = data.title;
-            document.querySelector('meta[property="og:title"]').setAttribute("content", data.title);
+            document.querySelector('meta[property="og:ogtitle"]').setAttribute("content", data.title);
             document.querySelector('meta[property="og:ogimg"]').setAttribute("content", "https://mybucketkourtis.s3.eu-west-3.amazonaws.com/cyberclub/articles/" + data.imagefilename);
             document.getElementById("descriptionhere").innerText = data.description;
             document.getElementById("contenthere").innerHTML += mdhtml;
