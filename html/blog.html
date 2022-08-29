@@ -144,8 +144,6 @@
                 <p>Article written by:
                     <span class="blog-post-meta" id="authorhere"></span>
                 </p>
-                <br>
-
             </article>
         </main>
 
@@ -161,10 +159,19 @@
 
         <div class="fb-share-button"
              data-layout="button_count"
-             data-size="large" id="parentfbshare"><a class="fb-xfbml-parse-ignore" id="fbshare"
-                                                     target="_blank">Share</a>
+             data-size="large"
+             id="parentfbshare" style="margin: 0 !important; float: left !important;"><a class="fb-xfbml-parse-ignore"
+                                                                                         id="fbshare"
+                                                                                         style="float: left !important;"
+                                                                                         target="_blank">Share</a>
         </div>
-        <a class="twitter-share-button" data-show-count="false" href="https://twitter.com/share?ref_src=twsrc%5Etfw">Tweet</a>
+        <div
+                style="margin-left: 5px !important; float: left !important;">
+            <a class="twitter-share-button " data-show-count="false" data-size="large"
+               href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+               style="float: left !important;">Tweet</a>
+        </div>
+        <br>
         <script async charset="utf-8" src="https://platform.twitter.com/widgets.js"></script>
     </div>
 
@@ -366,8 +373,8 @@
     }
 
     $(document).ready(function () {
-        jQuery("#parentfbshare").attr("data-href", "https://dccyberclub.com/html/blog.html?titleslug=how-will-the-metaverse-change-future-education");
-        jQuery("#fbshare").attr("href", "https://dccyberclub.com/html/blog.html?titleslug=how-will-the-metaverse-change-future-education");
+        jQuery("#parentfbshare").attr("data-href", window.location.href);
+        jQuery("#fbshare").attr("href", window.location.href);
     });
 </script>
 <!-- Google tag (gtag.js) -->
