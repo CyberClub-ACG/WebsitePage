@@ -8,12 +8,6 @@
     <meta content="" name="description">
     <meta content="Alexandros Kourtis" name="author">
 
-    <meta property="og:title">
-    <meta property="og:image">
-    <meta content="https://www.your-domain.com/your-page.html" property="og:url"/>
-    <meta content="website" property="og:type"/>
-    <meta content="Your description" property="og:description"/>
-
     <link href="../img/other/cyberweb%20logo.png" rel="shortcut icon" type="image/jpg"/>
     <title>Cyber Club | Blog</title>
     <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -344,17 +338,13 @@
             document.getElementById("authorhere").innerText = data.author;
             document.getElementById("titlehere").innerText = data.title;
 
-            document.querySelector('meta[property="og:title"]').remove();
-            document.querySelector('meta[property="og:description"]').remove();
-            document.querySelector('meta[property="og:url"]').remove();
-            document.querySelector('meta[property="og:image"]').remove();
 
             const urlimg = "https://mybucketkourtis.s3.eu-west-3.amazonaws.com/cyberclub/articles/" + data.imagefilename;
 
-            jQuery('head').append('<meta property="og:title" content=' + data.title + '>');
-            jQuery('head').append('<meta property="og:description" content=' + data.title + '>');
-            jQuery('head').append('<meta property="og:url" content=' + window.location.href + '>');
-            jQuery('head').append('<meta property="og:image" content=' + urlimg + '>');
+            $('head').append('<meta property="og:title" content=' + data.title + '>');
+            $('head').append('<meta property="og:description" content=' + data.title + '>');
+            $('head').append('<meta property="og:url" content=' + window.location.href + '>');
+            $('head').append('<meta property="og:image" content=' + urlimg + '>');
 
             document.getElementById("descriptionhere").innerText = data.description;
             document.getElementById("contenthere").innerHTML += mdhtml;
