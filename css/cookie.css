@@ -4,8 +4,8 @@
  * Released under MIT license
  */
 .cookiealert {
-    position: fixed;
-    bottom: 0;
+    position: fixed !important;
+    bottom: 0 !important;
     left: 0;
     width: 100%;
     margin: 0 !important;
