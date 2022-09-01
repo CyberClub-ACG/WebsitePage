@@ -53,9 +53,9 @@
             width: 100%;
         }
 
-        #myspinner {
-            visibility: hidden;
-        }
+        /*#myspinner {*/
+        /*    visibility: hidden;*/
+        /*}*/
     </style>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -120,24 +120,27 @@
             </div>
         </div>
     </header>
-    <div class="container mb-4" style="min-height: 100vh; width: 100vw; z-index: -1; padding: 0;">
-        <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <div class="container" style=" width: 100vw; z-index: -1; padding: 0;">
+        <div class="container col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="spinner-border" id="myspinner" role="status" style="margin: 20px auto">
                 <span class="visually-hidden">Loading...</span>
             </div>
         </div>
-        <br>
+    </div>
+    <div style="min-height: 100vh; width: 100vw; z-index: -1; padding: 0;">
         <main>
-            <article class="container blog-post mt-2">
+            <article class="blog-post">
                 <div>
-                    <h3 id="titlehere"
-                        style="color: rgba(41, 41, 41, 1);"></h3>
-                    <p class="text-muted"
-                       id="descriptionhere"></p>
                     <div class="mb-3" id="imghere"
-                         style="width: 100%; height: auto; margin-right: 20px; float: left;">
+                         style="width: 100vw; height: 650px; ">
                     </div>
-                    <div id="contenthere">
+                    <div class="container">
+                        <h3 id="titlehere"
+                            style="color: rgba(41, 41, 41, 1);"></h3>
+                        <p class="text-muted"
+                           id="descriptionhere"></p>
+                        <div id="contenthere">
+                        </div>
                     </div>
                 </div>
 
@@ -159,16 +162,15 @@
                         target="_blank">Share</a>
                 </div>
             </article>
-
+            <div
+                    style="margin-left: 5px !important; float: left !important;">
+                <a class="twitter-share-button " data-show-count="false" data-size="large"
+                   href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+                   style="float: left !important;">Tweet</a>
+            </div>
         </main>
 
 
-        <div
-                style="margin-left: 5px !important; float: left !important;">
-            <a class="twitter-share-button " data-show-count="false" data-size="large"
-               href="https://twitter.com/share?ref_src=twsrc%5Etfw"
-               style="float: left !important;">Tweet</a>
-        </div>
         <br>
         <script async charset="utf-8" src="https://platform.twitter.com/widgets.js"></script>
     </div>
