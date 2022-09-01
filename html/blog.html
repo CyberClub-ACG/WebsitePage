@@ -358,7 +358,7 @@
             document.getElementById("imghere").innerHTML += "" +
                 "                    <img data-action='zoom' alt='' " +
                 "                         src='https://mybucketkourtis.s3.eu-west-3.amazonaws.com/cyberclub/articles/" + data.imagefilename + "'" + "'" +
-                "                         style=\"object-fit: cover; width: 100%; height: 100%; cursor: default !important;\">\n";
+                "                         style=\"object-fit: cover !important; width: 100%; height: 100%; cursor: default !important;\">\n";
             jQuery('#contenthere p img').attr('data-action', 'zoom');
         } catch (error) {
             console.log(error);
