@@ -53,10 +53,6 @@
             z-index: 88888 !important;
             width: 100%;
         }
-
-        /*#myspinner {*/
-        /*    visibility: hidden;*/
-        /*}*/
     </style>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -133,13 +129,11 @@
             <article class="blog-post">
                 <div>
                     <div class="mb-3" id="imghere"
-                         style="width: 100vw; height: 650px; ">
+                         style="width: 100vw; height: 650px;">
                     </div>
                     <div class="container">
                         <h2 id="titlehere"
                             style="color: rgba(41, 41, 41, 1); font-weight: bold"></h2>
-                        <p class="text-muted"
-                           id="descriptionhere"></p>
                         <div id="contenthere">
                         </div>
                         <hr>
@@ -358,12 +352,11 @@
                 fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));
 
-            document.getElementById("descriptionhere").innerText = data.description;
             document.getElementById("contenthere").innerHTML += mdhtml;
             document.getElementById("imghere").innerHTML += "" +
                 "                    <img data-action='zoom' alt='' " +
                 "                         src='https://mybucketkourtis.s3.eu-west-3.amazonaws.com/cyberclub/articles/" + data.imagefilename + "'" + "'" +
-                "                         style=\"object-fit: cover; width: 100%; height: 100%;\">\n";
+                "                         style=\"object-fit: cover; width: 100%; height: 100%; cursor: default !important;\">\n";
             jQuery('#contenthere p img').attr('data-action', 'zoom');
         } catch (error) {
             console.log(error);
