@@ -8,13 +8,6 @@ https://dccyberclub.com
 
 ### TODOS:
 
-- refactor code on
-- btn clics
-    - disable them
-    - wait for res
-- imrorve responsive
-- fix xsl file download
-- add same footer
-- cyberweb!
+- refactor code
 - hide mongodb and aws connection details and other env/config vars
 - add img lazy load for events and blog and team
