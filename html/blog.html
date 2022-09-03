@@ -146,9 +146,11 @@
                         </div>
                         <hr>
                         <br>
-                        <p>Article written by:
-                            <span class="blog-post-meta" id="authorhere"></span>
-                        </p>
+                        <div id="authorcontainer">
+                            <p>Article written by:
+                                <span class="blog-post-meta" id="authorhere"></span>
+                            </p>
+                        </div>
                         <br>
                         <div id="fb-root"></div>
 
@@ -339,8 +341,13 @@
             const converter = new showdown.Converter({parseImgDimensions: true});
             const md = data.content;
             const mdhtml = converter.makeHtml(md);
+            data.author = "";
 
+            if (data.author.trim() === "") {
+                document.getElementById("authorcontainer").style.display = "none";
+            }
             document.getElementById("authorhere").innerText = data.author;
+
             document.getElementById("titlehere").innerText = data.title;
 
             document.title = data.title;
