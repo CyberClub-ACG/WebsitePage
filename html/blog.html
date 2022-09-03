@@ -343,6 +343,8 @@
             document.getElementById("authorhere").innerText = data.author;
             document.getElementById("titlehere").innerText = data.title;
 
+            document.title = data.title;
+
 
             const urlimg = "https://mybucketkourtis.s3.eu-west-3.amazonaws.com/cyberclub/articles/" + data.imagefilename;
             const title = data.title;
