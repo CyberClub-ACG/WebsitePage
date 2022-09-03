@@ -341,8 +341,6 @@
             const converter = new showdown.Converter({parseImgDimensions: true});
             const md = data.content;
             const mdhtml = converter.makeHtml(md);
-            data.author = "";
-
             if (data.author.trim() === "") {
                 document.getElementById("authorcontainer").style.display = "none";
             }
