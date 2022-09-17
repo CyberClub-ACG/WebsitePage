@@ -150,6 +150,20 @@
                     <br>
                     <div class="row g-3">
                         <div class="col-sm-6">
+                            Make public
+                            <br>
+                            <br>
+                            <div>
+                                <label class="switch">
+                                    <input type="checkbox" id="hiddenswitch">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row g-3">
+                        <div class="col-sm-6">
                             <label class="form-label" for="imagefilename">File name of the image selected for the
                                 article </label>
                             <input class="form-control" id="imagefilename" placeholder="File selected" required
@@ -422,7 +436,8 @@
             let content = simplemde.value();
             let imagefile = state.imagedescription;
             let imagefilename = state.imagedescriptionfilename;
-            let payload = {title, author, content, description, imagefilename};
+            const hidden = document.getElementById("hiddenswitch").checked === true ? "false" : "true";
+            let payload = {title, author, content, description, hidden, imagefilename};
             let route = "article/" + id;
 
             let formData = new FormData();
@@ -434,9 +449,10 @@
             const title = document.getElementById("title").value;
             const author = document.getElementById("author").value;
             const description = document.getElementById("description").value;
+            const hidden = document.getElementById("hiddenswitch").checked === true ? "false" : "true";
             const content = simplemde.value();
             const imagefilename = state.initialimagefilename;
-            const payload = {title, author, content, imagefilename, description};
+            const payload = {title, author, content, imagefilename, description, hidden};
 
             const route = "articles/" + id;
             await postRequest(route, payload);
@@ -500,21 +516,6 @@
             .catch(err => console.log(err));
     }
 
-    async function getArticleBySlugTitle(titleslug) {
-        const article = await getRequest('articles/findByslug/' + titleslug);
-        state.initialimagefilename = article.imagefilename;
-        state.id = article._id;
-        document.getElementById("title").value = article.title;
-        document.getElementById("author").value = article.author;
-        document.getElementById("description").value = article.description;
-        document.getElementById("imagefilename").value = article.imagefilename;
-        document.getElementById("viewbtn").innerHTML = "<a target='_blank' href='blog.html?titleslug=" + article.titleslug + "'>\n" +
-            "            <button class='btn btn-dark text-white' style='float: right'>View online\n" +
-            "        </button>\n" +
-            "        </a>";
-        simplemde.value(article.content);
-    }
-
     async function getArticle() {
         const urlParams = new URLSearchParams(window.location.search);
         const titleslug = urlParams.get('titleslug');
@@ -525,6 +526,7 @@
         document.getElementById("author").value = article.author;
         document.getElementById("description").value = article.description;
         document.getElementById("imagefilename").value = article.imagefilename;
+        document.getElementById("hiddenswitch").checked = article.hidden !== "false";
         document.getElementById("viewbtn").innerHTML = "<a target='_blank' href='blog.html?titleslug=" + article.titleslug + "'>\n" +
             "            <button class='btn btn-dark text-white' style='float: right'>View online\n" +
             "        </button>\n" +
