@@ -517,6 +517,7 @@
     }
 
     async function getArticle() {
+
         const urlParams = new URLSearchParams(window.location.search);
         const titleslug = urlParams.get('titleslug');
         const article = await getRequest('articles/findByslug/' + titleslug);
@@ -526,7 +527,7 @@
         document.getElementById("author").value = article.author;
         document.getElementById("description").value = article.description;
         document.getElementById("imagefilename").value = article.imagefilename;
-        document.getElementById("hiddenswitch").checked = article.hidden !== "false";
+        document.getElementById("hiddenswitch").checked = article.hidden.toString() === "false" ? true : false;
         document.getElementById("viewbtn").innerHTML = "<a target='_blank' href='blog.html?titleslug=" + article.titleslug + "'>\n" +
             "            <button class='btn btn-dark text-white' style='float: right'>View online\n" +
             "        </button>\n" +
