@@ -155,7 +155,7 @@
                             <br>
                             <div>
                                 <label class="switch">
-                                    <input type="checkbox" id="hiddenswitch">
+                                    <input id="hiddenswitch" type="checkbox">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
@@ -528,7 +528,7 @@
         document.getElementById("description").value = article.description;
         document.getElementById("imagefilename").value = article.imagefilename;
         document.getElementById("hiddenswitch").checked = article.hidden.toString() === "false" ? true : false;
-        document.getElementById("viewbtn").innerHTML = "<a target='_blank' href='blog.html?titleslug=" + article.titleslug + "'>\n" +
+        document.getElementById("viewbtn").innerHTML = "<a target='_blank' href=" + article.titleslug + "'article.html?titleslug='>\n" +
             "            <button class='btn btn-dark text-white' style='float: right'>View online\n" +
             "        </button>\n" +
             "        </a>";

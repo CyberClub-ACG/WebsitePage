@@ -361,7 +361,7 @@
                 "                        <td  hidden id='id'>" + article._id + "</td>\n" +
                 "                        <td id='articlename'>" + article.author + "</td>\n" +
                 "                        <td> \n" +
-                "                            <a target='_blank' class='bi bi-eye btn' style='font-size: 17px; cursor: pointer' target='_blank' href='blog.html?titleslug=" + article.titleslug + "'></a>\n" +
+                "                            <a target='_blank' class='bi bi-eye btn' style='font-size: 17px; cursor: pointer' target='_blank' href=" + article.titleslug + "'article.html?titleslug='></a>\n" +
                 "                            <a  class='bi bi-pencil btn' style='font-size: 17px; cursor: pointer' href='updatearticle.html?titleslug=" + article.titleslug + "'></a>\n" +
                 "                            <i onclick='openDeleteDialog(\"" + article.title + "\", \"" + article._id + "\")' class=\"bi bi-trash btn\"\n" +
                 "                               style=\"font-size: 17px; cursor: pointer\"></i>\n" +
