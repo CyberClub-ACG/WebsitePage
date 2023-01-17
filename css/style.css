@@ -525,4 +525,6 @@ input:checked + .slider:before {
 
 video {
     height: 100vh !important;
+    width: 100%;
+    object-fit: cover;
 }
