@@ -107,7 +107,7 @@
                     </p>
                     <ul class="d-flex align-content-center flex-wrap"
                         id="writeprojectsHere"
-                        style="padding: 0; display: flex; justify-content: center; align-items: center">
+                        style="padding: 0; display: flex; justify-content: center; align-items: start">
                     </ul>
                 </main>
             </div>
@@ -279,12 +279,12 @@
     async function addtothml(payload) {
         await payload.forEach(member => {
             document.getElementById("writeprojectsHere").innerHTML += "" +
-                " <li >\n" +
+                " <li class='col-md-3 p-md-4' >\n" +
                 "                        <div >\n" +
                 "                            <a href='mailto:dc.cyberclub@acg.edu' style='color: initial'>\n" +
-                "                                <img\n" +
+                "                                <img" +
                 "                         src='" + member.imageuri + "'" +
-                "                                        style=\"max-width: 250px;\n" +
+                "                                        style=\"width: 100%; 350px;\n" +
                 "                                                              object-fit: cover;\n" +
                 "                                                              margin: 10px;\">\n" +
                 "                            </a>\n" +
@@ -293,7 +293,8 @@
                 "                                    <h2 style='line-height: 40px; font-family: sohne, \\Helvetica Neue\\, Helvetica, Arial, sans-serif; color: rgba(41, 41, 41, 1);'>\n" +
                 "                                        " + member.name + " </h2>\n" +
                 "                                </a>\n" +
-                "                                <p class='text-muted'> " + member.cost + "<br>" +
+                "                                <p class='text-muted' style='width: 100%; " +
+                "word-break: break-all'> " + member.cost + "<br>" +
                 "                              Code: " + member.code + "<br>" +
                 "                              " + member.description + " </p>" +
                 "\n" +
