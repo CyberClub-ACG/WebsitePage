@@ -105,7 +105,7 @@
                 <div class="pt-3 bg-light ">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" href="./members.html">
+                            <a class="nav-link" href="./members.html">
                                 <span data-feather="users"></span>
                                 Members
                             </a>
@@ -117,7 +117,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./managemerch.html">
+                            <a class="nav-link active" href="./managemerch.html">
                                 <span data-feather="shopping-bag"></span>
                                 Merch
                             </a>
@@ -136,43 +136,20 @@
         <main class="mb-5 col-md-9 h-100 ms-sm-auto col-lg-10 px-md-4" style="min-height: 100vh !important;">
             <div
                     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h3>Club members </h3>
-                <div class="btn-toolbar mb-2 mb-md-0">
-                    <div class="btn-group me-2">
-                        <div class="dropdown">
-                                <span id="fetchbtn">
-                                </span>
-
-                            <button aria-expanded="false"
-                                    class="mybtn btn btn-sm btn btn-outline-secondary dropdown-toggle"
-                                    data-bs-toggle="dropdown" type="button">
-                                Sort by
-                            </button>
-                            <ul aria-labelledby="dropdownMenuButton1" class="dropdown-menu">
-                                <li><a class="dropdown-item" onclick="sortByDefault()">Default (By Date)</a></li>
-                                <li><a class="dropdown-item" onclick="sortByName()">Name</a></li>
-                            </ul>
-                        </div>
-                        <div class="dropdown">
-                            <button aria-expanded="false" class="mybtn btn btn-sm btn btn-outline-secondary"
-                                    onclick="openReportDialog()" type="button">
-                                Export to CSV
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                <h3>Merch </h3>
             </div>
             <div class="table-responsive">
                 <table class="table table-striped table-sm">
                     <thead>
                     <tr>
-                        <th>Student Id</th>
-                        <th>Name</th>
-                        <th>Email</th>
+                        <th>Title</th>
+                        <th>Cost</th>
+                        <th>Description</th>
+                        <th>Code</th>
                         <th>Action</th>
                     </tr>
                     </thead>
-                    <tbody id="writeMembersHere">
+                    <tbody id="writeMerchsHere">
                     </tbody>
                 </table>
             </div>
@@ -205,19 +182,36 @@
                             </div>
 
                             <div class="col-sm-6">
-                                <label class="form-label" for="newemail">Email</label>
-                                <input class="form-control" id="newemail" placeholder="" required type="text"
+                                <label class="form-label" for="newcost">Cost</label>
+                                <input class="form-control" id="newcost" placeholder="" required type="text"
                                        value="">
-                                <div class="invalid-feedback" id="newemailinvalid">
-                                    Valid email is required.
+                                <div class="invalid-feedback" id="newcostinvalid">
+                                    Valid name is required.
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label class="form-label" for="newdescription">Description</label>
+                                <input class="form-control" id="newdescription" placeholder="" required type="text"
+                                       value="">
+                                <div class="invalid-feedback" id="newdescriptioninvalid">
+                                    Valid description is required.
                                 </div>
                             </div>
                             <div class="col-sm-6">
-                                <label class="form-label" for="newstudentid">Student id</label>
-                                <input class="form-control" id="newstudentid" placeholder="" required
+                                <label class="form-label" for="newcode">Code</label>
+                                <input class="form-control" id="newcode" placeholder="" required
                                        type="text" value="">
-                                <div class="invalid-feedback" id="newstudentidinvalid">
-                                    Valid student id is required.
+                                <div class="invalid-feedback" id="newcodeinvalid">
+                                    Valid titleis required.
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="form-label" for="newimageuri">Image URI - S3 </label>
+                                <input class="form-control" id="newimageuri" placeholder="" required
+                                       type="text" value="">
+                                <div class="invalid-feedback" id="newimageuriinvalid">
+                                    Valid titleis required.
                                 </div>
                             </div>
                         </div>
@@ -234,34 +228,7 @@
         </div>
     </div>
 
-    <div class="modal" id="myReportModal" tabindex="-1">
-        <div class="modal-dialog">
-            <form class="needs-validation" novalidate onsubmit="exportToCSV(event)">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Save report</h5>
-                        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row g-3">
-                            <div class="col-sm-6">
-                                <label class="form-label" for="titlereport">Title</label>
-                                <input class="form-control" id="titlereport" placeholder="" required type="text"
-                                       value="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <div class="spinner-border myspinnerBtn" role="status" style="margin:5px">
-                            <span class=\"visually-hidden\"></span>
-                        </div>
-                        <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
-                        <button class="btn btn-primary" id="reportbtn" type="submit">Save changes</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
+
     <div class="modal" id="myEditModal" tabindex="-1">
     </div>
 
@@ -308,7 +275,7 @@
                     field. It aims to cultivate a community of motivated
                     individuals who are passionate about technology and want to enrich their academic and
                     student-life experience at Deree.</h5>
-                <h5>Email: dc.cyberclub@acg.edu
+                <h5>description: dc.cyberclub@acg.edu
                 </h5>
                 <h5>
                     Advisor: George Vardoulias
@@ -415,7 +382,7 @@
 
     const state = {
         count: 0,
-        members: [],
+        merchs: [],
     }
 
     function openReportDialog() {
@@ -426,9 +393,9 @@
         disableReport();
         showLoadingBtn();
         e.preventDefault();
-        let membersdata = state.members;
+        let merchsdata = state.merchs;
 
-        membersdata.forEach(
+        merchsdata.forEach(
             data => {
                 delete data.createdAt;
                 delete data.role;
@@ -440,10 +407,10 @@
             }
         )
 
-        membersdata = membersdata.map(Object.values)
+        merchsdata = merchsdata.map(Object.values)
 
-        let csvContent = "data:text/csv;charset=utf-8," + "NAME, EMAIL, STUDENT ID" + "\n"
-            + membersdata.map(e => e.join(",")).join("\n");
+        let csvContent = "data:text/csv;charset=utf-8," + "NAME, description, STUDENT ID" + "\n"
+            + merchsdata.map(e => e.join(",")).join("\n");
 
         const encodedUri = encodeURI(csvContent);
         const link = document.createElement("a");
@@ -460,24 +427,17 @@
     }
 
     async function sortByDefault() {
-        const sorted = state.members.sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt));
+        const sorted = state.merchs.sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt));
         await loadTable(sorted);
-    }
-
-    async function sortByName() {
-        showLoading();
-        const sorted = state.members.sort((a, b) => a.name.localeCompare(b.name));
-        await loadTable(sorted);
-        hideLoading();
     }
 
     async function filter(event) {
         const keyword = event.target.value.toLowerCase().trim();
         const results = [];
-        if (state.members.length > 0) {
-            state.members.forEach(member => {
-                if (member.name.toLowerCase().includes(keyword) || member.email.toLowerCase().includes(keyword) || member.studentid.toLowerCase().includes(keyword)) {
-                    results.push(member);
+        if (state.merchs.length > 0) {
+            state.merchs.forEach(merch => {
+                if (merch.name.toLowerCase().includes(keyword) || merch.description.toLowerCase().includes(keyword) || merch.name.toLowerCase().includes(keyword)) {
+                    results.push(merch);
                 }
             });
 
@@ -489,16 +449,17 @@
     function update(id) {
         disableUpdate();
         showLoadingBtn();
-        const route = "members/" + id;
-        const membername = document.getElementById("updatemembername").value;
-        const email = document.getElementById("updatemail").value;
-        const studentid = document.getElementById("updatestudentid").value;
+        const route = "merchs/" + id;
+        const cost = document.getElementById("updatecost").value;
+        const code = document.getElementById("updatecode").value;
+        const description = document.getElementById("updatedescription").value;
+        const imageuri = document.getElementById("updateimageuri").value;
+        const name = document.getElementById("updatename").value;
 
-        const payload = {name: membername, email, studentid};
+        const payload = {cost, description, code, name, imageuri};
 
         const xhttp = new XMLHttpRequest();
 
-        // websitebackendcyberclubacg.herokuapp.com
         xhttp.open("PUT", "https://cyberweb-backend.herokuapp.com/" + route, true);
         xhttp.setRequestHeader('xapikey', localStorage.getItem('secret'));
         xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
@@ -508,12 +469,13 @@
                 if (xhttp.status === 200) {
                     if (xhttp.response) {
                         const response = JSON.parse(xhttp.response);
-                        document.getElementById(id).children.namedItem("membername").textContent = response.name;
-                        document.getElementById(id).children.namedItem("email").textContent = response.email;
-                        document.getElementById(id).children.namedItem("studentid").textContent = response.studentid;
+                        document.getElementById(id).children.namedItem("cost").textContent = response.name;
+                        document.getElementById(id).children.namedItem("description").textContent = response.description;
+                        document.getElementById(id).children.namedItem("name").textContent = response.name;
+                        document.getElementById(id).children.namedItem("code").textContent = response.name;
                         closeModal();
-                        await getMembers();
-                        showToast("The member has been successfully updated.");
+                        await getMerchs();
+                        showToast("The merch has been successfully updated.");
                         enableUpdate();
                         hideLoadingBtn();
                     }
@@ -541,21 +503,21 @@
     }
 
     async function loadTable(payload) {
-        document.getElementById("writeMembersHere").innerHTML = "";
-        payload.forEach(member => {
-            document.getElementById("writeMembersHere").innerHTML += "" +
-                "<tr id='" + member._id + "'>\n" +
-                "                        <td id='studentid'>" + member.studentid + "</td>\n" +
-                "                        <td  hidden id='id'>" + member._id + "</td>\n" +
-                "                        <td id='membername'>" + member.name + "</td>\n" +
-                "                        <td id='email'>" + member.email + "</td>\n" +
-                "                        <td hidden id='studentid' >" + member.studentid + "</td>\n" +
+        document.getElementById("writeMerchsHere").innerHTML = "";
+        payload.forEach(merch => {
+            document.getElementById("writeMerchsHere").innerHTML += "" +
+                "<tr id='" + merch._id + "'>\n" +
+                "                        <td id='name'>" + merch.name + "</td>\n" +
+                "                        <td  hidden id='id'>" + merch._id + "</td>\n" +
+                "                        <td id='cost'>" + merch.cost + "</td>\n" +
+                "                        <td id='description'>" + merch.description + "</td>\n" +
+                "                        <td hidden id='name' >" + merch.name + "</td>\n" +
+                "                        <td id='code' >" + merch.code + "</td>\n" +
+                "                        <td id='imageuri' hidden >" + merch.imageuri + "</td>\n" +
                 "                        <td>\n" +
-                "                            <i onclick='editMember(event)' class=\"bi bi-pencil btn\"\n" +
+                "                            <i onclick='editMerch(event)' class=\"bi bi-pencil btn\"\n" +
                 "                               style=\"font-size: 17px; cursor: pointer\"></i>\n" +
-                "                            <i onclick='openDeleteDialog(\"" + member.name + "\", \"" + member._id + "\")' class=\"bi bi-trash btn\"\n" +
-                "                               style=\"font-size: 17px; cursor: pointer\"></i>\n" +
-                "                            <i onclick='copyRow(event)' class=\"bi bi-clipboard btn\"\n" +
+                "                            <i onclick='openDeleteDialog(\"" + merch.name + "\", \"" + merch._id + "\")' class=\"bi bi-trash btn\"\n" +
                 "                               style=\"font-size: 17px; cursor: pointer\"></i>\n" +
                 "                        </td>\n" +
                 "                    </tr>"
@@ -591,7 +553,7 @@
             "                <span class=\"visually-hidden\"></span>\n" +
             "            </div>\n" +
             "                <button class=\"btn btn-secondary\" data-bs-dismiss=\"modal\" type=\"button\">Cancel</button>\n <span hidden name='theid' id='theid'>" + id + "</span>" +
-            "                <button class=\"btn btn-primary\" id='deletebtn'  onclick='deleteMember(event, \"" + id + "\", \"" + name + "\")' >Delete\n" +
+            "                <button class=\"btn btn-primary\" id='deletebtn'  onclick='deleteMerch(event, \"" + id + "\", \"" + name + "\")' >Delete\n" +
             "                </button>\n" +
             "                </div>\n" +
             "                </div>\n" +
@@ -604,11 +566,11 @@
     }
 
     async function callback(payload) {
-        state.members = [];
+        state.merchs = [];
         const data = JSON.parse(payload);
-        await data.forEach(member => {
-            if (member)
-                state.members.push(member);
+        await data.forEach(merch => {
+            if (merch)
+                state.merchs.push(merch);
         });
 
         await sortByDefault();
@@ -618,16 +580,22 @@
     async function addNew() {
         disableSave();
         showLoadingBtn();
-        const name = document.getElementById("newname").value;
-        const email = document.getElementById("newemail").value;
-        const studentid = document.getElementById("newstudentid").value;
-        const payload = {name, email, studentid};
-        await postRequest("members", payload);
-        if (fetchall) {
-            await fetchalldata();
-        } else {
-            await getMembers();
-        }
+        const newname = document.getElementById("newname").value;
+        const newcost = document.getElementById("newcost").value;
+        const newdescription = document.getElementById("newdescription").value;
+        const newcode = document.getElementById("newcode").value;
+        const newimageuri = document.getElementById("newimageuri").value;
+        const payload = {
+            "newname": newname,
+            "newcost": newcost,
+            "newdescription": newdescription,
+            "newcode": newcode,
+            "imageuri": newimageuri
+        };
+        await postRequest("merch", payload);
+        let params = "merchs/";
+        await getRequest(params, callback);
+        sortByDefault();
         enableSave();
         hideLoadingBtn();
     }
@@ -649,7 +617,7 @@
             .then(data => {
                 switch (resStatus) {
                     case 200:
-                        showToast("New member has been successfully added");
+                        showToast("New merch has been successfully added");
                         $(".d-block").removeClass("d-block");
                         break
                     case 400:
@@ -677,14 +645,17 @@
             }
             const response = await fetch('https://cyberweb-backend.herokuapp.com/' + params, options);
             const data = await response.json();
-            state.members = [];
-            await data.members.forEach(member => {
-                if (member)
-                    state.members.push(member);
-            });
+            state.merchs = [];
 
-            await sortByDefault();
-            hideLoading();
+            console.dir(data);
+
+            if (data.length > 0) {
+                await data.forEach(merch => {
+                    if (merch)
+                        state.merchs.push(merch);
+                });
+            }
+
             return data;
         } catch (error) {
             console.log(error);
@@ -693,56 +664,19 @@
 
     let fetchall = false;
 
-    function init() {
+    async function init() {
         fetchall = false;
         showLoading();
-        getMembers();
-
-        document.getElementById("fetchbtn").innerHTML = "";
-        document.getElementById("fetchbtn").innerHTML += "<button aria-expanded=\"false\"\n" +
-            "    class=\"mybtn btn btn-sm btn btn-outline-secondary\"\n" +
-            "        onclick=\"fetchalldata()\" type=\"button\">\n" +
-            "            Fetch all data\n" +
-            "        </button>";
+        await getMerchs();
+        hideLoading();
     }
-
-    let page = 1;
-    let totalpages = 1;
 
     init();
 
-    async function prevPage() {
-        if (page - 1 !== 0) {
-            page = page - 1;
-        }
-        await getMembers();
-    }
-
-    async function nextPage() {
-        if (page + 1 <= totalpages) {
-            page = page + 1;
-        }
-        await getMembers();
-    }
-
-    async function getMembers() {
-        if (page >= 0) {
-            let params = "members/" + parseInt(page - 1);
-            const data = await getRequest(params, callback);
-            state.count = data.count;
-            totalpages = Math.ceil(data.pages);
-            document.getElementById("metainfo").innerHTML = "";
-            document.getElementById("metainfo").innerHTML += "<div><button style=\"color: white !important\" class=\"btn btn-dark text-white pull-right\" onclick=\"prevPage()\"><\n" +
-                "                </button>\n" +
-                "                <button style=\"color: white !important\" class=\"btn btn-dark text-white pull-right\" >\n" +
-                "                " + page + "\n" +
-                "                </button>\n" +
-                "                <button  style=\"color: white !important\" class=\"btn btn-dark text-white pull-right\" onclick=\"nextPage()\">\n" +
-                "                >\n" +
-                "                </button>\n" +
-                "                <h6 id=\"TotalMembersNumber\">Total members: " + data.count + "</h6>\n" +
-                "            <h6 id=\"totalPagesNumber\">Total pages: " + Math.ceil(data.pages) + "</h6></div>"
-        }
+    async function getMerchs() {
+        let params = "merchs/";
+        await getRequest(params, callback);
+        sortByDefault();
     }
 
     function openModal() {
@@ -778,15 +712,15 @@
         new bootstrap.Toast(toastEl, options).show();
     }
 
-    async function deleteMember(event, id, name) {
+    async function deleteMerch(event, id, name) {
         event.preventDefault();
         disableDelete();
         showLoadingBtn();
-        document.getElementById("TotalMembersNumber").innerText = "Total members: " + (--state.count);
+        document.getElementById("TotalMerchsNumber").innerText = "Total merchs: " + (--state.count);
         if (document.getElementById("totalPagesNumber"))
             document.getElementById("totalPagesNumber").innerText = "Total pages: " + Math.ceil(state.count / 10);
         try {
-            await fetch("https://cyberweb-backend.herokuapp.com/members/" + id, {
+            await fetch("https://cyberweb-backend.herokuapp.com/" + id, {
                 method: "DELETE",
                 headers: {
                     'xapikey': localStorage.getItem('secret'),
@@ -802,28 +736,15 @@
         }
     }
 
-    function copyRow(e) {
+    function editMerch(e) {
         const payload = {
-            membername: e.target.parentElement.parentElement.children.namedItem("membername").innerText,
-            email: e.target.parentElement.parentElement.children.namedItem("email").innerText,
-            studentid: e.target.parentElement.parentElement.children.namedItem("studentid").innerText,
+            name: e.target.parentElement.parentElement.children.namedItem("name").innerText,
+            cost: e.target.parentElement.parentElement.children.namedItem("cost").innerText,
+            description: e.target.parentElement.parentElement.children.namedItem("description").innerText,
+            code: e.target.parentElement.parentElement.children.namedItem("code").innerText,
+            imageuri: e.target.parentElement.parentElement.children.namedItem("imageuri").innerText,
             id: e.target.parentElement.parentElement.children.namedItem("id").innerText,
         }
-
-        const copyStr = payload.studentid + ", " + payload.membername + ", " + payload.email;
-        showToast("Copied to clipboard succesffully");
-        navigator.clipboard.writeText(copyStr);
-    }
-
-    function editMember(e) {
-        const payload = {
-            membername: e.target.parentElement.parentElement.children.namedItem("membername").innerText,
-            email: e.target.parentElement.parentElement.children.namedItem("email").innerText,
-            studentid: e.target.parentElement.parentElement.children.namedItem("studentid").innerText,
-            id: e.target.parentElement.parentElement.children.namedItem("id").innerText,
-        }
-
-        console.dir(payload);
 
         document.getElementById("myEditModal").innerHTML = buildEditModal(payload);
         openEditModal();
@@ -831,37 +752,22 @@
 
     async function fetchalldata() {
         showLoading();
-        fetchall = true;
-        document.getElementById("fetchbtn").innerHTML = "";
-        document.getElementById("fetchbtn").innerHTML += "<button aria-expanded=\"false\"\n" +
-            "    class=\"mybtn btn btn-sm btn btn-outline-secondary\"\n" +
-            "        onclick=\"init()\" type=\"button\">\n" +
-            "            Unfetch all data\n" +
-            "        </button>";
-
         try {
             const options = {
                 headers: {
                     'xapikey': localStorage.getItem('secret')
                 }
             }
-            const response = await fetch('https://cyberweb-backend.herokuapp.com/members', options);
+            const response = await fetch('https://cyberweb-backend.herokuapp.com/merchs', options);
             const data = await response.json();
-            state.members = [];
+            state.merchs = [];
 
-            state.members = [];
-            await Promise.all(data.map(async (member) => {
-                if (member)
-                    state.members.push(member);
+            state.merchs = [];
+            await Promise.all(data.map(async (merch) => {
+                if (merch)
+                    state.merchs.push(merch);
             }));
-
-            await sortByDefault();
             hideLoading();
-
-            document.getElementById("metainfo").innerHTML = "";
-            document.getElementById("metainfo").innerHTML +=
-                "                <h6 id=\"TotalMembersNumber\">Total members: " + data.length + "</h6>\n";
-
         } catch (error) {
             console.log(error);
         }
@@ -872,15 +778,15 @@
         return " <div class='modal-dialog'>\n" +
             "                <div class='modal-content'>\n" +
             "                    <div class='modal-header'>\n" +
-            "                        <h5 class='modal-title'>Edit member info</h5>\n" +
+            "                        <h5 class='modal-title'>Edit merch info</h5>\n" +
             "                        <button aria-label='Close' class='btn-close' data-bs-dismiss='modal' type='button'></button>\n" +
             "                    </div>\n" +
             "                    <div class='modal-body'>\n" +
             "                        <form class='needs-validation' novalidate>\n" +
             "                            <div class='row g-3'>\n" +
             "                                <div class='col-sm-6'>\n" +
-            "                                    <label class='form-label' for='updatemembername'>Name</label>\n" +
-            "                                    <input class='form-control' id='updatemembername' placeholder='' value='" + payload.membername + "' required type='text'\n" +
+            "                                    <label class='form-label' for='updatename'>Name</label>\n" +
+            "                                    <input class='form-control' id='updatename' placeholder='' value='" + payload.name + "' required type='text'\n" +
             "                                           value=''>\n" +
             "                                    <div class='invalid-feedback'>\n" +
             "                                        Valid name is required.\n" +
@@ -888,20 +794,38 @@
             "                                </div>\n" +
             "\n" +
             "                                <div class='col-sm-6'>\n" +
-            "                                    <label class='form-label' for='updatemail'>Email</label>\n" +
-            "                                    <input class='form-control' id='updatemail'  value='" + payload.email + "' placeholder='' required type='text'\n" +
+            "                                    <label class='form-label' for='updatecost'>Cost</label>\n" +
+            "                                    <input class='form-control' id='updatecost' placeholder='' value='" + payload.cost + "' required type='text'\n" +
             "                                           value=''>\n" +
             "                                    <div class='invalid-feedback'>\n" +
-            "                                        Valid email name is required.\n" +
+            "                                        Valid cost is required.\n" +
             "                                    </div>\n" +
             "                                </div>\n" +
             "\n" +
             "                                <div class='col-sm-6'>\n" +
-            "                                    <label class='form-label' for='updatestudentid'>Student id</label>\n" +
-            "                                    <input class='form-control' id='updatestudentid'  value='" + payload.studentid + "' placeholder='' required type='text'\n" +
+            "                                    <label class='form-label' for='updatedescription'>Description</label>\n" +
+            "                                    <input class='form-control' id='updatedescription'  value='" + payload.description + "' placeholder='' required type='text'\n" +
             "                                           value=''>\n" +
             "                                    <div class='invalid-feedback'>\n" +
-            "                                        Valid student id name is required.\n" +
+            "                                        Valid description name is required.\n" +
+            "                                    </div>\n" +
+            "                                </div>\n" +
+            "\n" +
+            "                                <div class='col-sm-6'>\n" +
+            "                                    <label class='form-label' for='updatecode'>Code</label>\n" +
+            "                                    <input class='form-control' id='updatecode'  value='" + payload.code + "' placeholder='' required type='text'\n" +
+            "                                           value=''>\n" +
+            "                                    <div class='invalid-feedback'>\n" +
+            "                                        Valid code is required.\n" +
+            "                                    </div>\n" +
+            "                                </div>\n" +
+            "\n" +
+            "                                <div class='col-sm-6'>\n" +
+            "                                    <label class='form-label' for='updateimageuri'>Code</label>\n" +
+            "                                    <input class='form-control' id='updateimageuri'  value='" + payload.imageuri + "' placeholder='' required type='text'\n" +
+            "                                           value=''>\n" +
+            "                                    <div class='invalid-feedback'>\n" +
+            "                                        Valid image uri is required.\n" +
             "                                    </div>\n" +
             "                                </div>\n" +
             "                        </form>\n" +
@@ -941,16 +865,6 @@
     function enableSave() {
         document.getElementById("savebtn").disabled = false;
         makeBtnBlue("savebtn");
-    }
-
-    function enableReport() {
-        document.getElementById("reportbtn").disabled = false;
-        makeBtnBlue("reportbtn");
-    }
-
-    function disableReport() {
-        document.getElementById("reportbtn").disabled = true;
-        makeBtnGray("reportbtn");
     }
 
     function disableSave() {
