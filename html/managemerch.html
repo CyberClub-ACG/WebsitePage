@@ -716,24 +716,18 @@
         event.preventDefault();
         disableDelete();
         showLoadingBtn();
-        document.getElementById("TotalMerchsNumber").innerText = "Total merchs: " + (--state.count);
-        if (document.getElementById("totalPagesNumber"))
-            document.getElementById("totalPagesNumber").innerText = "Total pages: " + Math.ceil(state.count / 10);
-        try {
-            await fetch("https://cyberweb-backend.herokuapp.com/" + id, {
-                method: "DELETE",
-                headers: {
-                    'xapikey': localStorage.getItem('secret'),
-                },
-            });
-            document.getElementById(id).remove();
-            showToast(name + " has been removed from the club.");
-            closeModal();
-            enableDelete();
-            hideLoadingBtn();
-        } catch (err) {
-            console.log(err);
-        }
+
+        await fetch("https://cyberweb-backend.herokuapp.com/merchs/" + id, {
+            method: "DELETE",
+            headers: {
+                'xapikey': localStorage.getItem('secret'),
+            },
+        });
+        document.getElementById(id).remove();
+        showToast(name + " has been removed from the club.");
+        closeModal();
+        enableDelete();
+        hideLoadingBtn();
     }
 
     function editMerch(e) {
