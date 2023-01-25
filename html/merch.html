@@ -36,9 +36,14 @@
         gtag('config', 'G-117Y4FD2GM');
     </script>
     <style>
-        @media (max-width: 600px) {
-            #coverwrite {
-                height: 250px !important;
+
+        .productimagewrapper {
+            max-width: 250px;
+        }
+
+        @media (max-width: 850px) {
+            .productimagewrapper {
+                max-width: 100%
             }
         }
     </style>
@@ -101,7 +106,6 @@
                 </div>
             </div>
             <div class="container" style="z-index: 1; ">
-                <br>
                 <br>
                 <main>
                     <p class="text-muted">
@@ -282,27 +286,18 @@
     async function addtothml(payload) {
         await payload.forEach(member => {
             document.getElementById("writeprojectsHere").innerHTML += "" +
-                " <li class='col-md-3 p-md-4' >\n" +
-                "                        <div >\n" +
-                "                            <a href='mailto:dc.cyberclub@acg.edu' style='color: initial'>\n" +
-                "                                <img" +
-                "                         src='" + member.imageuri + "'" +
-                "                                        style=\"width: 100%; 350px;\n" +
-                "                                                              object-fit: cover;\n" +
-                "                                                              margin: 10px;\">\n" +
-                "                            </a>\n" +
-                "                            <div style='color: initial; text-align: left'>\n" +
-                "                                <a style='text-underline: none' href='mailto:dc.cyberclub@acg.edu'>\n" +
-                "                                    <h2 style='line-height: 40px; font-family: sohne, \\Helvetica Neue\\, Helvetica, Arial, sans-serif; color: rgba(41, 41, 41, 1);'>\n" +
-                "                                        " + member.name + " </h2>\n" +
-                "                                </a>\n" +
-                "                                <p class='text-muted' style='width: 100%; " +
-                "word-break: break-all'> " + member.cost + "<br>" +
-                "                              Code: " + member.code + "<br>" +
-                "                              " + member.description + " </p>" +
-                "\n" +
-                "                            </div>\n" +
-                "                        </div>\n" +
+                "<div class=\"productimagewrapper card col-12 col-md-4 col-lg-3 mx-2 shadow-none bg-light rounded p-0 pull-left\">\n" +
+                "                <div class=\"m-2\">\n" +
+                "                    <img alt=\"Card image cap\" class=\"card-img-top\" src='" + member.imageuri + "'>\n" +
+                "                    <div class=\"card-body\">\n" +
+                "                        <a class=\"card-title text-left\" href=\"\"><h5>" + member.name + "</h5></a>\n" +
+                "                        <p class=\"card-text\">" + member.description + "</p>\n" +
+                "                    </div>\n" +
+                "                    <div class=\"card-footer\">\n" +
+                "                        <small class=\"text-muted\">" + member.cost + "</small>\n" +
+                "                    </div>\n" +
+                "                </div>\n" +
+                "            </div>" +
                 "                    </li><br>";
         })
     }
