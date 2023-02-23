@@ -22,7 +22,7 @@
     <link href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" rel="stylesheet"/>
     <link href="../css/custom.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
-    <link href="../css/stylemembers.css" rel="stylesheet">
+    <link href="../css/styleops.css" rel="stylesheet">
 
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet">
 
@@ -107,7 +107,7 @@
         <div class="container" style="z-index: 1; ">
             <!--            <div class="display-6 mt-3"><b>Welcome to the Cyber Blog</b></div>-->
             <!--            <p class="text-muted">Here you can find articles about Tech topics written by our beloved Cyber Club-->
-            <!--                members.-->
+            <!--                ops.-->
             <!--                <br>-->
             <!--                If you would like to write your own, please contact us at <a href="mailto:dc.cyberclub@acg.edu">dc.cyberclub@acg.edu</a>-->
             <!--            </p>-->
@@ -258,7 +258,7 @@
 <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
 <script>
     async function getarticles() {
-        let params = "articles";
+        let params = "ops";
         await getRequest(params);
     }
 
@@ -275,9 +275,9 @@
             const data = await response.json();
             state.projects = [];
 
-            await data.forEach(member => {
-                if (member) {
-                    state.projects.push(member);
+            await data.forEach(op => {
+                if (op) {
+                    state.projects.push(op);
                 }
             });
 
@@ -288,23 +288,17 @@
     }
 
     async function addtothml(payload) {
-        await payload.forEach(member => {
+        await payload.forEach(op => {
             document.getElementById("writeprojectsHere").innerHTML += "<div>" +
                 "                <li class='mt-5'>\n" +
                 "                    <div>\n" +
-                "               <a style='color: initial' href='article.html?titleslug=" + member.titleslug + "'>" +
-                "                        <h2 style='line-height: 40px; font-family: sohne, \"Helvetica Neue\", Helvetica, Arial, sans-serif; color: rgba(41, 41, 41, 1);'><b>" + member.title + "</b></h2>\n" +
+                "               <a target='_blank' style='color: initial' href=" + op.link + ">" +
+                "                        <h2 style='line-height: 40px; font-family: sohne, \"Helvetica Neue\", Helvetica, Arial, sans-serif; color: rgba(41, 41, 41, 1);'><b>" + op.name + "</b></h2>\n" +
                 "               </a>" +
                 "                        <div>\n" +
-                "                            <p>" + member.description + "</p>\n" +
-                "                        \n" + "                    <img alt=\"\" \n" +
-                "                         src='https://mybucketkourtis.s3.eu-west-3.amazonaws.com/cyberclub/articles/" + member.imagefilename + "'" +
-                "                         style=\"    width: 100%;\n" +
-                "    object-fit: cover;\n" +
-                "    max-height: 500px;\n" +
-                "    margin-right: 10px;\">\n" +
+                "                            <p>" + op.description + "</p>\n" +
                 "                    </div></div>\n" +
-                "               </li><br>";
+                "               </li>";
         })
     }
 
