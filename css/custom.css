@@ -1,3 +1,31 @@
+/*
+ * ALL RIGHTS RESERVED BY ALEXANDROS KOURTIS.
+ */
+
+/*
+ * ALL RIGHTS RESERVED BY ALEXANDROS KOURTIS.
+ */
+
+/*
+ * ALL RIGHTS RESERVED BY ALEXANDROS KOURTIS.
+ */
+
+/*
+ * ALL RIGHTS RESERVED BY ALEXANDROS KOURTIS.
+ */
+
+/*
+ * ALL RIGHTS RESERVED BY ALEXANDROS KOURTIS.
+ */
+
+/*
+ * ALL RIGHTS RESERVED BY ALEXANDROS KOURTIS.
+ */
+
+/*
+ * ALL RIGHTS RESERVED BY ALEXANDROS KOURTIS.
+ */
+
 @import url(https://fonts.googleapis.com/css?family=Lato);
 @import url(https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900);
 @import url(https://fonts.googleapis.com/css?family=Muli);
@@ -573,7 +601,8 @@ progress {
 
 .img-fluid {
     max-width: 100%;
-    height: auto
+    height: 400px;
+    object-fit: cover;
 }
 
 .img-thumbnail {
@@ -12215,4 +12244,8 @@ footer ul li a:hover, footer ul li a:focus, footer ul li a:active, footer ul li 
 .sector .member .social-links i {
     font-size: 18px;
     margin: 0 2px;
+}
+
+.btn-outline-warning:hover {
+    color: white !important;
 }

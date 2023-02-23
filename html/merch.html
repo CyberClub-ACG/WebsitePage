@@ -42,7 +42,17 @@
     <style>
 
         .productimagewrapper {
-            max-width: 250px;
+            width: 250px;
+            height: 400px;
+        }
+
+        .productimagewrapper .m-2 {
+            display: contents !important;
+        }
+
+        .productimagewrapper div img {
+            height: 250px;
+            object-fit: cover;
         }
 
         @media (max-width: 850px) {
@@ -118,7 +128,7 @@
                     </p>
                     <ul class="d-flex align-content-center flex-wrap"
                         id="writeprojectsHere"
-                        style="padding: 0; display: flex; justify-content: center; align-items: start">
+                        style="padding: 0; display: flex; justify-content: start; align-items: start">
                     </ul>
                 </main>
             </div>
@@ -299,7 +309,7 @@
                 "                        <a href='mailto:dc.cyberclub@acg.edu' class=\"card-title text-left\" href=\"\"><h5>" + member.name + "</h5></a>\n" +
                 "                        <p class=\"card-text\">" + member.description + "</p>\n" +
                 "                    </div>\n" +
-                "                    <div class=\"card-footer\">\n" +
+                "                    <div class=\"card-footer\" style='position: relative; bottom: 0'>\n" +
                 "                        <small class=\"text-muted\">" + member.cost + "</small>\n" +
                 "                    </div>\n" +
                 "                </div>\n" +
