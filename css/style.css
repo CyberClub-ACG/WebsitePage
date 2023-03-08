@@ -120,6 +120,10 @@ body {
     .site-footer .social-icons {
         text-align: center;
     }
+
+    #writeprojectsHere .mt-5 div {
+        display: block !important;
+    }
 }
 
 .social-icons {
