@@ -446,7 +446,7 @@
                     'xapikey': localStorage.getItem('secret')
                 }
             }
-            const response = await fetch('https://cyberweb-backend.herokuapp.com/' + params, options);
+            const response = await fetch('https://cyberclubapi-005da0da02da.herokuapp.com/' + params, options);
             const data = await response.json();
             state.articles = [];
             await data.forEach(article => {
@@ -514,7 +514,7 @@
         showLoadingBtn();
 
         try {
-            await fetch("https://cyberweb-backend.herokuapp.com/articles/" + id, {
+            await fetch("https://cyberclubapi-005da0da02da.herokuapp.com/articles/" + id, {
                 method: "DELETE",
                 headers: {
                     'xapikey': localStorage.getItem('secret'),

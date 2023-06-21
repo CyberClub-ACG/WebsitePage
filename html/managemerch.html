@@ -470,7 +470,7 @@
 
         const xhttp = new XMLHttpRequest();
 
-        xhttp.open("PUT", "https://cyberweb-backend.herokuapp.com/" + route, true);
+        xhttp.open("PUT", "https://cyberclubapi-005da0da02da.herokuapp.com/" + route, true);
         xhttp.setRequestHeader('xapikey', localStorage.getItem('secret'));
         xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
@@ -612,7 +612,7 @@
 
     async function postRequest(route, payload) {
         let resStatus = 0;
-        await fetch("https://cyberweb-backend.herokuapp.com/" + route, {
+        await fetch("https://cyberclubapi-005da0da02da.herokuapp.com/" + route, {
             method: 'POST',
             headers: {
                 'xapikey': localStorage.getItem('secret'),
@@ -653,7 +653,7 @@
                     'xapikey': localStorage.getItem('secret')
                 }
             }
-            const response = await fetch('https://cyberweb-backend.herokuapp.com/' + params, options);
+            const response = await fetch('https://cyberclubapi-005da0da02da.herokuapp.com/' + params, options);
             const data = await response.json();
             state.merchs = [];
 
@@ -727,7 +727,7 @@
         disableDelete();
         showLoadingBtn();
 
-        await fetch("https://cyberweb-backend.herokuapp.com/merchs/" + id, {
+        await fetch("https://cyberclubapi-005da0da02da.herokuapp.com/merchs/" + id, {
             method: "DELETE",
             headers: {
                 'xapikey': localStorage.getItem('secret'),
@@ -762,7 +762,7 @@
                     'xapikey': localStorage.getItem('secret')
                 }
             }
-            const response = await fetch('https://cyberweb-backend.herokuapp.com/merchs', options);
+            const response = await fetch('https://cyberclubapi-005da0da02da.herokuapp.com/merchs', options);
             const data = await response.json();
             state.merchs = [];
 

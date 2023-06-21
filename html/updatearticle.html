@@ -472,7 +472,7 @@
 
 
     async function postRequest2(route, payload) {
-        await fetch("https://cyberweb-backend.herokuapp.com/" + route, {
+        await fetch("https://cyberclubapi-005da0da02da.herokuapp.com/" + route, {
             method: 'POST',
             headers: {
                 'xapikey': localStorage.getItem('secret'),
@@ -491,7 +491,7 @@
     }
 
     async function postRequest(route, payload) {
-        await fetch("https://cyberweb-backend.herokuapp.com/" + route, {
+        await fetch("https://cyberclubapi-005da0da02da.herokuapp.com/" + route, {
             method: 'POST',
             headers: {
                 'xapikey': localStorage.getItem('secret'),
@@ -516,7 +516,7 @@
                 'xapikey': localStorage.getItem('secret')
             }
         }
-        return await fetch('https://cyberweb-backend.herokuapp.com/' + route, options)
+        return await fetch('https://cyberclubapi-005da0da02da.herokuapp.com/' + route, options)
             .then(async response => await response.json())
             .then(async data => {
                 hideLoading();
